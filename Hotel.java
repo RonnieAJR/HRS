@@ -15,12 +15,12 @@ public class Hotel
 	
 	public Hotel(String name)
 	{
-		this.Hotel(name, 1, 1299);
+		this(name, 1, 1299.0);
 	}
 	
 	public Hotel(String name, int capacity)
 	{
-		this.Hotel(name, capacity, 1299);
+		this(name, capacity, 1299.0);
 	}
 	
 	public Hotel(String name, int capacity, double price)
@@ -30,13 +30,13 @@ public class Hotel
 		this.capacity = capacity;
 		this.price = price;
 		
-		this.reservations = new ArrayList<Reservation>;
-		this.rooms = new ArrayList<Room>;
+		this.reservations = new ArrayList<Reservation>();
+		this.rooms = new ArrayList<Room>();
 		
-		if(name[1] == ' ')
-			room = new Room(name[0] + "-01", this.price);
+		if(name.charAt(1) == ' ')
+			room = new Room(name.charAt(0) + "-01", this.price);
 		else
-			room = new Room(name[0] + name[1] + "-1", this.price);
+			room = new Room(name.charAt(0) + name.charAt(1) + "-1", this.price);
 		
 		this.rooms.add(room);
 		
@@ -70,7 +70,7 @@ public class Hotel
 			roomName = roomName.substring(3);
 			
 			// convert to int
-			roomNumber = Integer.parseString(roomName).intValue();
+			roomNumber = Integer.parseInt(roomName);
 			
 			// add 1
 			roomNumber ++;
@@ -78,9 +78,9 @@ public class Hotel
 			
 			///////////////////////////////////////////    PRIVATE METHOD THAT GENERATES UNIQUE NAME, lmao wag na
 			if(size < 10)
-				roomName = this.name[0] + this.name[1] + "-0" + roomNumber;
+				roomName = this.name.charAt(0) + this.name.charAt(1) + "-0" + roomNumber;
 			else
-				roomName = this.name[0] + this.name[1] + "-" + roomNumber;
+				roomName = this.name.charAt(0) + this.name.charAt(1) + "-" + roomNumber;
 			// what if space yung second character
 			// are room names unique throughout the whole HRS, or just the hotel rooms
 			
@@ -128,7 +128,7 @@ public class Hotel
 		
 		// check if room  has reservation?
 		
-		Room r;
+		Room room;
 		boolean valid = false;
 		
 		// return false if hotel only has one room
@@ -137,16 +137,17 @@ public class Hotel
 		
 		// finding the room and checking if its empty
 		
-		for(r : this.rooms) ///////////////////////////          MAKE SURE THIS WORKS, the r value is kept outside the for loop
+		for(Room r : this.rooms)
 			if(r.getName().equals(name) && r.getReserved().isEmpty())
 			{
+				room = r;
 				valid = true;
 				break;
 			}
 		
 		// remove if room is found and empty
 		if(valid)
-			return this.rooms.remove(r);
+			return this.rooms.remove(room);
 		
 		// return false if either not found or not room is not empty
 		return false;
@@ -187,28 +188,28 @@ public class Hotel
 		int size = this.reservations.size();
 		boolean available = false;
 		Room room;
-		ArrayList<Integer> targetDays = new ArrayList<Integer>;
-		HashSet<Integer> combinedDays = new HashSet<Integer>;
+		ArrayList<Integer> targetDays = new ArrayList<Integer>();
+		HashSet<Integer> combinedDays = new HashSet<Integer>();
 		
 		// convert the target days to be reserved into a list
 		while(day < checkOut)
 			targetDays.add(day++);
 		
 		// checks each room
-		for(room : this.rooms)
+		for(Room r : this.rooms)
 		{
-			sizeSum = targetDays.size() + room.getReserved.size();
+			sizeSum = targetDays.size() + r.getReserved().size();
 			
 			// prevents duplicate days from being added into the list
 			combinedDays.addAll(targetDays);
-			combinedDays.addAll(room.getReserved());
+			combinedDays.addAll(r.getReserved());
 			
 			// checks if no days overlap in target days and reserved days
 			// same size means no duplicate days were prevented
 			if(sizeSum == combinedDays.size())
 			{
+				room = r;
 				available = true;
-				combinedDays.clear();
 				break;
 			}
 			
@@ -236,21 +237,26 @@ public class Hotel
 	{
 		int checkIn;
 		int checkOut;
-		Reservation r;
+		boolean found = false;
+		Reservation reservation;
 		
 		// finds the reservation
-		for(r : this.reservations)
+		for(Reservation r : this.reservations)
 			if(r.getId() == reservationId)
+			{
+				reservation = r;
+				found = true;
 				break;
-		
-		if(r.getId() != reservationId)
+			}
+			
+		if(!found)
 			return false;
 		
-		checkIn = r.getCheckIn();
-		checkOut = r.getCheckOut();
+		checkIn = reservation.getCheckIn();
+		checkOut = reservation.getCheckOut();
 		
-		r.getRoom().removeReserved(checkIn, checkOut);
-		this.reservations.remove(r);
+		reservation.getRoom().removeReserved(checkIn, checkOut);
+		this.reservations.remove(reservation);
 		
 		return true;
 	}

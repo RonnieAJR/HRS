@@ -13,6 +13,7 @@ public class Room
 	{
 		this.name = name;
 		this.price = price;
+		this.reserved = new ArrayList<Integer>();
 	}
 	
 	public void addReserved(int checkIn, int checkOut)
