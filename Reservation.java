@@ -7,41 +7,45 @@ public class Reservation
 {
     private String name;
     private Room room;
-    private int checkin;
-    private int checkout;
-    private int reservationid;
+    private int checkIn;
+    private int checkOut;
+    private int reservationId;
 
 
-    public Reservation(String name, Room room, int checkin, int checkout)
+    public Reservation(String name, Room room, int checkIn, int checkOut, int reservationId)
     {
-
+		this.name = name;
+		this.room = room;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.reservationId = reservationId;
     }
 
-    String getBreakdown()
+    public String getBreakdown()
     {
-
+		return "PLACEHOLDER";
     }
 
-    double getTotalPrice()
+    public double getTotalPrice()
     {
-
+		return this.room.getPrice() * (checkOut - checkIn);
     }
 
-    String getName(){return this.name;}
+    public String getName(){return this.name;}
 
-    String getRoom(){return this.room.getName();}
+    public Room getRoom(){return this.room;}
 
-    int getCheckin()
+    int getCheckIn()
     {
-        return this.checkin;
+        return this.checkIn;
     }
 
-    int getCheckout()
+    int getCheckOut()
     {
-        return this.checkout;
+        return this.checkOut;
     }
 
-    int getid(){return this.reservationid;}
+    int getId(){return this.reservationId;}
 
 
 

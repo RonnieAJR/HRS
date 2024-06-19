@@ -128,7 +128,7 @@ public class Hotel
 		
 		// check if room  has reservation?
 		
-		Room room;
+		Room room = this.rooms.get(0);
 		boolean valid = false;
 		
 		// return false if hotel only has one room
@@ -145,14 +145,12 @@ public class Hotel
 				break;
 			}
 		
-		// remove if room is found and empty
-		if(valid)
-			return this.rooms.remove(room);
-		
 		// return false if either not found or not room is not empty
-		return false;
+		if(!valid)
+			return false;
 		
-		// return this.rooms.removeIf(r -> r.name.equals(name));
+		// remove if room is found and empty
+		return this.rooms.remove(room);
 	}
 	
 	public boolean updatePrice(double price)
@@ -187,7 +185,7 @@ public class Hotel
 		int day = checkIn;
 		int size = this.reservations.size();
 		boolean available = false;
-		Room room;
+		Room room = this.rooms.get(0);
 		ArrayList<Integer> targetDays = new ArrayList<Integer>();
 		HashSet<Integer> combinedDays = new HashSet<Integer>();
 		
@@ -226,8 +224,8 @@ public class Hotel
 		else
 			id = this.reservations.get(size-1).getId() + 1;
 		
-		Reservation r = new Reservation(guestName, room, checkIn, checkOut, id);
-		this.reservations.add(r);
+		Reservation reservation = new Reservation(guestName, room, checkIn, checkOut, id);
+		this.reservations.add(reservation);
 		
 		return true;
 	}
@@ -238,7 +236,7 @@ public class Hotel
 		int checkIn;
 		int checkOut;
 		boolean found = false;
-		Reservation reservation;
+		Reservation reservation = this.reservations.get(0);
 		
 		// finds the reservation
 		for(Reservation r : this.reservations)
