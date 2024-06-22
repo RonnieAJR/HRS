@@ -26,26 +26,26 @@ public class Reservation
 		return "PLACEHOLDER";
     }
 
-    public double getTotalPrice()
+    public double getTotalPrice() //getter for total price of the room being reserved
     {
 		return this.room.getPrice() * (checkOut - checkIn);
     }
 
-    public String getName(){return this.name;}
+    public String getName(){return this.name;} //getter for name of reservation
 
-    public Room getRoom(){return this.room;}
+    public Room getRoom(){return this.room;} // getter for the room
 
     int getCheckIn()
     {
         return this.checkIn;
-    }
+    } // getter for check in date
 
     int getCheckOut()
     {
         return this.checkOut;
-    }
+    }// getter for check out date
 
-    int getId(){return this.reservationId;}
+    int getId(){return this.reservationId;} // getter for the id of reservation
 
 
 
