@@ -38,6 +38,27 @@ public class Room
 		}
 	}
 	
+	// focus muna sa feature implementations
+	/* public String toString()
+	{
+		String str1 = new String("|");
+		String str2 = new String("|");
+		String str3 = new String("|");
+		String div = new String("|");
+		String res;
+		
+		// name, price per month, availability
+		int size = this.reserved.size();
+		int width;
+		
+		if(size > 15)
+			width = size;
+		else
+			width = 31 - size;
+		
+		width = width * 4 + 20;
+	} */
+	
 	public String getName()
 	{
 		return this.name;

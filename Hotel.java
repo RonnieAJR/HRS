@@ -36,7 +36,7 @@ public class Hotel
 		if(name.charAt(1) == ' ')
 			room = new Room(name.charAt(0) + "-01", this.price);
 		else
-			room = new Room(name.charAt(0) + name.charAt(1) + "-1", this.price);
+			room = new Room(name.charAt(0) + name.charAt(1) + "-01", this.price);
 		
 		this.rooms.add(room);
 		
@@ -49,7 +49,7 @@ public class Hotel
 	// di pa to tapos
 	public boolean addRoom()
 	{
-		int size = this.reservations.size();
+		int size = this.rooms.size();
 		String roomName;
 		int roomNumber;
 		Room room;
@@ -64,7 +64,7 @@ public class Hotel
 			// add to list
 			
 			// extract the last room name
-			roomName = this.reservations.get(size-1).getName();
+			roomName = this.rooms.get(size-1).getName();
 			
 			// extract the room number
 			roomName = roomName.substring(3);
@@ -88,7 +88,7 @@ public class Hotel
 			
 			this.rooms.add(room);
 			
-			this.capacity += 1;
+			this.capacity++;
 			return true;
 			
 			// make a substring, starting from index 3 to end
@@ -111,45 +111,24 @@ public class Hotel
 	}
 	
 	public boolean removeRoom(String name)// what if room instance yung param
-	{
-		// int i=0;
-		// int size = this.rooms.size();
-		// Room curr = this.rooms.get(i);
-		
-		// while(i < size && !curr.getName().equals(name))
-		// {
-			// curr = this.rooms.get(i++);
-		// }
-		
-		// if(curr.getName().equals(name))
-		// {
-			
-		// }
-		
-		// check if room  has reservation?
-		
-		Room room = this.rooms.get(0);
-		boolean valid = false;
+	{	
+		Room room;
 		
 		// return false if hotel only has one room
 		if(this.rooms.size() == 1)
 			return false;
 		
-		// finding the room and checking if its empty
-		
-		for(Room r : this.rooms)
-			if(r.getName().equals(name) && r.getReserved().isEmpty())
-			{
-				room = r;
-				valid = true;
-				break;
-			}
+		room = findRoom(name);
 		
 		// return false if either not found or not room is not empty
-		if(!valid)
+		if(room.getName().equals(name) &&
+		   room.getReserved().isEmpty())
 			return false;
 		
+		
 		// remove if room is found and empty
+		this.capacity--;
+		
 		return this.rooms.remove(room);
 	}
 	
@@ -225,9 +204,8 @@ public class Hotel
 			id = this.reservations.get(size-1).getId() + 1;
 		
 		Reservation reservation = new Reservation(guestName, room, checkIn, checkOut, id);
-		this.reservations.add(reservation);
 		
-		return true;
+		return this.reservations.add(reservation);
 	}
 	
 	
@@ -235,28 +213,51 @@ public class Hotel
 	{
 		int checkIn;
 		int checkOut;
-		boolean found = false;
-		Reservation reservation = this.reservations.get(0);
+		Reservation reservation;
 		
-		// finds the reservation
-		for(Reservation r : this.reservations)
-			if(r.getId() == reservationId)
-			{
-				reservation = r;
-				found = true;
-				break;
-			}
-			
-		if(!found)
+		if(this.reservations.isEmpty())
+			return false;
+		
+		reservation = findReservation(reservationId);
+		
+		if(reservation.getId() != reservationId)
 			return false;
 		
 		checkIn = reservation.getCheckIn();
 		checkOut = reservation.getCheckOut();
 		
 		reservation.getRoom().removeReserved(checkIn, checkOut);
+		
 		this.reservations.remove(reservation);
 		
 		return true;
+	}
+	
+	public Room findRoom(String name)
+	{
+		Room room = this.rooms.get(0);
+		
+		for(Room r : this.rooms)
+			if(r.getName().equals(name))
+			{
+				room = r;
+				break;
+			}
+		return room;
+	}
+	
+	// breaks if this.reservations is empty
+	public Reservation findReservation(int id)
+	{
+		Reservation reservation = this.reservations.get(0);
+		
+		for(Reservation r : this.reservations)
+			if(r.getId() == id)
+			{
+				reservation = r;
+				break;
+			}
+		return reservation;
 	}
 	
 	public String getName()
@@ -291,11 +292,13 @@ public class Hotel
 	
 	
 	/*
-	
+
+	methods to add
 	displayRooms
 	displaySelectRoom (name)
 	displayReservations
 	displaySelectReservation (id)
+	getEarnings()?
 	
 	
 	on hrs
@@ -304,7 +307,7 @@ public class Hotel
 	
 	*/
 	
-	/* public double getEarnings() // unnecessary, just use use getTotalPrice() in each getReservation(), meh, implement mo nalang lazy ahh
+	/* public double getEarnings()
 	{
 		double earnings=0;
 		Reservation reservation;
@@ -395,4 +398,36 @@ low level info
 					str = reservation info;
 					break;
 			return str;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	view hotel							main
+		display list of hotel			method in hrs	hrs.displayHotels()
+		enter hotel						main	
+		
+		(after entering hotel, its already located)		hrs.hotels.get(i).getName().equals(name)	
+		(its method can now be called directly)			hotel = hrs.hotels.get(i)
+		
+			view hotel info				method			hotel.displayInfo()
+			
+			view day availability
+				enter day				main
+				display info			method			hotel.displayDayAvailability()
+				
+			view room info
+				display rooms			method			hotel.displayRooms()
+				enter room				main			hotel.getRooms().get(i).getName().equals(name)	room = hotel.getRooms().get(i)
+				display info			method			room.displayInfo()
+				
+			view reservation info
+				display reservations					hotel.displayReservations()
+				enter reservation						hotel.getReservations().get(i).getId(id)	r = hotel.getReservations().get(i)
+				display info							r.displayInfo()
+				
 */
