@@ -1,51 +1,86 @@
-
-
-
-
+/**
+ * this class allows a system to be able to reserve a room
+ */
 
 public class Reservation
 {
-    private String name;
+    private String guestName;
     private Room room;
     private int checkIn;
     private int checkOut;
     private int reservationId;
 
 
-    public Reservation(String name, Room room, int checkIn, int checkOut, int reservationId)
+    /**
+     * constructor for the reservation class
+     * @param guestName : guestName of the customer who reserved
+     * @param room : room parameter to identify what room to be reserved
+     * @param checkIn : checkin date
+     * @param checkOut : checkout date
+     * @param reservationId : id reservation
+     */
+    public Reservation(String guestName, Room room, int checkIn, int checkOut, int reservationId)
     {
-		this.name = name;
+		this.guestName = guestName;
 		this.room = room;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 		this.reservationId = reservationId;
     }
 
-    public String getBreakdown()
-    {
-		return "PLACEHOLDER";
-    }
-
-    public double getTotalPrice() //getter for total price of the room being reserved
+    /**
+     * getter for total price of the room being reserved
+     * @return : double total price
+     */
+    public double getTotalPrice()
     {
 		return this.room.getPrice() * (checkOut - checkIn);
     }
 
-    public String getName(){return this.name;} //getter for name of reservation
+    /**
+     * getter for guestName of customer
+     * @return : string guestName of the customer
+     */
+    public String getguestName()
+    {
+        return this.guestName;
+    }
 
-    public Room getRoom(){return this.room;} // getter for the room
+    /**
+     * getter for the room
+     * @return : room object
+     */
+    public Room getRoom()
+    {
+        return this.room;
+    }
 
-    int getCheckIn()
+    /**
+     * // getter for check in date
+     * @return : integer of a checkin date
+     */
+    public int getCheckIn()
     {
         return this.checkIn;
-    } // getter for check in date
+    }
 
-    int getCheckOut()
+    /**
+     * getter for check out date
+     * @return : integer of a checkout date
+     */
+    public int getCheckOut()
     {
         return this.checkOut;
-    }// getter for check out date
+    }
 
-    int getId(){return this.reservationId;} // getter for the id of reservation
+    /**
+     * getter for the id of reservation
+     * @return : integer for a reservation id
+     */
+    public int getId()
+    {
+        return this.reservationId;
+    }
 
 
 
