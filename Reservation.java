@@ -29,7 +29,7 @@ public class Reservation
     }
 
     /**
-     * getter for total price of the room being reserved
+     * getter for total price for the duration of a room being reserved
      * @return : double total price
      */
     public double getTotalPrice()
@@ -38,10 +38,10 @@ public class Reservation
     }
 
     /**
-     * getter for guestName of customer
+     * getter for name of the guest
      * @return : string guestName of the customer
      */
-    public String getguestName()
+    public String getGuestName()
     {
         return this.guestName;
     }
@@ -56,7 +56,7 @@ public class Reservation
     }
 
     /**
-     * // getter for check in date
+     * // getter for the check in date
      * @return : integer of a checkin date
      */
     public int getCheckIn()
@@ -65,7 +65,7 @@ public class Reservation
     }
 
     /**
-     * getter for check out date
+     * getter for the check out date
      * @return : integer of a checkout date
      */
     public int getCheckOut()
