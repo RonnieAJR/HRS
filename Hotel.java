@@ -120,6 +120,7 @@ public class Hotel
 		int roomNumber;
 		Room room;
 
+
 		//checks if room can still be added
 		if (size < 50)
 		{
@@ -157,6 +158,86 @@ public class Hotel
 		}
 
 		return false;
+	}
+
+	public boolean addRoom3()
+	{
+		int noRoom; // placeholder for finding floor with no room
+		int size = this.capacity; // placeholder for capacity of hotel
+		char firstLetter = this.getName().charAt(0); // first letter of hotel's name
+		String roomName; //placeholder for new unique room name
+		Room room;// placeholder for room
+
+		if(size < 50) //if size is less than 50, can add room
+		{
+			noRoom = isRoomExist(); //noRoom is assigned a room that does not exist in the floors
+
+			if(noRoom != -1) // if noRoom is not equal to the false equivalent of isRoom exist, execute add room
+			{
+				//name of room is first letter of hotel + room number
+				roomName = firstLetter + Integer.toString(noRoom);
+				room = new Room(roomName, this.price); //instantiate new room
+				this.rooms.add(room); // adds new room to the list of hotel rooms
+				insertionSortRoom(); // sorts room according to room number
+				return true;
+			}
+
+		}
+
+		return false;
+	}
+
+	public int isRoomExist()
+	{
+		int i = 0, floor = 100, room = 1;
+
+
+		while (i < this.capacity && floor != 600) //check if room number exists within capacity and five floors
+		{
+
+			if(this.rooms.get(i).getRoomNumber() != (floor + room))//if room doesnt exist, return room number where room doesnt exist
+				return floor + room;
+
+			//if room exists, increment
+			i++;
+			//room increments to 10
+			room++;
+			//if room is 11
+			if(room == 11)
+			{
+				//floor increments to check next floor
+				floor += 100;
+				//room resets to 1
+				room = 1;
+			}
+		}
+		//returns -1 if all rooms until 5th floor is found
+			return -1;
+	}
+
+	/**
+	 * insertion sorts array list of roos
+	 * di ko pa alam kung pano pero aralin ko nalang mamaya
+	 */
+	public void insertionSortRoom()
+	{
+		ArrayList<Room> temp = this.rooms;
+		Room key;
+		int i, j;
+
+		for(i = 1; i < this.capacity; i++)
+		{
+			key = temp.get(i);
+			j = i - 1;
+
+			while(j >= 0 && temp.get(j).getRoomNumber() > key.getRoomNumber())
+			{
+				temp.set(j+1, temp.get(j));
+				j = j - 1;
+			}
+			temp.set(j+1, key);
+		}
+		this.rooms = temp;
 	}
 	
 	public boolean removeRoom(String name)// what if room instance yung param
