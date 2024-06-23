@@ -8,7 +8,7 @@ import java.util.HashSet;
 public class Hotel
 {
 	private String name;
-	private int capacity;
+	private int capacity; // = 50?
 	private ArrayList<Room> rooms;
 	private double price;
 	private ArrayList<Reservation> reservations;
@@ -108,6 +108,55 @@ public class Hotel
 		
 		return false;
 		
+	}
+
+	public boolean addRoom2()
+	{
+		int size = this.rooms.size();
+		int sizeAfter;
+		char firstletter = this.getName().charAt(0);
+		char floor;
+		String roomName;
+		int roomNumber;
+		Room room;
+
+		//checks if room can still be added
+		if (size < 50)
+		{
+			sizeAfter = size++; //size after simulates what the size will be after adding
+			// if-else statements check sizeAfter to know what floor the room will be assigned
+			if(sizeAfter >= 1 && sizeAfter <= 10)
+				floor = '1';
+			else if(sizeAfter >= 11 && sizeAfter <= 20)
+				floor = '2';
+			else if(sizeAfter >= 21 && sizeAfter <= 30)
+				floor = '3';
+			else if(sizeAfter >= 31 && sizeAfter <= 40)
+				floor = '4';
+			else
+				floor = '5';
+
+			roomName = this.rooms.get(size-1).getName(); // get previous room's name
+
+			roomNumber = Integer.parseInt(roomName.substring(2)); //get previous room's number to track next room
+
+			if(roomNumber == 10) //if room is 10, next room resets to 1
+				roomNumber = 1;
+			else //if not, room number increments until 10
+				roomNumber++;
+
+			//assigns room name according to, first letter of hotel, floor, room number
+			roomName = firstletter + floor + Integer.toString(roomNumber);
+			//instantiate room using name and hotel's pricing
+			room = new Room(roomName, this.price);
+			//add room to list of hotel rooms
+			this.rooms.add(room);
+			// capacity increments
+			this.capacity++;
+			return true;
+		}
+
+		return false;
 	}
 	
 	public boolean removeRoom(String name)// what if room instance yung param
