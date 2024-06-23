@@ -27,7 +27,12 @@ public class Reservation
 		this.checkOut = checkOut;
 		this.reservationId = reservationId;
     }
-
+	
+	public void displayInfo()
+	{
+		System.out.println("PLACEHOLDER");
+	}
+	
     /**
      * getter for total price for the duration of a room being reserved
      * @return : double total price

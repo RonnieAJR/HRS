@@ -59,6 +59,11 @@ public class Room
 		width = width * 4 + 20;
 	} */
 	
+	public void displayInfo()
+	{
+		System.out.println("PLACEHOLDER");
+	}
+	
 	public String getName()
 	{
 		return this.name;

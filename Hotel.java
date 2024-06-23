@@ -260,6 +260,26 @@ public class Hotel
 		return reservation;
 	}
 	
+	public void displayInfo()
+	{
+		System.out.println("PLACEHOLDER");
+	}
+	
+	public void displayDayInfo()
+	{
+		System.out.println("PLACEHOLDER");
+	}
+	
+	public void displayRooms()
+	{
+		System.out.println("PLACEHOLDER");
+	}
+	
+	public void displayReservations()
+	{
+		System.out.println("PLACEHOLDER");
+	}
+	
 	public String getName()
 	{
 		return this.name;
