@@ -112,7 +112,7 @@ public class Hotel
 
 	public boolean addRoom2()
 	{
-		int size = this.rooms.size();
+		int size = this.capacity;
 		int sizeAfter;
 		char firstletter = this.getName().charAt(0);
 		char floor;
