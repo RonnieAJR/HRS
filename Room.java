@@ -68,7 +68,14 @@ public class Room
 	{
 		return this.price;
 	}
-	
+
+	public int getRoomNumber()
+	{
+		int roomNumber;
+		roomNumber = Integer.parseInt(this.name.substring(1));
+		return roomNumber;
+	}
+
 	public ArrayList<Integer> getReserved()
 	{
 		return this.reserved;
@@ -78,4 +85,6 @@ public class Room
 	{
 		this.price = price;
 	}
+
+
 }
