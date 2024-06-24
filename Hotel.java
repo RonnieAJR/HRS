@@ -351,7 +351,7 @@ public class Hotel
 			System.out.print("-");
 		System.out.print("\n");
 		
-		System.out.print("| Rooms available | Rooms reserved |\n");		
+		System.out.print("| Rooms available | Rooms reserved |\n");
 		
 		for(i=0; i < this.capacity; i++)// wrong condition
 		{
@@ -367,6 +367,20 @@ public class Hotel
 			else
 				System.out.printf("| 14s |\n", " ");
 		}
+		
+		System.out.print("|");
+		for(i=0; i < 34; i++)
+			System.out.print("-");
+		System.out.print("|\n");
+		
+		System.out.print("|               Total              |\n");
+		
+		System.out.print("|");
+		for(i=0; i < 34; i++)
+			System.out.print("-");
+		System.out.print("|\n");
+		
+		System.out.printf("| %15d | %14d |\n", available.size(), reserved.size()); 
 		
 		for(i=0; i < 36; i++)
 			System.out.print("-");
