@@ -1,15 +1,21 @@
 
-
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * The Room class mimics an actual room in a hotel having a name, price, reserve
+ */
 public class Room
 {
 	private String name;
 	private double price;
 	private ArrayList<Integer> reserved; // reserved, cuz for availability you add more numbers
 	
-	
+	/**
+	 * constructor for Room class
+	 * @param name : name of room
+	 * @param price : price of room
+	 */
 	public Room(String name, double price)
 	{
 		this.name = name;
@@ -17,6 +23,11 @@ public class Room
 		this.reserved = new ArrayList<Integer>();
 	}
 	
+	/**
+	 * this method reserves a room using the checkin and checkout dates of a reservation
+	 * @param checkIn : date of a check in
+	 * @param checkOut : date of a check out
+	 */
 	public void addReserved(int checkIn, int checkOut)
 	{
 		while(checkIn < checkOut)
@@ -25,6 +36,12 @@ public class Room
 			checkIn++;
 		}
 	}
+
+	/**
+	 * this method removes a reservation on the room using the check in and check out parameters
+	 * @param checkIn : date of a check in
+	 * @param checkOut : date of a check out
+	 */
 	
 	public void removeReserved(int checkIn, int checkOut)
 	{
@@ -59,6 +76,10 @@ public class Room
 		width = width * 4 + 20;
 	} */
 	
+	/**
+	 * this method displays every available dates for a room to be reserved as well as its
+	 * info such as name, floor, price, days reserved, and available days to be reserved
+	 */
 	public void displayInfo()
 	{
 		// sort reserved
@@ -152,16 +173,29 @@ public class Room
 		
 	}
 	
+	/**
+	 * this method gets the name of the room
+	 * @return String name of the room
+	 */
 	public String getName()
 	{
 		return this.name;
 	}
+
+	/**
+	 * this method gets the price per room
+	 * @return double price of a room
+	 */
 	
 	public double getPrice()
 	{
 		return this.price;
 	}
 
+	/**
+	 * this method gets the room's number as well as its floor using a specific naming convention
+	 * @return integer of a room's number
+	 */
 	public int getRoomNumber()
 	{
 		int roomNumber;
@@ -169,11 +203,20 @@ public class Room
 		return roomNumber;
 	}
 
+	/**
+	 * this method gets a room's reservations
+	 * @return ArrayList of integers of reservations
+	 */
+
 	public ArrayList<Integer> getReserved()
 	{
 		return this.reserved;
 	}
 	
+	/**
+	 * this method allows a system to manipulate the price of a room
+	 * @param price : to be used as basis for new price of a room
+	 */
 	public void setPrice(double price)
 	{
 		this.price = price;
