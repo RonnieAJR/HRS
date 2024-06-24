@@ -40,125 +40,11 @@ public class Hotel
 
 		while(this.rooms.size() < capacity)
 		{
-			this.addRoom3();
+			this.addRoom();
 		}
 	}
-	
-	// di pa to tapos
+
 	public boolean addRoom()
-	{
-		int size = this.rooms.size();
-		String roomName;
-		int roomNumber;
-		Room room;
-		
-		// if capacity is still not satisfied?? or what is capacity the limit or the amount of rooms currently
-		// probably the latter, then if(capacity < 50) is better, then update this.capacity++;
-		if(size < capacity)
-		{
-			// deleted rooms may not come back again, for only O(1)
-			// assign name, get last?
-			// create room instance
-			// add to list
-			
-			// extract the last room name
-			roomName = this.rooms.get(size-1).getName();
-			
-			// extract the room number
-			roomName = roomName.substring(3);
-			
-			// convert to int
-			roomNumber = Integer.parseInt(roomName);
-			
-			// add 1
-			roomNumber ++;
-			
-			
-			///////////////////////////////////////////    PRIVATE METHOD THAT GENERATES UNIQUE NAME, lmao wag na
-			if(size < 10)
-				roomName = this.name.charAt(0) + this.name.charAt(1) + "-0" + roomNumber;
-			else
-				roomName = this.name.charAt(0) + this.name.charAt(1) + "-" + roomNumber;
-			// what if space yung second character
-			// are room names unique throughout the whole HRS, or just the hotel rooms
-			
-			room = new Room(name, this.price);
-			
-			this.rooms.add(room);
-			
-			this.capacity++;
-			return true;
-			
-			// make a substring, starting from index 3 to end
-			// convert to int, add 1, convert to string
-			
-			// what if space yung second character
-			
-			// deleted rooms can come back, for O(n)
-			// go over each room
-			// if, according to the naming convetion, one room is skipped, then
-			// thats the name of the new room to be added
-			// haba kapag iimplement tho
-			//
-			// or...
-			// make a String[] that keeps the name of deleted rooms, then just access the first element
-		}
-		
-		return false;
-		
-	}
-
-	public boolean addRoom2()
-	{
-		int size = this.capacity;
-		int sizeAfter;
-		char firstletter = this.getName().charAt(0);
-		char floor;
-		String roomName;
-		int roomNumber;
-		Room room;
-
-
-		//checks if room can still be added
-		if (size < 50)
-		{
-			sizeAfter = size++; //size after simulates what the size will be after adding
-			// if-else statements check sizeAfter to know what floor the room will be assigned
-			if(sizeAfter >= 1 && sizeAfter <= 10)
-				floor = '1';
-			else if(sizeAfter >= 11 && sizeAfter <= 20)
-				floor = '2';
-			else if(sizeAfter >= 21 && sizeAfter <= 30)
-				floor = '3';
-			else if(sizeAfter >= 31 && sizeAfter <= 40)
-				floor = '4';
-			else
-				floor = '5';
-
-			roomName = this.rooms.get(size-1).getName(); // get previous room's name
-
-			roomNumber = Integer.parseInt(roomName.substring(2)); //get previous room's number to track next room
-
-			if(roomNumber == 10) //if room is 10, next room resets to 1
-				roomNumber = 1;
-			else //if not, room number increments until 10
-				roomNumber++;
-
-			//assigns room name according to, first letter of hotel, floor, room number
-			roomName = firstletter + floor + Integer.toString(roomNumber);
-			//instantiate room using name and hotel's pricing
-			room = new Room(roomName, this.price);
-			//add room to list of hotel rooms
-			this.rooms.add(room);
-			// capacity increments
-			this.capacity++;
-			return true;
-		}
-
-		return false;
-	}
-
-	public boolean addRoom3()
 	{
 		int noRoom; // placeholder for finding floor with no room
 		int size = this.capacity; // placeholder for capacity of hotel
@@ -179,9 +65,7 @@ public class Hotel
 				insertionSortRoom(); // sorts room according to room number
 				return true;
 			}
-
 		}
-
 		return false;
 	}
 
