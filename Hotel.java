@@ -278,22 +278,132 @@ public class Hotel
 	
 	public void displayInfo()
 	{
-		System.out.println("PLACEHOLDER");
+		int i;
+		int length = this.name.length() + 2;
+
+		for(i=0; i < length + 23; i++);
+			System.out.print("-");
+		System.out.print("\n");
+		
+		System.out.printf("| Hotel name         | %s |", this.name);
+		
+		System.out.print("|--------------------|");
+		for(i=0; i < length; i++);
+			System.out.print("-");
+		System.out.print("|\n");
+		
+		System.out.print("| Number of rooms    |");
+		for(i=0; i < length - 3; i++)
+			System.out.print(" ");
+		System.out.printf("%2d |\n", this.capacity);
+		
+		System.out.print("|--------------------|");
+		for(i=0; i < length; i++);
+			System.out.print("-");
+		System.out.print("|\n");
+		
+		System.out.print("| Estimated earnings |");
+		for(i=0; i < length - 13; i++)
+			System.out.print(" ");
+		System.out.printf("%,12.2f |\n", this.price);
+		
+		for(i=0; i < length + 23; i++);
+			System.out.print("-");
+		System.out.print("\n");
+		
+		
+		
 	}
 	
-	public void displayDayInfo()
-	{
-		System.out.println("PLACEHOLDER");
+	public void displayDayInfo(int day)
+	{	
+		int i, size;
+		HashSet<Integer> daysReserved = new HashSet<Integer>();
+		ArrayList<Room> reserved = new ArrayList<Room>();
+		ArrayList<Room> available = new ArrayList<Room>();
+		
+		reserved.addAll(this.rooms);
+		
+		// separates the rooms available and reserved
+		for(i=0; i < reserved.size(); i++)
+		{
+			daysReserved.addAll(reserved.get(i).getReserved());
+			size = daysReserved.size();
+			daysReserved.add(day);
+			
+			if(size != daysReserved.size())
+			{
+				available.add(reserved.remove(i));
+				i--;
+			}
+			daysReserved.clear();
+		}
+
+		for(i=0; i < 36; i++)
+			System.out.print("-");
+		System.out.print("\n");
+		
+		System.out.printf("|        Day %2d Availability       |\n", day);
+		
+		for(i=0; i < 36; i++)
+			System.out.print("-");
+		System.out.print("\n");
+		
+		System.out.print("| Rooms available | Rooms reserved |\n");		
+		
+		for(i=0; i < this.capacity; i++)// wrong condition
+		{
+			System.out.print("|-----------------|----------------|\n");
+			
+			if(i < reserved.size())
+				System.out.printf("| %15s |", reserved.get(i));
+			else
+				System.out.printf("| 15s |", " ");
+			
+			if(i < available.size())
+				System.out.printf("| %14s |\n", available.get(i));
+			else
+				System.out.printf("| 14s |\n", " ");
+		}
+		
+		for(i=0; i < 36; i++)
+			System.out.print("-");
+		System.out.print("\n\n");
 	}
 	
 	public void displayRooms()
 	{
-		System.out.println("PLACEHOLDER");
+		int i;
+		
+		System.out.print("-------------\n");
+		System.out.print("| Room Name |\n");
+		
+		for(i=0; i < this.rooms.size(); i++)
+		{
+			System.out.print("|-----------|\n");
+			System.out.printf("| %9s |\n", this.rooms.get(i).getName());
+		}
+		System.out.print("-------------\n\n");
 	}
 	
 	public void displayReservations()
 	{
-		System.out.println("PLACEHOLDER");
+		int i;
+		
+		if(this.reservations.size() == 0)
+			System.out.println("Reservations not found\n");
+		else
+		{
+			System.out.print("------------------\n");
+			System.out.print("| Reservation ID |\n");
+			
+			for(i=0; i < this.reservations.size(); i++)
+			{
+				System.out.print("|----------------|\n");
+				System.out.printf("| %14d |\n", this.reservations.get(i).getId());
+			}
+			System.out.print("------------------\n\n");
+		}
 	}
 	
 	public String getName()

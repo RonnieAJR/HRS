@@ -32,82 +32,82 @@ public class Reservation
 	{
 		
 		int i;
-		int size = this.guestName.length();
+		int length = this.guestName.length();
 		
-		if(size < 5)
-			size = 6;
+		if(length < 13)
+			length = 14;
 		else
-			size += 2;
+			length += 2;
 		
-		for(i=0; i < size + 20; i++)
+		for(i=0; i < length + 20; i++)
 			System.out.print("-");
 		System.out.print("\n");
 		
 		System.out.print("| Reservation ID  |");
-		for(i=0; i < size - 5; i++)
+		for(i=0; i < length - 5; i++)
 			System.out.print(" ");
 		System.out.printf("%4d |\n", this.reservationId);
 		
 		System.out.print("|-----------------|");
-		for(i=0; i < size; i++)
+		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
 		System.out.printf("| Guest name      | %4s |\n", this.guestName);
 		
 		System.out.print("|-----------------|");
-		for(i=0; i < size; i++)
+		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
 		System.out.print("| Room            |");
-		for(i=0; i < size - 5; i++)
+		for(i=0; i < length - 5; i++)
 			System.out.print(" ");
 		System.out.print(this.room.getName() + " |\n");
 		
 		System.out.print("|-----------------|");
-		for(i=0; i < size; i++)
+		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
 		System.out.print("| Check in day    |");
-		for(i=0; i < size - 4; i++)
+		for(i=0; i < length - 4; i++)
 			System.out.print(" ");
 		System.out.printf("%3d |\n", this.checkIn);
 		
 		System.out.print("|-----------------|");
-		for(i=0; i < size; i++)
+		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
 		System.out.print("| Check out day   |");
-		for(i=0; i < size - 4; i++)
+		for(i=0; i < length - 4; i++)
 			System.out.print(" ");
 		System.out.printf("%3d |\n", this.checkOut);
 		
 		System.out.print("|-----------------|");
-		for(i=0; i < size; i++)
+		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
 		System.out.print("| Price per night |");
-		for(i=0; i < size - 10; i++)
+		for(i=0; i < length - 13; i++)
 			System.out.print(" ");
-		System.out.printf("%,5.2f |\n", this.room.getPrice());
+		System.out.printf("%,12.2f |\n", this.room.getPrice());
 		
 		System.out.print("|-----------------|");
-		for(i=0; i < size; i++)
+		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
 		System.out.print("| Total price     |");
-		for(i=0; i < size - 10; i++)
+		for(i=0; i < length - 13; i++)
 			System.out.print(" ");
-		System.out.printf("%,5.2f |\n", this.getTotalPrice());
+		System.out.printf("%,12.2f |\n", this.getTotalPrice());
 		//
-		for(i=0; i < size + 20; i++)
+		for(i=0; i < length + 20; i++)
 			System.out.print("-");
-		System.out.print("\n");
+		System.out.print("\n\n");
 	}
 	
     /**

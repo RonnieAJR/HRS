@@ -38,27 +38,6 @@ public class Room
 		}
 	}
 	
-	// focus muna sa feature implementations
-	/* public String toString()
-	{
-		String str1 = new String("|");
-		String str2 = new String("|");
-		String str3 = new String("|");
-		String div = new String("|");
-		String res;
-		
-		// name, price per month, availability
-		int size = this.reserved.size();
-		int width;
-		
-		if(size > 15)
-			width = size;
-		else
-			width = 31 - size;
-		
-		width = width * 4 + 20;
-	} */
-	
 	public void displayInfo()
 	{
 		// sort reserved
@@ -114,9 +93,9 @@ public class Room
 		System.out.print("|\n");
 		
 		System.out.print("| Price per night |");
-		for(i=0; i < length - 9; i++)
+		for(i=0; i < length - 13; i++)
 			System.out.print(" ");
-		System.out.printf("%,5.2f |\n", this.price);
+		System.out.printf("%,12.2f |\n", this.price);
 		
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
@@ -148,7 +127,7 @@ public class Room
 		
 		for(i=0; i < length + 20; i++)
 			System.out.print("-");
-		System.out.print("\n");
+		System.out.print("\n\n");
 		
 	}
 	
