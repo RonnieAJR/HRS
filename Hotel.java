@@ -168,7 +168,7 @@ public class Hotel
 
 		if(size < 50) //if size is less than 50, can add room
 		{
-			noRoom = doesRoomExist(); //noRoom is assigned a room that does not exist in the floors
+			noRoom = findGapRoom(); //noRoom is assigned a room that does not exist in the floors
 
 			if(noRoom != -1) // if noRoom is not equal to the false equivalent of isRoom exist, execute add room
 			{
@@ -185,7 +185,7 @@ public class Hotel
 		return false;
 	}
 
-	public int doesRoomExist()
+	public int findGapRoom()
 	{
 		int i = 0, floor = 100, room = 1, roomNumber;
 
