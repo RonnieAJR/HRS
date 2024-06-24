@@ -257,6 +257,7 @@ public class HRS
 					
 					else if(choice == 3)
 					{
+						scan.nextLine();
 						hotel.displayRooms();
 						
 						System.out.print("Select room: ");
@@ -277,6 +278,7 @@ public class HRS
 					
 					else if(choice == 4)
 					{
+						scan.nextLine();
 						System.out.print("Enter price: ");
 						price = scan.nextDouble();
 						
@@ -293,6 +295,7 @@ public class HRS
 					
 					else if(choice == 5)
 					{
+						scan.nextLine();
 						hotel.displayReservations();
 						
 						if(!hotel.getReservations().isEmpty())
