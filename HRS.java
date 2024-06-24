@@ -14,10 +14,13 @@ public class HRS
 	
 	public boolean createHotel(String name, int capacity)
 	{
-		Hotel hotel = findHotel(name);
-		
-		if(hotel.getName().equals(name))
-			return false;
+		Hotel hotel;
+		if(!this.hotels.isEmpty())
+		{
+			hotel = findHotel(name);
+			if(hotel.getName().equals(name))
+				return false;
+		}
 		
 		hotel = new Hotel(name, capacity);
 		this.hotels.add(hotel);
@@ -109,15 +112,18 @@ public class HRS
 			
 			if(choice == 1)
 			{
+				scan.nextLine();
 				System.out.print("Enter hotel name: ");
 				hotelName = scan.nextLine();
-				
+
 				System.out.print("Enter hotel capacity: ");
 				capacity = scan.nextInt();
-				
+
+				scan.nextLine();
 				System.out.print("Enter room price: ");
 				price = scan.nextDouble();
-				
+
+				scan.nextLine();
 				if(hrs.createHotel(hotelName, capacity))
 					System.out.println("Hotel created\n");
 				else
@@ -129,6 +135,7 @@ public class HRS
 			
 			else if(choice == 2)
 			{
+				scan.nextLine();
 				hrs.displayHotels();
 				
 				System.out.print("Enter hotel: ");
@@ -203,6 +210,7 @@ public class HRS
 			
 			else if(choice == 3)
 			{
+				scan.nextLine();
 				hrs.displayHotels();
 				
 				System.out.print("Enter hotel: ");
@@ -228,6 +236,8 @@ public class HRS
 					
 					if(choice == 1)
 					{
+						scan.nextLine();
+						System.out.print("Enter new Hotel name: ");
 						newName = scan.nextLine();
 						
 						if(hrs.renameHotel(hotelName, newName))
@@ -238,6 +248,7 @@ public class HRS
 					
 					else if(choice == 2)
 					{
+						scan.nextLine();
 						if(hotel.addRoom())
 							System.out.println("Room added\n");
 						else
