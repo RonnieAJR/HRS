@@ -8,7 +8,7 @@ import java.util.HashSet;
 public class Hotel
 {
 	private String name;
-	private int capacity; // = 50?
+	private int capacity;
 	private ArrayList<Room> rooms;
 	private double price;
 	private ArrayList<Reservation> reservations;
@@ -147,6 +147,19 @@ public class Hotel
 		
 		return this.rooms.remove(room);
 	}
+
+	public Room findRoom(String name)
+	{
+		Room room = this.rooms.get(0);
+
+		for(Room r : this.rooms)
+			if(r.getName().equals(name))
+			{
+				room = r;
+				break;
+			}
+		return room;
+	}
 	
 	public boolean updatePrice(double price)
 	{
@@ -249,18 +262,7 @@ public class Hotel
 		return true;
 	}
 	
-	public Room findRoom(String name)
-	{
-		Room room = this.rooms.get(0);
-		
-		for(Room r : this.rooms)
-			if(r.getName().equals(name))
-			{
-				room = r;
-				break;
-			}
-		return room;
-	}
+
 	
 	// breaks if this.reservations is empty
 	public Reservation findReservation(int id)
