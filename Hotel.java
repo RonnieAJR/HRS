@@ -253,9 +253,9 @@ public class Hotel
 		room = findRoom(name);
 		
 		// return false if either not found or not room is not empty
-		if(room.getName().equals(name) &&
-		   room.getReserved().isEmpty())
-			return false;
+//		if(room.getName().equals(name) &&
+//		   room.getReserved().isEmpty())
+//			return false;
 		
 		
 		// remove if room is found and empty
@@ -441,7 +441,6 @@ public class Hotel
 	{
 		this.name = name;
 	}
-	
 	
 	/*
 
