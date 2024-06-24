@@ -126,6 +126,10 @@ public class Room
 		System.out.print("| Days available  |");
 		for(i=0; i < length - availableLength - 1; i++)
 			System.out.print(" ");
+		
+		if(available.isEmpty())
+			System.out.print("|\n");
+		
 		for(i=0; i < available.size(); i++)
 			if(i != available.size() - 1)
 				System.out.printf("%2d, ", available.get(i));
@@ -138,8 +142,12 @@ public class Room
 		System.out.print("|\n");
 		
 		System.out.print("| Days reserved   |");
-		for(i=0; i < length - reservedLength - 1; i++)
+		for(i=0; i < length - reservedLength - 2; i++)
 			System.out.print(" ");
+		
+		if(this.reserved.isEmpty())
+			System.out.print("|\n");
+		
 		for(i=0; i < this.reserved.size(); i++)
 			if(i != this.reserved.size() - 1)
 				System.out.printf("%2d, ", this.reserved.get(i));

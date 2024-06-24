@@ -12,7 +12,7 @@ public class HRS
 		this.hotels = new ArrayList<Hotel>();
 	}
 	
-	public boolean createHotel(String name, int capacity)
+	public boolean createHotel(String name, int capacity, double price)
 	{
 		Hotel hotel;
 		if(!this.hotels.isEmpty())
@@ -22,7 +22,7 @@ public class HRS
 				return false;
 		}
 		
-		hotel = new Hotel(name, capacity);
+		hotel = new Hotel(name, capacity, price);
 		this.hotels.add(hotel);
 		
 		return true;
@@ -63,7 +63,48 @@ public class HRS
 	
 	public void displayHotels()
 	{
-		System.out.println("PLACEHOLDER");
+		int i, k;
+		int length=11;
+		
+		if(!this.hotels.isEmpty())
+		{
+			// finds the longest hotel name
+			for(i=0; i < this.hotels.size(); i++)
+				if(length < this.hotels.get(i).getName().length())
+					length = this.hotels.get(i).getName().length();
+			
+			length += 2;
+			
+			for(i=0; i < length + 2; i++)
+				System.out.print("-");
+			System.out.print("\n");
+			
+			System.out.print("| Hotel Names");
+			for(i=0; i < length - 12; i++)
+				System.out.print(" ");
+			System.out.print("|\n");
+			
+			for(k=0; k < this.hotels.size(); k++)
+			{
+				System.out.print("|");
+				for(i=0; i < length; i++)
+					System.out.print("-");
+				System.out.print("|\n");
+				
+				System.out.print("|");
+				for(i=0; i < length - this.hotels.get(k).getName().length() - 1; i++)
+					System.out.print(" ");
+				System.out.printf("%s |\n", this.hotels.get(k).getName());
+			}
+			
+			for(i=0; i < length + 2; i++)
+				System.out.print("-");
+			System.out.print("\n\n");
+			
+			
+			
+			
+		}
 	}
 	
 	public ArrayList<Hotel> getHotels()
@@ -124,7 +165,7 @@ public class HRS
 				price = scan.nextDouble();
 
 				scan.nextLine();
-				if(hrs.createHotel(hotelName, capacity))
+				if(hrs.createHotel(hotelName, capacity, price))
 					System.out.println("Hotel created\n");
 				else
 					System.out.println("Hotel already exists\n");
@@ -166,7 +207,7 @@ public class HRS
 						day = scan.nextInt();
 						
 						if(1 <= day && day <= 31)
-							hotel.displayDayInfo();
+							hotel.displayDayInfo(day);
 						else
 							System.out.println("Invalid day\n");
 					}
@@ -325,6 +366,7 @@ public class HRS
 			
 			else if(choice == 4)
 			{
+				scan.nextLine();
 				hrs.displayHotels();
 				
 				System.out.print("Enter hotel: ");

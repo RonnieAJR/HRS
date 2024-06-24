@@ -234,6 +234,8 @@ public class Hotel
 		
 		Reservation reservation = new Reservation(guestName, room, checkIn, checkOut, id);
 		
+		room.addReserved(checkIn, checkOut);
+		
 		return this.reservations.add(reservation);
 	}
 	
@@ -282,15 +284,26 @@ public class Hotel
 	{
 		int i;
 		int length = this.name.length() + 2;
+		double earnings=0;
 
-		for(i=0; i < length + 23; i++);
+		if(length < 14)
+			length = 14;
+
+		for(i=0; i < this.reservations.size(); i++)
+			earnings = this.reservations.get(i).getTotalPrice();
+		
+		for(i=0; i < length + 23; i++)
 			System.out.print("-");
 		System.out.print("\n");
 		
-		System.out.printf("| Hotel name         | %s |", this.name);
+		System.out.print("| Hotel name         |");
+		
+		for(i=0; i < length - this.name.length() - 1; i++)
+			System.out.print(" ");
+		System.out.printf("%s |\n", this.name);
 		
 		System.out.print("|--------------------|");
-		for(i=0; i < length; i++);
+		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
@@ -300,16 +313,16 @@ public class Hotel
 		System.out.printf("%2d |\n", this.capacity);
 		
 		System.out.print("|--------------------|");
-		for(i=0; i < length; i++);
+		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
 		System.out.print("| Estimated earnings |");
 		for(i=0; i < length - 13; i++)
 			System.out.print(" ");
-		System.out.printf("%,12.2f |\n", this.price);
+		System.out.printf("%,12.2f |\n", earnings);
 		
-		for(i=0; i < length + 23; i++);
+		for(i=0; i < length + 23; i++)
 			System.out.print("-");
 		System.out.print("\n");
 		
@@ -319,7 +332,7 @@ public class Hotel
 	
 	public void displayDayInfo(int day)
 	{	
-		int i, size;
+		int i, size, length;
 		HashSet<Integer> daysReserved = new HashSet<Integer>();
 		ArrayList<Room> reserved = new ArrayList<Room>();
 		ArrayList<Room> available = new ArrayList<Room>();
@@ -340,6 +353,11 @@ public class Hotel
 			}
 			daysReserved.clear();
 		}
+		
+		if(available.size() > reserved.size())
+			length = available.size();
+		else
+			length = reserved.size();
 
 		for(i=0; i < 36; i++)
 			System.out.print("-");
@@ -347,9 +365,10 @@ public class Hotel
 		
 		System.out.printf("|        Day %2d Availability       |\n", day);
 		
-		for(i=0; i < 36; i++)
+		System.out.print("|");
+		for(i=0; i < 34; i++)
 			System.out.print("-");
-		System.out.print("\n");
+		System.out.print("|\n");
 		
 		System.out.print("| Rooms available | Rooms reserved |\n");
 		
@@ -357,15 +376,15 @@ public class Hotel
 		{
 			System.out.print("|-----------------|----------------|\n");
 			
-			if(i < reserved.size())
-				System.out.printf("| %15s |", reserved.get(i));
-			else
-				System.out.printf("| 15s |", " ");
-			
 			if(i < available.size())
-				System.out.printf("| %14s |\n", available.get(i));
+				System.out.printf("| %15s |", available.get(i).getName());
 			else
-				System.out.printf("| 14s |\n", " ");
+				System.out.printf("| %15s |", " ");
+			
+			if(i < reserved.size())
+				System.out.printf(" %14s |\n", reserved.get(i).getName());
+			else
+				System.out.printf(" %14s |\n", " ");
 		}
 		
 		System.out.print("|");

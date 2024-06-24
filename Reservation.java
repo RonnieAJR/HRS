@@ -32,12 +32,10 @@ public class Reservation
 	{
 		
 		int i;
-		int length = this.guestName.length();
+		int length = this.guestName.length() + 2;
 		
-		if(length < 13)
+		if(length < 14)
 			length = 14;
-		else
-			length += 2;
 		
 		for(i=0; i < length + 20; i++)
 			System.out.print("-");
@@ -53,7 +51,10 @@ public class Reservation
 			System.out.print("-");
 		System.out.print("|\n");
 		
-		System.out.printf("| Guest name      | %4s |\n", this.guestName);
+		System.out.print("| Guest name      |");
+		for(i=0; i < length - this.guestName.length() - 1; i++)
+			System.out.print(" ");
+		System.out.printf("%s |\n", this.guestName);
 		
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
