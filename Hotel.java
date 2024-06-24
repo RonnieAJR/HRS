@@ -26,23 +26,21 @@ public class Hotel
 	public Hotel(String name, int capacity, double price)
 	{
 		Room room;
+		char firstLetter = name.charAt(0);
 		this.name = name;
 		this.capacity = capacity;
 		this.price = price;
 		
 		this.reservations = new ArrayList<Reservation>();
 		this.rooms = new ArrayList<Room>();
-		
-		if(name.charAt(1) == ' ')
-			room = new Room(name.charAt(0) + "-01", this.price);
-		else
-			room = new Room(name.charAt(0) + name.charAt(1) + "-01", this.price);
-		
+
+		room = new Room((firstLetter + Integer.toString(101)), this.price);
+
 		this.rooms.add(room);
-		
+
 		while(this.rooms.size() < capacity)
 		{
-			this.addRoom();
+			this.addRoom3();
 		}
 	}
 	
@@ -170,7 +168,7 @@ public class Hotel
 
 		if(size < 50) //if size is less than 50, can add room
 		{
-			noRoom = isRoomExist(); //noRoom is assigned a room that does not exist in the floors
+			noRoom = doesRoomExist(); //noRoom is assigned a room that does not exist in the floors
 
 			if(noRoom != -1) // if noRoom is not equal to the false equivalent of isRoom exist, execute add room
 			{
@@ -187,32 +185,34 @@ public class Hotel
 		return false;
 	}
 
-	public int isRoomExist()
+	public int doesRoomExist()
 	{
-		int i = 0, floor = 100, room = 1;
+		int i = 0, floor = 100, room = 1, roomNumber;
 
+		while (i < this.capacity && floor < 600)
+		{ // Check if room number exists within capacity and five floors
+			roomNumber = floor + room;
+			if (i >= this.rooms.size() || this.rooms.get(i).getRoomNumber() != roomNumber)
+			{ // If room doesn't exist, return room number where room doesn't exist
+				return roomNumber;
+			}
 
-		while (i < this.capacity && floor != 600) //check if room number exists within capacity and five floors
-		{
-
-			if(this.rooms.get(i).getRoomNumber() != (floor + room))//if room doesnt exist, return room number where room doesnt exist
-				return floor + room;
-
-			//if room exists, increment
-			i++;
-			//room increments to 10
+			// Room increments
 			room++;
-			//if room is 11
-			if(room == 11)
+
+			// If room is 11, move to the next floor
+			if (room == 11)
 			{
-				//floor increments to check next floor
 				floor += 100;
-				//room resets to 1
 				room = 1;
 			}
+
+			// Increment index
+			i++;
 		}
-		//returns -1 if all rooms until 5th floor is found
-			return -1;
+
+		// Return -1 if all rooms until the 5th floor are found
+		return -1;
 	}
 
 	/**
@@ -221,23 +221,25 @@ public class Hotel
 	 */
 	public void insertionSortRoom()
 	{
-		ArrayList<Room> temp = this.rooms;
-		Room key;
-		int i, j;
 
-		for(i = 1; i < this.capacity; i++)
+		int i, n, j;
+		Room key;
+		n = this.rooms.size();
+
+		for (i = 1; i < n; ++i)
 		{
-			key = temp.get(i);
+			key = this.rooms.get(i);
 			j = i - 1;
 
-			while(j >= 0 && temp.get(j).getRoomNumber() > key.getRoomNumber())
+			// Move elements of this.rooms[0..i-1], that are greater than key,
+			// to one position ahead of their current position
+			while (j >= 0 && this.rooms.get(j).getRoomNumber() > key.getRoomNumber())
 			{
-				temp.set(j+1, temp.get(j));
+				this.rooms.set(j + 1, this.rooms.get(j));
 				j = j - 1;
 			}
-			temp.set(j+1, key);
+			this.rooms.set(j + 1, key);
 		}
-		this.rooms = temp;
 	}
 	
 	public boolean removeRoom(String name)// what if room instance yung param
