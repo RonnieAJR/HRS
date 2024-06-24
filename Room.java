@@ -1,6 +1,7 @@
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Room
 {
@@ -23,7 +24,6 @@ public class Room
 			this.reserved.add(checkIn);
 			checkIn++;
 		}
-		// sort only when needed, for displaying?
 	}
 	
 	public void removeReserved(int checkIn, int checkOut)
@@ -61,7 +61,95 @@ public class Room
 	
 	public void displayInfo()
 	{
-		System.out.println("PLACEHOLDER");
+		// sort reserved
+		// create list for availability
+		// name floor price availability reserved
+		
+		int i, reservedLength, availableLength;
+		int length = this.reserved.size();
+		ArrayList<Integer> available = new ArrayList<Integer>();
+		
+		// adds all the daylengths to available
+		for(i=1; i<=31; i++)
+			available.add(i);
+		
+		// sort reserved
+		this.reserved.sort(Comparator.naturalOrder());
+		
+		// remove days from available that are reserved
+		available.removeAll(this.reserved);
+		
+		
+		if(this.reserved.size() < available.size())
+			length = available.size();
+		else
+			length = this.reserved.size();
+		
+		length = length * 4;
+		reservedLength = 4 * this.reserved.size() - 2;
+		availableLength = 4 * available.size() - 2;
+		
+		for(i=0; i < length + 20; i++)
+			System.out.print("-");
+		System.out.print("\n");
+		
+		System.out.print("| Room name       |");
+		for(i=0; i < length - 5; i++)
+			System.out.print(" ");
+		System.out.printf("%s |\n", this.name);
+		
+		System.out.print("|-----------------|");
+		for(i=0; i < length; i++)
+			System.out.print("-");
+		System.out.print("|\n");
+		
+		System.out.print("| Floor           |");
+		for(i=0; i < length - 2; i++)
+			System.out.print(" ");
+		System.out.printf("%c |\n", this.name.charAt(1));
+		
+		System.out.print("|-----------------|");
+		for(i=0; i < length; i++)
+			System.out.print("-");
+		System.out.print("|\n");
+		
+		System.out.print("| Price per night |");
+		for(i=0; i < length - 9; i++)
+			System.out.print(" ");
+		System.out.printf("%,5.2f |\n", this.price);
+		
+		System.out.print("|-----------------|");
+		for(i=0; i < length; i++)
+			System.out.print("-");
+		System.out.print("|\n");
+		
+		System.out.print("| Days available  |");
+		for(i=0; i < length - availableLength - 1; i++)
+			System.out.print(" ");
+		for(i=0; i < available.size(); i++)
+			if(i != available.size() - 1)
+				System.out.printf("%2d, ", available.get(i));
+			else
+				System.out.printf("%2d |\n", available.get(i));
+			
+		System.out.print("|-----------------|");
+		for(i=0; i < length; i++)
+			System.out.print("-");
+		System.out.print("|\n");
+		
+		System.out.print("| Days reserved   |");
+		for(i=0; i < length - reservedLength - 1; i++)
+			System.out.print(" ");
+		for(i=0; i < this.reserved.size(); i++)
+			if(i != this.reserved.size() - 1)
+				System.out.printf("%2d, ", this.reserved.get(i));
+			else
+				System.out.printf("%2d |\n", this.reserved.get(i));
+		
+		for(i=0; i < length + 20; i++)
+			System.out.print("-");
+		System.out.print("\n");
+		
 	}
 	
 	public String getName()
@@ -90,6 +178,4 @@ public class Room
 	{
 		this.price = price;
 	}
-
-
 }

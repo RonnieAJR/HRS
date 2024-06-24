@@ -149,6 +149,7 @@ public class HRS
 					
 					System.out.print("Enter choice: ");
 					choice = scan.nextInt();
+					scan.nextLine();
 					
 					if(choice == 1)
 						hotel.displayInfo();
