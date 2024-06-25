@@ -393,7 +393,7 @@ public class HRS
 					
 					else if(innerchoice == 6)
 					{
-						// conflict herer
+						scan.nextLine();
 						System.out.print("Are you sure you want to remove this hotel (y/n): ");
 						confirmation = scan.nextLine();	
 						if(confirmation.equalsIgnoreCase("y"))
