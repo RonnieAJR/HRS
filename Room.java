@@ -206,6 +206,11 @@ public class Room
 		return roomNumber;
 	}
 
+	public void changeFirstLetter(char newLetter)
+	{
+		this.name = newLetter + Integer.toString(getRoomNumber());
+	}
+
 	/**
 	 * Returns the list of days reserved.
 	 * @return the list of days reserved
@@ -223,4 +228,5 @@ public class Room
 	{
 		this.price = price;
 	}
+
 }
