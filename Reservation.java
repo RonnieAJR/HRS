@@ -1,5 +1,5 @@
 /**
- * this class allows a system to be able to reserve a room
+ * this class allows a system to be able to reserve a room in a hotel
  */
 
 public class Reservation
@@ -27,7 +27,10 @@ public class Reservation
 		this.checkOut = checkOut;
 		this.reservationId = reservationId;
     }
-	
+
+	/**
+	 * this method displays all the reservation's attributes
+	 */
 	public void displayInfo()
 	{
 		
