@@ -34,71 +34,116 @@ public class Hotel
 		this.reservations = new ArrayList<Reservation>();
 		this.rooms = new ArrayList<Room>();
 
+		// instantiates the first room
 		room = new Room((firstLetter + Integer.toString(101)), this.price);
 
 		this.rooms.add(room);
 		this.capacity++;
 
+		// adds the rest of the rooms
 		while(this.rooms.size() < capacity)
 		{
 			this.addRoom();
 		}
 	}
 
+	/**
+	 * Creates a room and adds it to the list of rooms if the list is not yet full.
+	 *
+	 * @return true if the room is created and added successfully
+	 */
 	public boolean addRoom()
 	{
-		int noRoom; // placeholder for finding floor with no room
-		int size = this.capacity; // placeholder for capacity of hotel
-		char firstLetter = this.getName().charAt(0); // first letter of hotel's name
-		String roomName; //placeholder for new unique room name
-		Room room;// placeholder for room
+		int roomNumber;
+		int size = this.capacity; 
+		char firstLetter = this.getName().charAt(0);
+		String roomName;
+		Room room;
 
-		if(size < 50) //if size is less than 50, can add room
+		/* //if size is less than 50, can add room
+		if(size < 50) 
 		{
-			noRoom = findGapRoom(); //noRoom is assigned a room that does not exist in the floors
+			//roomNumber is assigned a room that does not exist in the floors
+			roomNumber = findGapRoom(); 
 
-			if(noRoom != -1) // if noRoom is not equal to the false equivalent of isRoom exist, execute add room
+			// if roomNumber is not equal to the false equivalent of isRoom exist, execute add room
+			if(roomNumber != -1) 
 			{
 				//name of room is first letter of hotel + room number
-				roomName = firstLetter + Integer.toString(noRoom);
-				room = new Room(roomName, this.price); //instantiate new room
-				this.rooms.add(room); // adds new room to the list of hotel rooms
+				roomName = firstLetter + Integer.toString(roomNumber);
+				
+				// creates and adds the new room to the list of rooms
+				room = new Room(roomName, this.price); 
+				this.rooms.add(room);
 				this.capacity++;
-				insertionSortRoom(); // sorts room according to room number
+				
+				// sorts room according to room number
+				insertionSortRoom(); 
 
 				return true;
 			}
 		}
-		return false;
+		return false; */
+		
+		// cannot add room if max capacity is reached
+		if(50 <= size)
+			return false;
+		
+		//roomNumber is assigned a room that does not exist in the floors
+		roomNumber = findGapRoom(); 
+
+		// if roomNumber is not equal to the false equivalent of isRoom exist, execute add room
+		if(roomNumber != -1) 
+		{
+			//name of room is first letter of hotel + room number
+			roomName = firstLetter + Integer.toString(roomNumber);
+			
+			// creates the room and adds it to the list
+			room = new Room(roomName, this.price); 
+			this.rooms.add(room);
+			this.capacity++;
+			
+			// sorts room according to room number
+			insertionSortRoom(); 
+
+			return true;
+		}
+		
 	}
 
+	/**
+	  * Returns the number of first room that is missing in
+	  * the expected consecutive room numbers, or -1 if all expected rooms exists.
+	  *
+	  * @return the room number if found, otherwise -1
+	  */
 	public int findGapRoom()
 	{
 		int i = 0, floor = 100, room = 1, roomNumber;
 
+		// checks if room number exists within capacity and five floors
 		while (i < 50 && floor < 600)
-		{ // Check if room number exists within capacity and five floors
+		{
 			roomNumber = floor + room;
+			
+			// if a room is missing, return the missing room's number
 			if (i >= this.rooms.size() || this.rooms.get(i).getRoomNumber() != roomNumber)
-			{ // If room doesn't exist, return room number where room doesn't exist
 				return roomNumber;
-			}
 
-			// Room increments
+			// room increments
 			room++;
 
-			// If room is 11, move to the next floor
+			// if room is 11th in the floor, move to the next floor
 			if (room == 11)
 			{
 				floor += 100;
 				room = 1;
 			}
-
-			// Increment index
+			
 			i++;
 		}
 
-		// Return -1 if all rooms until the 5th floor are found
+		// return -1 if all rooms until the 5th floor are found
 		return -1;
 	}
 
@@ -118,7 +163,7 @@ public class Hotel
 			key = this.rooms.get(i);
 			j = i - 1;
 
-			// Move elements of this.rooms[0..i-1], that are greater than key,
+			// move elements of this.rooms[0..i-1], that are greater than key,
 			// to one position ahead of their current position
 			while (j >= 0 && this.rooms.get(j).getRoomNumber() > key.getRoomNumber())
 			{
@@ -129,7 +174,13 @@ public class Hotel
 		}
 	}
 	
-	public boolean removeRoom(String name)// what if room instance yung param
+	/**
+	  * Removes the room from the list of rooms if it is not reserved or the last in the list.
+	  * 
+	  * @param name name of the room to remove
+	  * @return true if the room is successfully removed
+	  */
+	public boolean removeRoom(String name)
 	{	
 		Room room;
 		
@@ -139,35 +190,50 @@ public class Hotel
 		
 		room = findRoom(name);
 		
-		// return false if either not found or not room is not empty
-//		if(room.getName().equals(name) &&
-//		   room.getReserved().isEmpty())
-//			return false;
+		// return false if room is not found or is reserved
+		if(!room.getName().equals(name) || 
+		    room.getReserved().isEmpty())
+			return false;
 		
-		
-		// remove if room is found and empty
+		// remove room if conditions allow
 		this.capacity--;
 		
 		return this.rooms.remove(room);
 	}
 
+	/**
+	  * Returns the room in the list with the provided name, or the room at index 0 
+	  *
+	  * @param name name of the room to find
+	  * @return the room with the provided name if found, otherwise the room in index 0
+	  */
 	public Room findRoom(String name)
 	{
+		// sets the default value
 		Room room = this.rooms.get(0);
-
+		
+		// finds the room containing the name provided
 		for(Room r : this.rooms)
 			if(r.getName().equals(name))
 			{
 				room = r;
 				break;
 			}
+		
+		// return the room asked if found or the default room if not found
 		return room;
 	}
 	
+	/**
+	  * Updates the price of all the rooms if no reservations are present
+	  *
+	  * @param price new price of the rooms
+	  * @return true if successfully updated
+	  */
 	public boolean updatePrice(double price)
 	{
-		// condition for updating the price
-		if(this.reservations.isEmpty() && price >= 100)
+		// checks if there are no reservations
+		if(this.reservations.isEmpty())
 		{
 			this.price = price;
 			
@@ -182,14 +248,17 @@ public class Hotel
 		return false;
 	}
 	
-	// viewDayAvailability checks each reserved in each room, O(n^2),,,,, or
-	// create new arraylist, add day, create hashset, add all day to hashset, convert to arraylist, check if size changed,,, O(n)?
-	// this wont identify which rooms are free tho
-	
-	// reserve checks each reserved, for each room, for each day, O(n^3),,,,,,, or
-	// copy a room's reserved days to an arraylist, add the days to be reserved in the arraylist, if size is less than expected,,,,
-	// return false,,, do it for each room, O(n^2)
-	public boolean createReservation(String guestName, int checkIn, int checkOut)// guest name and room name, instead of room instacne
+	/**
+	  * Creates a reservation for the guest.
+	  * Rooms are checked if the guest can be accomodated for the whole stay.
+	  * A room is already available the day of a check out.
+	  *
+	  * @param guestName name of the guest
+	  * @param checkIn day of check in
+	  * @param checkOut day of check out
+	  * @return true if reservation is successfully created
+	  */
+	public boolean createReservation(String guestName, int checkIn, int checkOut)
 	{
 		int id;
 		int sizeSum;
@@ -207,14 +276,15 @@ public class Hotel
 		// checks each room
 		for(Room r : this.rooms)
 		{
+			// gets the combined size of target days and days reserved
 			sizeSum = targetDays.size() + r.getReserved().size();
 			
-			// prevents duplicate days from being added into the list
-			combinedDays.addAll(targetDays);
+			// adds the days reserved and the target days into a hashset
 			combinedDays.addAll(r.getReserved());
+			combinedDays.addAll(targetDays);
 			
-			// checks if no days overlap in target days and reserved days
-			// same size means no duplicate days were prevented
+			// if the size is as expected, all target days are newly added into the hashset...
+			// ...meaning, it is not present in the days reserved
 			if(sizeSum == combinedDays.size())
 			{
 				room = r;
@@ -235,6 +305,7 @@ public class Hotel
 		else
 			id = this.reservations.get(size-1).getId() + 1;
 		
+		// creates the reservation and adds it to the list
 		Reservation reservation = new Reservation(guestName, room, checkIn, checkOut, id);
 		
 		room.addReserved(checkIn, checkOut);
@@ -242,97 +313,130 @@ public class Hotel
 		return this.reservations.add(reservation);
 	}
 	
-	
+	/**
+	  * Removes the reservation from the list with the provided id.
+	  * The room with the reservation removes the days reserved for the reservation.
+	  *
+	  * @param reservationId id of the reservation
+	  * @return true if successfully removed
+	  */
 	public boolean removeReservation(int reservationId)
 	{
 		int checkIn;
 		int checkOut;
 		Reservation reservation;
 		
+		// checks if there are no reservations
 		if(this.reservations.isEmpty())
 			return false;
 		
+		// finds the reservation
 		reservation = findReservation(reservationId);
 		
+		// returns false if reservation is not found
 		if(reservation.getId() != reservationId)
 			return false;
 		
+		// gets the checkin and checkout days
 		checkIn = reservation.getCheckIn();
 		checkOut = reservation.getCheckOut();
 		
+		// removes the reserved days in the room covered by the reservation
 		reservation.getRoom().removeReserved(checkIn, checkOut);
 		
+		// removes the reservation from the list
 		this.reservations.remove(reservation);
 		
 		return true;
 	}
 	
-
-	
-	// breaks if this.reservations is empty
+	/**
+	  * Returns the reservation from the list with the provided id, or the reservation at index 0
+	  *
+	  * @param reservationId id of the reservation to find
+	  * @return the reservation with the provided id if found, otherwise the reservation at index 0
+	  */
 	public Reservation findReservation(int id)
 	{
+		// sets the default value
 		Reservation reservation = this.reservations.get(0);
 		
+		// finds the reservation with the id provided
 		for(Reservation r : this.reservations)
 			if(r.getId() == id)
 			{
 				reservation = r;
 				break;
 			}
+			
+		// returns the reservation asked if found or the default reservation if not found
 		return reservation;
 	}
 	
+	/**
+	  * Displays the hotel information on the standard output stream in a tabular format.
+	  *
+	  */
 	public void displayInfo()
 	{
 		int i;
 		int length = this.name.length() + 2;
 		double earnings=0;
 
+		// sets the minimum length
 		if(length < 14)
 			length = 14;
 
+		// computes the estimated earnings
 		for(i=0; i < this.reservations.size(); i++)
-			earnings = this.reservations.get(i).getTotalPrice();
+			earnings += this.reservations.get(i).getTotalPrice();
 		
+		// top of the table
 		for(i=0; i < length + 23; i++)
 			System.out.print("-");
 		System.out.print("\n");
 		
+		// hotel name
 		System.out.print("| Hotel name         |");
-		
 		for(i=0; i < length - this.name.length() - 1; i++)
 			System.out.print(" ");
 		System.out.printf("%s |\n", this.name);
 		
+		// row and column divider
 		System.out.print("|--------------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// number of rooms
 		System.out.print("| Number of rooms    |");
 		for(i=0; i < length - 3; i++)
 			System.out.print(" ");
 		System.out.printf("%2d |\n", this.capacity);
 		
+		// row and column divider
 		System.out.print("|--------------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// estimated earnings
 		System.out.print("| Estimated earnings |");
 		for(i=0; i < length - 13; i++)
 			System.out.print(" ");
 		System.out.printf("%,12.2f |\n", earnings);
 		
+		// bottom of the table
 		for(i=0; i < length + 23; i++)
 			System.out.print("-");
 		System.out.print("\n");
-		
-		
-		
 	}
 	
+	/**
+	  * Displays the room available and reserved in the provided day on the standard output stream in a tabular format.
+	  *
+	  * @param day day to check
+	  */
 	public void displayDayInfo(int day)
 	{	
 		int i, size, length;
@@ -345,115 +449,167 @@ public class Hotel
 		// separates the rooms available and reserved
 		for(i=0; i < reserved.size(); i++)
 		{
+			// adds the days reserved and target day to the hashset
 			daysReserved.addAll(reserved.get(i).getReserved());
 			size = daysReserved.size();
 			daysReserved.add(day);
 			
+			// if the target day is added to the hashset...
+			// ...the target day is available
 			if(size != daysReserved.size())
 			{
 				available.add(reserved.remove(i));
 				i--;
 			}
+			
+			// clear the hashset
 			daysReserved.clear();
 		}
 		
+		// determines the maximum length
 		if(available.size() > reserved.size())
 			length = available.size();
 		else
 			length = reserved.size();
 
+		// top of the table
 		for(i=0; i < 36; i++)
 			System.out.print("-");
 		System.out.print("\n");
 		
+		// table header
 		System.out.printf("|        Day %2d Availability       |\n", day);
 		
+		// row and column divider
 		System.out.print("|");
 		for(i=0; i < 34; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// room label
 		System.out.print("| Rooms available | Rooms reserved |\n");
 		
 		for(i=0; i < this.capacity; i++)// wrong condition
 		{
+			// row and column divider
 			System.out.print("|-----------------|----------------|\n");
 			
+			// room available
 			if(i < available.size())
 				System.out.printf("| %15s |", available.get(i).getName());
 			else
 				System.out.printf("| %15s |", " ");
 			
+			// room reserved
 			if(i < reserved.size())
 				System.out.printf(" %14s |\n", reserved.get(i).getName());
 			else
 				System.out.printf(" %14s |\n", " ");
 		}
 		
+		// row and column divider
 		System.out.print("|");
 		for(i=0; i < 34; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// total label
 		System.out.print("|               Total              |\n");
 		
+		// row and column divider
 		System.out.print("|");
 		for(i=0; i < 34; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// total rooms
 		System.out.printf("| %15d | %14d |\n", available.size(), reserved.size()); 
 		
+		// bottom of the table
 		for(i=0; i < 36; i++)
 			System.out.print("-");
 		System.out.print("\n\n");
 	}
 	
+	/**
+	  * Displays the list of room names on the standard output stream in a tabular format
+	  *
+	  */
 	public void displayRooms()
 	{
 		int i;
 		
+		// top of the table
 		System.out.print("-------------\n");
 		System.out.print("| Room Name |\n");
 		
 		for(i=0; i < this.rooms.size(); i++)
 		{
+			// row and column divider
 			System.out.print("|-----------|\n");
+			
+			// room name
 			System.out.printf("| %9s |\n", this.rooms.get(i).getName());
 		}
+		
+		// bottom of the table
 		System.out.print("-------------\n\n");
 	}
 	
+	/**
+	  * Displays the list of reservation ids on the standard output stream in a tabular format.
+	  *
+	  */
 	public void displayReservations()
 	{
 		int i;
 		
-		if(this.reservations.size() == 0)
+		// checks if reservations is empty
+		if(this.reservations.isEmpty())
 			System.out.println("Reservations not found\n");
 		else
 		{
+			// top of the table
 			System.out.print("------------------\n");
 			System.out.print("| Reservation ID |\n");
 			
 			for(i=0; i < this.reservations.size(); i++)
 			{
+				// row and column divider
 				System.out.print("|----------------|\n");
+				
+				// reservation id
 				System.out.printf("| %14d |\n", this.reservations.get(i).getId());
 			}
 			System.out.print("------------------\n\n");
 		}
 	}
 	
-	public String getName()
+	/**
+	  * Returns the name of the hotel.
+	  *
+	  * @return the name of the hotel
+	  */
+	public String g etName()
 	{
 		return this.name;
 	}
 	
+	/**
+	  * Returns the number of rooms in the hotel.
+	  *
+	  * @return the number of rooms in the hotel
+	  */
 	public int getCapacity()
 	{
 		return this.capacity;
 	}
 	
+	/**
+	  * Returns the list of rooms in the hotel.
+	  *
+	  * @return the list of rooms in the hotel
+	  */
 	public ArrayList<Room> getRooms()
 	{
 		return this.rooms;
@@ -464,153 +620,24 @@ public class Hotel
 		return this.price;
 	}
 	
+	/**
+	  * Returns the list of reservations in the hotel.
+	  *
+	  * @return the list of reservations in the hotel
+	  */
 	public ArrayList<Reservation> getReservations()
 	{
 		return this.reservations;
 	}
 	
+	/**
+	  * Changes the name of the hotel.
+	  *
+	  * @param name new hotel name
+	  */
 	public void setName(String name)
 	{
 		this.name = name;
 	}
-	
-	/*
-
-	methods to add
-	displayRooms
-	displaySelectRoom (name)
-	displayReservations
-	displaySelectReservation (id)
-	getEarnings()?
-	
-	
-	on hrs
-	displayHotels
-	displaySelectHotel (name)
-	
-	*/
-	
-	/* public double getEarnings()
-	{
-		double earnings=0;
-		Reservation reservation;
-		
-		for(reservation : this.reservations)
-			earnings += reservation.getTotalPrice();
-		
-		return earnings;
-	} */
-	
-	/* public String displayRoomInfo(String name)
-	{
-		Room r;
-		Integer day;
-		String availability = "";
-		ArrayList<Integer> reserved;
-		
-		for(r : this.rooms)
-			if(r.getName().equals(name))
-				break;
-		
-		if(!r.getName().equals(name))
-			return "Room doesn't exist.\n\n";
-		
-		reserved = r.getReserved();
-		reserved.sort(Comparator.naturalOrder());
-		
-		for(day : reserved)
-		{
-			availability.concat(day.toString());
-			availability.concat("  ");
-		}
-		return "Name: " + r.getName() + "\n" +
-			   "Price: " + r.getPrice() + "\n" +
-			   "Available days: " + availability + "\n\n";
-	} */
-	
-	
-	
 }
 
-/*
-
-high level info
-
-	display list of hotel first
-	
-	
-	view hotel(hotel name)
-	
-	provide hotel name as param
-	iterate through list of hotel to find instance
-	
-	name param
-	getCapacity()
-	for(r : hotel.getReservations())
-	earnings = r.getTotalPrice(); // getReservations is useed
-
-
-low level info
-
-	display list of hotel
-	
-		viewDayAvailability(day)// getRooms is a must
-			pick a day
-			available = hotel.getCapacity();
-			reserved = 0;
-			rooms = hotel.getRooms();
-			for(r : rooms)
-			if(r.getReserved().contains(day)) 
-				available--; reserved++;
-		
-		viewRoomInfo(room name) // getRooms is used
-			display list of rooms
-			pick a room
-			str = doesnt exist;
-			for(r : hotel.getRooms())
-				if(r.getName().equals(room name))
-					str = room info;
-					break;
-			return str;
-		
-		viewReservation(reservation id) // getReservation is used
-			display list of reservation ids
-			str = doesnt exist;
-			for(r : hotel.getReservations())
-				if(r.getId == reservation id)
-					str = reservation info;
-					break;
-			return str;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	view hotel							main
-		display list of hotel			method in hrs	hrs.displayHotels()
-		enter hotel						main	
-		
-		(after entering hotel, its already located)		hrs.hotels.get(i).getName().equals(name)	
-		(its method can now be called directly)			hotel = hrs.hotels.get(i)
-		
-			view hotel info				method			hotel.displayInfo()
-			
-			view day availability
-				enter day				main
-				display info			method			hotel.displayDayAvailability()
-				
-			view room info
-				display rooms			method			hotel.displayRooms()
-				enter room				main			hotel.getRooms().get(i).getName().equals(name)	room = hotel.getRooms().get(i)
-				display info			method			room.displayInfo()
-				
-			view reservation info
-				display reservations					hotel.displayReservations()
-				enter reservation						hotel.getReservations().get(i).getId(id)	r = hotel.getReservations().get(i)
-				display info							r.displayInfo()
-				
-*/
