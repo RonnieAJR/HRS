@@ -114,7 +114,7 @@ public class HRS
 	
 	// insert main here
 	
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
 		HRS hrs = new HRS();
 		Hotel hotel;
@@ -125,7 +125,8 @@ public class HRS
 		String newName = new String();
 		String roomName = new String();
 		String guestName = new String();
-		int choice, capacity, checkIn, checkOut, day, reservationId;
+		String confirmation = new String();
+		int choice, innerchoice, capacity, checkIn, checkOut, day, reservationId, tempCap = 0;
 		double price;
 		
 		/*
@@ -200,64 +201,68 @@ public class HRS
 					System.out.println("Hotel not found\n");
 				else
 				{
-					System.out.println("View Hotel");
-					System.out.println("1 - View hotel");
-					System.out.println("2 - View day availability");
-					System.out.println("3 - View room info");
-					System.out.println("4 - View reservation info");
-					System.out.println("0 - Exit\n");
-					
-					System.out.print("Enter choice: ");
-					choice = scan.nextInt();
-					scan.nextLine();
-					
-					if(choice == 1)
-						hotel.displayInfo();
-					else if(choice == 2)
+					do
 					{
-						System.out.print("Enter day: ");
-						day = scan.nextInt();
-						
-						if(1 <= day && day <= 31)
-							hotel.displayDayInfo(day);
-						else
-							System.out.println("Invalid day\n");
-					}
-					else if(choice == 3)
-					{
-						hotel.displayRooms();
-						
-						System.out.print("Enter room: ");
-						roomName = scan.nextLine();
-						
-						room = hotel.findRoom(roomName);
-						
-						if(!room.getName().equals(roomName))
-							System.out.println("Room not found\n");
-						else
-							room.displayInfo();
-					}
-					
-					else if(choice == 4)
-					{
-						hotel.displayReservations();
-						
-						if(!hotel.getReservations().isEmpty())
+						System.out.println("View Hotel");
+						System.out.println("1 - View hotel");
+						System.out.println("2 - View day availability");
+						System.out.println("3 - View room info");
+						System.out.println("4 - View reservation info");
+						System.out.println("0 - Exit\n");
+
+						System.out.print("Enter choice: ");
+						innerchoice = scan.nextInt();
+						scan.nextLine();
+
+						if(innerchoice == 1)
+							hotel.displayInfo();
+						else if(innerchoice == 2)
 						{
-							System.out.print("Enter reservation: ");
-							reservationId = scan.nextInt();
-							
-							reservation = hotel.findReservation(reservationId);
-							
-							if(reservation.getId() != reservationId)
-								System.out.println("Reservation not found\n");
+							System.out.print("Enter day: ");
+							day = scan.nextInt();
+
+							if(1 <= day && day <= 31)
+								hotel.displayDayInfo(day);
 							else
-								reservation.displayInfo();
+								System.out.println("Invalid day\n");
 						}
-					}
-					
-					else if(choice != 0)
-						System.out.println("Invalid choice\n");
+						else if(innerchoice == 3)
+						{
+							hotel.displayRooms();
+
+							System.out.print("Enter room: ");
+							roomName = scan.nextLine();
+
+							room = hotel.findRoom(roomName);
+
+							if(!room.getName().equals(roomName))
+								System.out.println("Room not found\n");
+							else
+								room.displayInfo();
+						}
+
+						else if(innerchoice == 4)
+						{
+							hotel.displayReservations();
+
+							if(!hotel.getReservations().isEmpty())
+							{
+								System.out.print("Enter reservation: ");
+								reservationId = scan.nextInt();
+
+								reservation = hotel.findReservation(reservationId);
+
+								if(reservation.getId() != reservationId)
+									System.out.println("Reservation not found\n");
+								else
+									reservation.displayInfo();
+							}
+						}
+
+						else if(innerchoice != 0)
+							System.out.println("Invalid choice\n");
+					} while (innerchoice != 0);
+
 				}
 			}
 			
@@ -285,9 +290,9 @@ public class HRS
 					System.out.println("0 - Exit\n");
 					
 					System.out.print("Enter choice: ");
-					choice = scan.nextInt();
+					innerchoice = scan.nextInt();
 					
-					if(choice == 1)
+					if(innerchoice == 1)
 					{
 						scan.nextLine();
 						System.out.print("Enter new Hotel name: ");
@@ -299,16 +304,37 @@ public class HRS
 							System.out.println("Hotel already exists\n");
 					}
 					
-					else if(choice == 2)
+					else if(innerchoice == 2)
 					{
 						scan.nextLine();
-						if(hotel.addRoom())
-							System.out.println("Room added\n");
+						System.out.print("Enter amount of rooms to add: ");
+						capacity = scan.nextInt();
+						scan.nextLine();
+
+						if((capacity + hotel.getCapacity()) > 50)
+							System.out.println("\nAmount of rooms exceed the capacity of the hotel\n");
 						else
-							System.out.println("Hotel is already full\n");
+						{
+							System.out.print("Are you sure you want to add rooms? (y/n): ");
+							confirmation = scan.nextLine();
+							if(confirmation.equalsIgnoreCase("y"))
+							{
+								while(tempCap < capacity)
+								{
+									hotel.addRoom();
+									tempCap++;
+								}
+								System.out.printf("%d Rooms added\n", tempCap);
+							}
+
+							else if(confirmation.equalsIgnoreCase("n"))
+								System.out.println("\nAborting add Rooms \n");
+
+
+						}
 					}
 					
-					else if(choice == 3)
+					else if(innerchoice == 3)
 					{
 						scan.nextLine();
 						hotel.displayRooms();
@@ -329,7 +355,7 @@ public class HRS
 						}
 					}
 					
-					else if(choice == 4)
+					else if(innerchoice == 4)
 					{
 						scan.nextLine();
 						System.out.print("Enter price: ");
@@ -346,7 +372,7 @@ public class HRS
 						}
 					}
 					
-					else if(choice == 5)
+					else if(innerchoice == 5)
 					{
 						scan.nextLine();
 						hotel.displayReservations();
@@ -365,13 +391,18 @@ public class HRS
 						}
 					}
 					
-					else if(choice == 6)
+					else if(innerchoice == 6)
 					{
-						hrs.removeHotel(hotel.getName());
+						System.out.print("Are you sure you want to remove this hotel (y/n): ");
+						confirmation = scan.nextLine();
+						if(confirmation.equalsIgnoreCase("y"))
+							hrs.removeHotel(hotel.getName());
+						else
+							System.out.println("\nAbort removing hotel\n");
 						// hrs.getHotels().remove(hotel);
 					}
 					
-					else if(choice != 0)
+					else if(innerchoice != 0)
 						System.out.println("Invalid choice\n");
 				}
 			}
