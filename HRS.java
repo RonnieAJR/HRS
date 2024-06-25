@@ -150,8 +150,11 @@ public class HRS
 		return this.hotels;
 	}
 	
-	// insert main here
-	
+	/**
+	 * Creates combines all the class and methods to create a hotel reservation system that a user can interact with.
+	 *
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		HRS hrs = new HRS();
