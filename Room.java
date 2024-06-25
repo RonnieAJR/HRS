@@ -94,6 +94,9 @@ public class Room
 		reservedLength = 4 * this.reserved.size() - 2;
 		availableLength = 4 * available.size() - 2;
 		
+		if(this.reserved.isEmpty())
+			reservedLength = 0;
+		
 		// top of the table
 		for(i=0; i < length + 20; i++)
 			System.out.print("-");
@@ -161,7 +164,7 @@ public class Room
 			System.out.print(" ");
 		
 		if(this.reserved.isEmpty())
-			System.out.print("|\n");
+			System.out.print(" |\n");
 		
 		for(i=0; i < this.reserved.size(); i++)
 			if(i != this.reserved.size() - 1)
