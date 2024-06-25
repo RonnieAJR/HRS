@@ -156,8 +156,8 @@ public class Hotel
 		room = findRoom(name);
 		
 		// return false if room is not found or is reserved
-		if(!room.getName().equals(name) || 
-		    room.getReserved().isEmpty())
+		if(!room.getName().equals(name) ||
+		   !room.getReserved().isEmpty())
 			return false;
 		
 		// remove room if conditions allow
