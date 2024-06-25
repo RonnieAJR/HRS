@@ -92,22 +92,17 @@ public class Hotel
 		//roomNumber is assigned a room that does not exist in the floors
 		roomNumber = findGapRoom(); 
 
-		// if roomNumber is not equal to the false equivalent of isRoom exist, execute add room
-		if(roomNumber != -1) 
-		{
-			//name of room is first letter of hotel + room number
-			roomName = firstLetter + Integer.toString(roomNumber);
-			
-			// creates the room and adds it to the list
-			room = new Room(roomName, this.price); 
-			this.rooms.add(room);
-			this.capacity++;
-			
-			// sorts room according to room number
-			insertionSortRoom(); 
-
-			return true;
-		}
+		//name of room is first letter of hotel + room number
+		roomName = firstLetter + Integer.toString(roomNumber);
+		
+		// creates the room and adds it to the list
+		room = new Room(roomName, this.price); 
+		this.rooms.add(room);
+		this.capacity++;
+		
+		// sorts room according to room number
+		insertionSortRoom();
+		return true;
 		
 	}
 
@@ -590,7 +585,7 @@ public class Hotel
 	  *
 	  * @return the name of the hotel
 	  */
-	public String g etName()
+	public String getName()
 	{
 		return this.name;
 	}
