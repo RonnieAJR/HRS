@@ -1,5 +1,7 @@
+
+
 /**
- * this class allows a system to be able to reserve a room in a hotel
+ * The Reservation class mimics an actual reservation in a hotel having a guest name, room, check in, and check out, 
  */
 
 public class Reservation
@@ -12,12 +14,12 @@ public class Reservation
 
 
     /**
-     * constructor for the reservation class
-     * @param guestName : guestName of the customer who reserved
-     * @param room : room parameter to identify what room to be reserved
-     * @param checkIn : checkin date
-     * @param checkOut : checkout date
-     * @param reservationId : id reservation
+     * Constructs a new reservation with the given parameters.
+     * @param guestName name of the guest
+     * @param room room that would accomodate the guest
+     * @param checkIn day of check in
+     * @param checkOut day of check out
+     * @param reservationId id of the reservation
      */
     public Reservation(String guestName, Room room, int checkIn, int checkOut, int reservationId)
     {
@@ -29,7 +31,7 @@ public class Reservation
     }
 
 	/**
-	 * this method displays all the reservation's attributes
+	 * Displays the reservation information on the standard output stream in a tabular format.
 	 */
 	public void displayInfo()
 	{
@@ -131,8 +133,8 @@ public class Reservation
 	}
 	
     /**
-     * getter for total price for the duration of a room being reserved
-     * @return : double total price
+     * Returns the total price of the reservation.
+     * @return the total price of the reservation
      */
     public double getTotalPrice()
     {
@@ -140,8 +142,8 @@ public class Reservation
     }
 
     /**
-     * getter for name of the guest
-     * @return : string guestName of the customer
+     * Returns the name of the guest.
+     * @return the name of the guest
      */
     public String getGuestName()
     {
@@ -149,8 +151,8 @@ public class Reservation
     }
 
     /**
-     * getter for the room
-     * @return : room object
+     * Returns the room that would accomodate the guest.
+     * @return the room that would accomodate the guest
      */
     public Room getRoom()
     {
@@ -158,8 +160,8 @@ public class Reservation
     }
 
     /**
-     * // getter for the check in date
-     * @return : integer of a checkin date
+     * Returns the day of check in.
+     * @return the day of check in
      */
     public int getCheckIn()
     {
@@ -167,8 +169,8 @@ public class Reservation
     }
 
     /**
-     * getter for the check out date
-     * @return : integer of a checkout date
+     * Returns the day of check out.
+     * @return the day of check out
      */
     public int getCheckOut()
     {
@@ -176,8 +178,8 @@ public class Reservation
     }
 
     /**
-     * getter for the id of reservation
-     * @return : integer for a reservation id
+     * Returns the id of reservation.
+     * @return the id of the reservation
      */
     public int getId()
     {

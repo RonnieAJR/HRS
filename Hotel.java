@@ -1,10 +1,12 @@
 
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 
 
+/**
+  * The Hotel class mimics an actual hotel having a name, rooms, price, and reservations.
+  */
 public class Hotel
 {
 	private String name;
@@ -13,16 +15,10 @@ public class Hotel
 	private double price;
 	private ArrayList<Reservation> reservations;
 	
-	public Hotel(String name)
-	{
-		this(name, 1, 1299.0);
-	}
-	
-	public Hotel(String name, int capacity)
-	{
-		this(name, capacity, 1299.0);
-	}
-	
+	/**
+	  * Constructs a new hotel with the given parameters.
+	  * The list of rooms is filled according to the capacity set.
+	  */
 	public Hotel(String name, int capacity, double price)
 	{
 		Room room;
@@ -409,7 +405,7 @@ public class Hotel
 	  */
 	public void displayDayInfo(int day)
 	{	
-		int i, size, length;
+		int i, size;
 		HashSet<Integer> daysReserved = new HashSet<Integer>();
 		ArrayList<Room> reserved = new ArrayList<Room>();
 		ArrayList<Room> available = new ArrayList<Room>();
@@ -435,12 +431,6 @@ public class Hotel
 			// clear the hashset
 			daysReserved.clear();
 		}
-		
-		// determines the maximum length
-		if(available.size() > reserved.size())
-			length = available.size();
-		else
-			length = reserved.size();
 
 		// top of the table
 		for(i=0; i < 36; i++)
