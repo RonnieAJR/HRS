@@ -114,7 +114,7 @@ public class Hotel
 	}
 
 	/**
-	 * insertion sorts array list of rooms according to their room name
+	 * Insertion sorts array list of rooms according to their room name.
 	 */
 	public void insertionSortRoom()
 	{
