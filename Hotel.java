@@ -140,7 +140,7 @@ public class Hotel
 	}
 	
 	/**
-	  * Removes the room from the list of rooms if it is not reserved or the last in the list.
+	  * Removes the room from the list of rooms if it is not the last in the list.
 	  * 
 	  * @param name name of the room to remove
 	  * @return true if the room is successfully removed
@@ -149,18 +149,13 @@ public class Hotel
 	{	
 		Room room;
 		
-		// return false if hotel only has one room
-		if(this.rooms.size() == 1)
-			return false;
-		
 		room = findRoom(name);
 		
-		// return false if room is not found or is reserved
-		if(!room.getName().equals(name) ||
-		   !room.getReserved().isEmpty())
+		// return false if room is reserved
+		if(!room.getReserved().isEmpty())
 			return false;
 		
-		// remove room if conditions allow
+		// removes room
 		this.capacity--;
 		
 		return this.rooms.remove(room);
@@ -404,7 +399,7 @@ public class Hotel
 	  */
 	public void displayDayInfo(int day)
 	{	
-		int i, size;
+		int i, size, length;
 		HashSet<Integer> daysReserved = new HashSet<Integer>();
 		ArrayList<Room> reserved = new ArrayList<Room>();
 		ArrayList<Room> available = new ArrayList<Room>();
@@ -431,6 +426,12 @@ public class Hotel
 			daysReserved.clear();
 		}
 		
+		// determines the maximum length
+		if(available.size() > reserved.size())
+			length = available.size();
+		else
+			length = reserved.size();
+		
 		// top of the table
 		for(i=0; i < 36; i++)
 			System.out.print("-");
@@ -448,7 +449,7 @@ public class Hotel
 		// room label
 		System.out.print("| Rooms available | Rooms reserved |\n");
 		
-		for(i=0; i < this.capacity; i++)// wrong condition
+		for(i=0; i < length; i++)// wrong condition
 		{
 			// row and column divider
 			System.out.print("|-----------------|----------------|\n");

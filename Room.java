@@ -157,7 +157,7 @@ public class Room
 		
 		// days reserved
 		System.out.print("| Days reserved   |");
-		for(i=0; i < length - reservedLength - 2; i++)
+		for(i=0; i < length - reservedLength - 1; i++)
 			System.out.print(" ");
 		
 		if(this.reserved.isEmpty())
