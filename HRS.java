@@ -385,7 +385,7 @@ public class HRS
 					System.out.print("Enter day of check out: ");
 					checkOut = scan.nextInt();
 					
-					if(checkIn < 1 || checkIn >= checkOut)
+					if(checkIn < 1 || checkOut  > 31 || checkIn >= checkOut)
 						System.out.println("Invalid days");
 					else
 					{
