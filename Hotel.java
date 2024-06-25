@@ -318,7 +318,7 @@ public class Hotel
 	/**
 	  * Returns the reservation from the list with the provided id, or the reservation at index 0
 	  *
-	  * @param reservationId id of the reservation to find
+	  * @param id id of the reservation to find
 	  * @return the reservation with the provided id if found, otherwise the reservation at index 0
 	  */
 	public Reservation findReservation(int id)
