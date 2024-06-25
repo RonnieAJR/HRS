@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * The Room class mimics an actual room in a hotel having a name, price, reserve
+ * The Room class mimics an actual room in a hotel having a name, price, reservation
  */
 public class Room
 {
