@@ -30,16 +30,11 @@ public class Room
 	 */
 	public void addReserved(int checkIn, int checkOut)
 	{
-
-		if(checkIn >= 1 && checkOut <= 31)
-		{
 			while(checkIn < checkOut)
 			{
 				this.reserved.add(checkIn);
 				checkIn++;
 			}
-		}
-
 	}
 
 	/**
