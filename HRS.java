@@ -143,7 +143,7 @@ public class HRS
 	
 	/**
 	 * Returns the array list of hotels in the hotel reservation system.
-	 * @return ArrayList<Hotel>
+	 * @return array list of hotels
 	 */
 	public ArrayList<Hotel> getHotels()
 	{
