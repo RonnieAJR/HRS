@@ -37,6 +37,11 @@ public class HRS
 		
 		hotel = findHotel(oldName);
 		hotel.setName(newName);
+
+		for(Room r : hotel.getRooms())
+		{
+			r.changeFirstLetter(newName.charAt(0));
+		}
 		
 		return true;
 	}
@@ -187,7 +192,7 @@ public class HRS
 				{
 					do
 					{
-						System.out.println("View Hotel");
+						System.out.println("\nView Hotel");
 						System.out.println("1 - View hotel");
 						System.out.println("2 - View day availability");
 						System.out.println("3 - View room info");
@@ -270,7 +275,7 @@ public class HRS
 				{
 					do
 					{
-						System.out.println("Manage Hotel\n");
+						System.out.println("\nManage Hotel\n");
 						System.out.println("1 - Rename hotel");
 						System.out.println("2 - Add room");
 						System.out.println("3 - Remove room");
@@ -318,7 +323,7 @@ public class HRS
 										hotel.addRoom();
 										tempCap++;
 									}
-									System.out.printf("%d Rooms added\n\n", tempCap);
+									System.out.printf("%d Rooms added\n", tempCap);
 								}
 
 								else if(confirmation.equalsIgnoreCase("n"))
