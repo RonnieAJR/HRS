@@ -161,14 +161,26 @@ public class HRS
 				capacity = scan.nextInt();
 
 				scan.nextLine();
-				System.out.print("Enter room price: ");
-				price = scan.nextDouble();
-
-				scan.nextLine();
-				if(hrs.createHotel(hotelName, capacity, price))
-					System.out.println("Hotel created\n");
+				if(capacity < 1 || capacity > 50)
+					System.out.println("\nInvalid capacity input \n");
 				else
-					System.out.println("Hotel already exists\n");
+				{
+					System.out.print("Enter room price: ");
+					price = scan.nextDouble();
+
+					scan.nextLine();
+					if(price < 100)
+						System.out.println("\nInvalid price input \n");
+					else
+					{
+						if(hrs.createHotel(hotelName, capacity, price))
+							System.out.println("Hotel created\n");
+						else
+							System.out.println("Hotel already exists\n");
+					}
+
+				}
+
 			}
 			
 			else if(hrs.getHotels().isEmpty())
