@@ -296,7 +296,11 @@ public class HRS
 							System.out.print("\n");
 							
 							if(hrs.renameHotel(hotelName, newName))
+							{
 								System.out.println("Hotel renamed");
+								hotelName = newName;
+							}
+								
 							else
 								System.out.println("Hotel already exists");
 						}
@@ -350,6 +354,7 @@ public class HRS
 								{
 									System.out.printf("Are you sure you want to remove room %s (y/n): ", roomName);
 									confirmation = scan.nextLine();
+									System.out.println();
 									
 									if(confirmation.equalsIgnoreCase("y"))
 									{
@@ -426,7 +431,7 @@ public class HRS
 						
 						else if(innerchoice != 0)
 							System.out.println("Invalid choice");
-					} while(innerchoice != 0);
+					} while(innerchoice != 0 && innerchoice != 6);
 					
 				}
 			}
