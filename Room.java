@@ -9,7 +9,7 @@ public class Room
 {
 	private String name;
 	private double price;
-	private ArrayList<Integer> reserved; // reserved, cuz for availability you add more numbers
+	private ArrayList<Integer> reserved;
 	
 	/**
 	 * constructor for Room class
@@ -30,6 +30,8 @@ public class Room
 	 */
 	public void addReserved(int checkIn, int checkOut)
 	{
+		// adds the days between checkIn and checkOut...
+		// ...checkIn inclusive and checkOut exclusive
 		while(checkIn < checkOut)
 		{
 			this.reserved.add(checkIn);
@@ -47,6 +49,8 @@ public class Room
 	{
 		int i;
 		
+		// removes the days between checkIn and checkOut...
+		// ...checkIn inclusive and checkOut exclusive
 		for(i=0; i<this.reserved.size(); i++)
 		{
 			if(checkIn <= this.reserved.get(i) && 
@@ -61,15 +65,11 @@ public class Room
 	 */
 	public void displayInfo()
 	{
-		// sort reserved
-		// create list for availability
-		// name floor price availability reserved
-		
 		int i, reservedLength, availableLength;
 		int length = this.reserved.size();
 		ArrayList<Integer> available = new ArrayList<Integer>();
 		
-		// adds all the daylengths to available
+		// adds all the days to available
 		for(i=1; i<=31; i++)
 			available.add(i);
 		
@@ -79,50 +79,59 @@ public class Room
 		// remove days from available that are reserved
 		available.removeAll(this.reserved);
 		
-		
+		// determines which list as more days
 		if(this.reserved.size() < available.size())
 			length = available.size();
 		else
 			length = this.reserved.size();
 		
+		// sets the length of the table's second column
 		length = length * 4;
 		reservedLength = 4 * this.reserved.size() - 2;
 		availableLength = 4 * available.size() - 2;
 		
+		// top of the table
 		for(i=0; i < length + 20; i++)
 			System.out.print("-");
 		System.out.print("\n");
 		
+		// room name
 		System.out.print("| Room name       |");
 		for(i=0; i < length - 5; i++)
 			System.out.print(" ");
 		System.out.printf("%s |\n", this.name);
 		
+		// row and column divider
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// floor number
 		System.out.print("| Floor           |");
 		for(i=0; i < length - 2; i++)
 			System.out.print(" ");
 		System.out.printf("%c |\n", this.name.charAt(1));
 		
+		// row and column divider
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// price per night
 		System.out.print("| Price per night |");
 		for(i=0; i < length - 13; i++)
 			System.out.print(" ");
 		System.out.printf("%,12.2f |\n", this.price);
 		
+		// row and column divider
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// days available
 		System.out.print("| Days available  |");
 		for(i=0; i < length - availableLength - 1; i++)
 			System.out.print(" ");
@@ -135,12 +144,14 @@ public class Room
 				System.out.printf("%2d, ", available.get(i));
 			else
 				System.out.printf("%2d |\n", available.get(i));
-			
+		
+		// row and column divider
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// days reserved
 		System.out.print("| Days reserved   |");
 		for(i=0; i < length - reservedLength - 2; i++)
 			System.out.print(" ");
@@ -154,6 +165,7 @@ public class Room
 			else
 				System.out.printf("%2d |\n", this.reserved.get(i));
 		
+		// bottom of the table
 		for(i=0; i < length + 20; i++)
 			System.out.print("-");
 		System.out.print("\n\n");

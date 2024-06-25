@@ -34,78 +34,94 @@ public class Reservation
 		int i;
 		int length = this.guestName.length() + 2;
 		
+		// sets the minimum length
 		if(length < 14)
 			length = 14;
 		
+		// top of the table
 		for(i=0; i < length + 20; i++)
 			System.out.print("-");
 		System.out.print("\n");
 		
+		// reservation id
 		System.out.print("| Reservation ID  |");
 		for(i=0; i < length - 5; i++)
 			System.out.print(" ");
 		System.out.printf("%4d |\n", this.reservationId);
 		
+		// row and column divider
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// guest name
 		System.out.print("| Guest name      |");
 		for(i=0; i < length - this.guestName.length() - 1; i++)
 			System.out.print(" ");
 		System.out.printf("%s |\n", this.guestName);
-		
+
+		// row and column divider		
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// room name
 		System.out.print("| Room            |");
 		for(i=0; i < length - 5; i++)
 			System.out.print(" ");
 		System.out.print(this.room.getName() + " |\n");
-		
+
+		// row and column divider
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// check in day
 		System.out.print("| Check in day    |");
 		for(i=0; i < length - 4; i++)
 			System.out.print(" ");
 		System.out.printf("%3d |\n", this.checkIn);
 		
+		// row and column divider
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// check out day
 		System.out.print("| Check out day   |");
 		for(i=0; i < length - 4; i++)
 			System.out.print(" ");
 		System.out.printf("%3d |\n", this.checkOut);
 		
+		// row and column divider
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// price per night
 		System.out.print("| Price per night |");
 		for(i=0; i < length - 13; i++)
 			System.out.print(" ");
 		System.out.printf("%,12.2f |\n", this.room.getPrice());
-		
+
+		// row and column divider
 		System.out.print("|-----------------|");
 		for(i=0; i < length; i++)
 			System.out.print("-");
 		System.out.print("|\n");
 		
+		// total price
 		System.out.print("| Total price     |");
 		for(i=0; i < length - 13; i++)
 			System.out.print(" ");
 		System.out.printf("%,12.2f |\n", this.getTotalPrice());
-		//
+		
+		// row and column divider
 		for(i=0; i < length + 20; i++)
 			System.out.print("-");
 		System.out.print("\n\n");
