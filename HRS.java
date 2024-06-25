@@ -402,6 +402,7 @@ public class HRS
 			
 		}while(choice != 0);
 		
+		scan.close();
 		System.out.println("Terminating program...");
 	}
 }
