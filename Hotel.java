@@ -10,7 +10,7 @@ import java.util.HashSet;
 public class Hotel
 {
 	private String name;
-	private int capacity;
+	private int capacity;	
 	private ArrayList<Room> rooms;
 	private double price;
 	private ArrayList<Reservation> reservations;
@@ -114,8 +114,7 @@ public class Hotel
 	}
 
 	/**
-	 * insertion sorts array list of roos
-	 * di ko pa alam kung pano pero aralin ko nalang mamaya
+	 * insertion sorts array list of rooms according to their room name
 	 */
 	public void insertionSortRoom()
 	{
@@ -415,7 +414,7 @@ public class Hotel
 		// separates the rooms available and reserved
 		for(i=0; i < reserved.size(); i++)
 		{
-			// adds the days reserved and target day to the hashset
+			// adds the days reserved and target day to the hashset	
 			daysReserved.addAll(reserved.get(i).getReserved());
 			size = daysReserved.size();
 			daysReserved.add(day);
@@ -427,11 +426,11 @@ public class Hotel
 				available.add(reserved.remove(i));
 				i--;
 			}
-			
+					
 			// clear the hashset
 			daysReserved.clear();
 		}
-
+		
 		// top of the table
 		for(i=0; i < 36; i++)
 			System.out.print("-");
