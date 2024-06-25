@@ -1,14 +1,13 @@
 
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 
 
 public class Hotel
 {
 	private String name;
-	private int capacity;
+	private int capacity;	
 	private ArrayList<Room> rooms;
 	private double price;
 	private ArrayList<Reservation> reservations;
@@ -118,8 +117,7 @@ public class Hotel
 	}
 
 	/**
-	 * insertion sorts array list of roos
-	 * di ko pa alam kung pano pero aralin ko nalang mamaya
+	 * insertion sorts array list of rooms according to their room name
 	 */
 	public void insertionSortRoom()
 	{
@@ -409,7 +407,7 @@ public class Hotel
 	  */
 	public void displayDayInfo(int day)
 	{	
-		int i, size, length;
+		int i, size;
 		HashSet<Integer> daysReserved = new HashSet<Integer>();
 		ArrayList<Room> reserved = new ArrayList<Room>();
 		ArrayList<Room> available = new ArrayList<Room>();
@@ -419,7 +417,7 @@ public class Hotel
 		// separates the rooms available and reserved
 		for(i=0; i < reserved.size(); i++)
 		{
-			// adds the days reserved and target day to the hashset
+			// adds the days reserved and target day to the hashset	
 			daysReserved.addAll(reserved.get(i).getReserved());
 			size = daysReserved.size();
 			daysReserved.add(day);
@@ -431,17 +429,11 @@ public class Hotel
 				available.add(reserved.remove(i));
 				i--;
 			}
-			
+					
 			// clear the hashset
 			daysReserved.clear();
 		}
 		
-		// determines the maximum length
-		if(available.size() > reserved.size())
-			length = available.size();
-		else
-			length = reserved.size();
-
 		// top of the table
 		for(i=0; i < 36; i++)
 			System.out.print("-");
