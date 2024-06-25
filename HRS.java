@@ -361,6 +361,7 @@ public class HRS
 										tempCap++;
 									}
 									System.out.printf("%d Rooms added\n", tempCap);
+									tempCap = 0;
 								}
 
 								else if(confirmation.equalsIgnoreCase("n"))
