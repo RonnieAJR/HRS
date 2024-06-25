@@ -28,7 +28,7 @@ public class Hotel
 		Room room;
 		char firstLetter = name.charAt(0);
 		this.name = name;
-		this.capacity = capacity;
+		this.capacity = 0;
 		this.price = price;
 		
 		this.reservations = new ArrayList<Reservation>();
@@ -37,6 +37,7 @@ public class Hotel
 		room = new Room((firstLetter + Integer.toString(101)), this.price);
 
 		this.rooms.add(room);
+		this.capacity++;
 
 		while(this.rooms.size() < capacity)
 		{
@@ -62,7 +63,9 @@ public class Hotel
 				roomName = firstLetter + Integer.toString(noRoom);
 				room = new Room(roomName, this.price); //instantiate new room
 				this.rooms.add(room); // adds new room to the list of hotel rooms
+				this.capacity++;
 				insertionSortRoom(); // sorts room according to room number
+
 				return true;
 			}
 		}
@@ -73,7 +76,7 @@ public class Hotel
 	{
 		int i = 0, floor = 100, room = 1, roomNumber;
 
-		while (i < this.capacity && floor < 600)
+		while (i < 50 && floor < 600)
 		{ // Check if room number exists within capacity and five floors
 			roomNumber = floor + room;
 			if (i >= this.rooms.size() || this.rooms.get(i).getRoomNumber() != roomNumber)
