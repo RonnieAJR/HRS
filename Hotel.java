@@ -59,31 +59,6 @@ public class Hotel
 		char firstLetter = this.getName().charAt(0);
 		String roomName;
 		Room room;
-
-		/* //if size is less than 50, can add room
-		if(size < 50) 
-		{
-			//roomNumber is assigned a room that does not exist in the floors
-			roomNumber = findGapRoom(); 
-
-			// if roomNumber is not equal to the false equivalent of isRoom exist, execute add room
-			if(roomNumber != -1) 
-			{
-				//name of room is first letter of hotel + room number
-				roomName = firstLetter + Integer.toString(roomNumber);
-				
-				// creates and adds the new room to the list of rooms
-				room = new Room(roomName, this.price); 
-				this.rooms.add(room);
-				this.capacity++;
-				
-				// sorts room according to room number
-				insertionSortRoom(); 
-
-				return true;
-			}
-		}
-		return false; */
 		
 		// cannot add room if max capacity is reached
 		if(50 <= size)
