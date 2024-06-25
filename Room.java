@@ -206,6 +206,10 @@ public class Room
 		return roomNumber;
 	}
 
+	/**
+	 * Changes the first letter of the room name.
+	 * @param newLetter character to replace the first index of the room name
+	 */
 	public void changeFirstLetter(char newLetter)
 	{
 		this.name = newLetter + Integer.toString(getRoomNumber());
