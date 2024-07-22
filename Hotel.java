@@ -265,6 +265,49 @@ public class Hotel
 		}
 		return false;
 	}
+
+	public int applyDiscount(Reservation reservation, String discountCode)
+	{
+		String[] list = {"I_WORK_HERE", "STAY4_GET1", "PAYDAY"};
+		int i = 0, index = -1;
+
+		for(i = 0; i < list.length; i++)
+			if(discountCode.equals(list[i]))
+				index = i;
+
+		//if discountCode is inside the list of provided discount codes, return 1 if successfully applied discount
+		if(index != -1)
+			switch(index)
+			{
+				case 0://reservation.setPrice(reservation.getTotalPrice() - (reservation.getTotalPrice() * 0.10));
+					//return 1;
+				break;
+
+				case 1:if(reservation.getCheckIn() - reservation.getCheckOut() >= 5)
+					//reservation.setPrice(reservation.getTotalPrice() - reservation.getRoom().getPrice());
+					return 1;
+				break;
+
+				case 2: if(reservation.getCheckOut() > 15)
+				{
+					//double newPrice = reservation.getTotalPrice - (reservation.getTotalPrice * 0.7);
+					if(reservation.getCheckIn() <= 15)
+					{
+						//reservation.setPrice(newPrice)
+						return 1;
+					}
+
+					else if (reservation.getCheckIn() <= 30 && reservation.getCheckOut() > 30)
+					{
+						//reservation.setPrice(newPrice)
+						return 1;
+					}
+
+				}
+			}
+		//return 0 if discount application is not successful
+		return 0;
+	}
 	
 	/**
 	  * Creates a reservation for the guest.
