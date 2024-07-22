@@ -218,25 +218,25 @@ public class Hotel
 	{
 		Boolean reserved = false;
 		
+		// checks if the modification is still normal price
 		if(mod == 100)
 		{
 			this.dayPriceMod.remove(day);
 			return true;
 		}
 		
+		// checks if the day is reserved
 		for(Room r : this.rooms)
-		{
-			
 			if(r.getReserved().contains(day))
 			{
 				reserved = true;
 				break;
 			}
-		}
 		
 		if(reserved)
 			return false;
 		
+		// maps the price modification to the day
 		this.dayPriceMod.put(day, mod);
 		
 		return true;
