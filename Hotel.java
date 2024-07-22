@@ -67,7 +67,16 @@ public class Hotel
 		roomName = firstLetter + Integer.toString(roomNumber);
 		
 		// creates the room and adds it to the list
-		room = new Room(roomName, this.price); 
+		room = new Room(roomName, this.price);
+
+		/*
+		//temporary for deluxe
+		room = new DeluxeRoom (roomName, this.price);
+
+		//temporary for executive
+		room = new ExecutiveRoom(roomName, this.price);
+		*/
+
 		this.rooms.add(room);
 		this.capacity++;
 		
