@@ -146,7 +146,11 @@ public class Reservation
 		double price = this.room.getPrice();
 		double total = 0;
 		Integer day;
+		int checkIn = this.checkIn();
+		int checkOut = this.checkOut();
 		
+		if(this.discountCode == 1 && checkOut - checkIn >= 5)
+			checkIn++;
 		
 		while(checkIn < checkOut)
 		{
@@ -157,31 +161,18 @@ public class Reservation
 			else
 				total += price;
 			
+			if(checkIn == 15 || checkIn == 30)
+				payday = true;
+			
 			checkIn++;
 		}
-
-		if(this.discountCode != -1)
-			switch(discountCode)
-			{
-				case 0:total -= (total * .10);
-
-					break;
-				case 1:if(this.getCheckIn() - this.getCheckOut() >= 5)
-					total -= this.room.getPrice();
-
-					break;
-				case 2: if(this.getCheckOut() > 15)
-				{
-					if(this.getCheckIn() <= 15)
-						total -= (total * .07);
-
-					else if (this.getCheckIn() <= 30 && this.getCheckOut() > 30)
-						total -= (total * .07);
-				}
-			}
-
+		
+		if(this.discountCode == 0)
+			total *= .90;
+		else if(this.discountCode == 1 && payday)
+			total *= .93
+		
 		return total;
-		// return this.room.getPrice() * (checkOut - checkIn);
     }
 
     /**
