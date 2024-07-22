@@ -169,8 +169,8 @@ public class Reservation
 		
 		if(this.discountCode == 0)
 			total *= .90;
-		else if(this.discountCode == 1 && payday)
-			total *= .93
+		else if(this.discountCode == 2 && payday)
+			total *= .93;
 		
 		return total;
     }
