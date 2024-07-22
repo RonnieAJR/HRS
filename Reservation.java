@@ -12,6 +12,7 @@ public class Reservation
     private int checkIn;
     private int checkOut;
     private int reservationId;
+	private int discountCode;
 
 
     /**
@@ -21,14 +22,16 @@ public class Reservation
      * @param checkIn day of check in
      * @param checkOut day of check out
      * @param reservationId id of the reservation
+	 * @param discountCode code for identifying what code used for computing the total price
      */
-    public Reservation(String guestName, Room room, int checkIn, int checkOut, int reservationId)
+    public Reservation(String guestName, Room room, int checkIn, int checkOut, int reservationId, int discountCode)
     {
 		this.guestName = guestName;
 		this.room = room;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 		this.reservationId = reservationId;
+		this.discountCode = discountCode;
     }
 
 	/**
@@ -156,7 +159,27 @@ public class Reservation
 			
 			checkIn++;
 		}
-		
+
+		if(this.discountCode != -1)
+			switch(discountCode)
+			{
+				case 0:total -= (total * .10);
+
+					break;
+				case 1:if(this.getCheckIn() - this.getCheckOut() >= 5)
+					total -= this.room.getPrice();
+
+					break;
+				case 2: if(this.getCheckOut() > 15)
+				{
+					if(this.getCheckIn() <= 15)
+						total -= (total * .07);
+
+					else if (this.getCheckIn() <= 30 && this.getCheckOut() > 30)
+						total -= (total * .07);
+				}
+			}
+
 		return total;
 		// return this.room.getPrice() * (checkOut - checkIn);
     }
