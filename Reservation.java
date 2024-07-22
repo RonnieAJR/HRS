@@ -153,6 +153,8 @@ public class Reservation
 				total += price * (dayPriceMod.get(day) / 100);
 			else
 				total += price;
+			
+			checkIn++;
 		}
 		
 		return total;
