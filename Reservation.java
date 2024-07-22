@@ -144,10 +144,11 @@ public class Reservation
     {
 		HashMap<Integer, Double> dayPriceMod = this.room.getDayPriceMod();
 		double price = this.room.getPrice();
+		int checkOut = this.checkOut();
+		int checkIn = this.checkIn();
+		Boolean payday = false;
 		double total = 0;
 		Integer day;
-		int checkIn = this.checkIn();
-		int checkOut = this.checkOut();
 		
 		if(this.discountCode == 1 && checkOut - checkIn >= 5)
 			checkIn++;
