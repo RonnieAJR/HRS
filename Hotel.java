@@ -294,9 +294,9 @@ public class Hotel
 	{
 		ArrayList<Integer> targetDays = new ArrayList<Integer>();
 		HashSet<Integer> combinedDays = new HashSet<Integer>();
-		Room room = this.findAvailableRoom(checkIn, checkOut);
 		int discountCode = findDiscount(DiscountInput);
 		int size = this.reservations.size();
+		Room room = this.rooms.get(0);
 		boolean available = false;
 		int day = checkIn;
 		int sizeSum;
