@@ -279,42 +279,6 @@ public class Hotel
 		return -1;
 	}
 	
-	public Room findAvailableRoom(int checkIn, int checkOut)
-	{
-		ArrayList<Integer> targetDays = new ArrayList<Integer>();
-		HashSet<Integer> combinedDays = new HashSet<Integer>();
-		Room room = this.rooms.get(0);
-		int sizeSum;
-		
-		// convert the target days to be reserved into a list
-		while(checkIn < checkOut)
-			targetDays.add(checkIn++);
-		
-		// checks each room
-		for(Room r : this.rooms)
-		{
-			// gets the combined size of target days and days reserved
-			sizeSum = targetDays.size() + r.getReserved().size();
-			
-			// adds the days reserved and the target days into a hashset
-			combinedDays.addAll(r.getReserved());
-			combinedDays.addAll(targetDays);
-			
-			// if the size is as expected, all target days are newly added into the hashset...
-			// ...meaning, it is not present in the days reserved
-			if(sizeSum == combinedDays.size())
-			{
-				room = r;
-				break;
-			}
-			
-			// resets the hash set
-			combinedDays.clear();
-		}
-		
-		return room;
-	}
-	
 	/**
 	  * Creates a reservation for the guest.
 	  * Rooms are checked if the guest can be accomodated for the whole stay.
@@ -364,6 +328,9 @@ public class Hotel
 			// resets the hash set
 			combinedDays.clear();
 		}
+		
+		if(!available)
+			return false;
 		
 		if(discountCode == 1 && targetDays.size() < 5)
 			discountCode = -1;
