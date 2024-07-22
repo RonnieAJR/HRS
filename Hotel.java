@@ -39,7 +39,7 @@ public class Hotel
 		// adds the rest of the rooms
 		while(this.rooms.size() < capacity)
 		{
-			this.addRoom();
+			this.addRoom("Standard");
 		}
 	}
 
@@ -48,11 +48,9 @@ public class Hotel
 	 *
 	 * @return true if the room is created and added successfully
 	 */
-	public boolean addRoom()
+	public boolean addRoom(String roomType)
 	{
-		int roomNumber;
 		int size = this.capacity; 
-		char firstLetter = this.getName().charAt(0);
 		String roomName;
 		Room room;
 		
@@ -60,14 +58,17 @@ public class Hotel
 		if(50 <= size)
 			return false;
 		
-		//roomNumber is assigned a room that does not exist in the floors
-		roomNumber = findGapRoom(); 
-
-		//name of room is first letter of hotel + room number
-		roomName = firstLetter + Integer.toString(roomNumber);
+		roomName = generateRoomName(roomType);
+		
+		if(roomType.equals("Deluxe"))
+			room = new Room(roomName, this.price);
+		else if(roomType.equals("Executive"))
+			room = new ExecutiveRoom(roomName, this.price);
+		else
+			room = new Room(roomName, this.price);
 		
 		// creates the room and adds it to the list
-		room = new Room(roomName, this.price);
+		// room = new Room(roomName, this.price);
 
 		/*
 		//temporary for deluxe
@@ -84,6 +85,23 @@ public class Hotel
 		insertionSortRoom();
 		return true;
 		
+	}
+	
+	/**
+	  * 	INSERT JAVADOC HERE
+	  *
+	  */
+	public String generateRoomName(String roomType)
+	{
+		int roomNumber = findGapRoom();
+		String roomName = this.getName().charAt(0) + Integer.toString(roomNumber);
+		
+		if(roomType.equals("Deluxe"))
+			return roomName + "-DEL";
+		else if(roomType.equals("Executive"))
+			return roomName + "-EXE";
+		else
+			return roomName;
 	}
 
 	/**

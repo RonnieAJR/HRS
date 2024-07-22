@@ -360,7 +360,7 @@ public class HRS
 								{
 									while(tempCap < capacity)
 									{
-										hotel.addRoom();
+										hotel.addRoom("Standard"); // temporary default variable for compilation success
 										tempCap++;
 									}
 									System.out.printf("%d Rooms added\n", tempCap);
