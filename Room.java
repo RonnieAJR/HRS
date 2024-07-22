@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 
 
 /**
@@ -12,17 +13,19 @@ public class Room
 	private String name;
 	private double price;
 	private ArrayList<Integer> reserved;
+	private HashMap<Integer, Double> dayPriceMod;
 	
 	/**
 	 * Constructs a new room with the given parameters.
 	 * @param name name of the room
 	 * @param price price of the room
 	 */
-	public Room(String name, double price)
+	public Room(String name, double price, HashMap<Integer, Double> dayPriceMod)
 	{
 		this.name = name;
 		this.price = price;
 		this.reserved = new ArrayList<Integer>();
+		this.dayPriceMod = dayPriceMod;
 	}
 	
 	/**
@@ -225,6 +228,11 @@ public class Room
 	public ArrayList<Integer> getReserved()
 	{
 		return this.reserved;
+	}
+	
+	public HashMap<Integer, Double> getDayPriceMod()
+	{
+		return this.dayPriceMod;
 	}
 	
 	/**

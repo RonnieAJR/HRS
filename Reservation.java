@@ -1,4 +1,5 @@
 
+import java.util.HashMap;
 
 /**
  * The Reservation class mimics an actual reservation in a hotel having a guest name, room, check in, and check out, 
@@ -138,7 +139,24 @@ public class Reservation
      */
     public double getTotalPrice()
     {
-		return this.room.getPrice() * (checkOut - checkIn);
+		HashMap<Integer, Double> dayPriceMod = this.room.getDayPriceMod();
+		double price = this.room.getPrice();
+		double total = 0;
+		Integer day;
+		
+		
+		while(checkIn < checkOut)
+		{
+			day = Integer.valueOf(checkIn);
+			
+			if(dayPriceMod.containsKey(day))
+				total += price * (dayPriceMod.get(day) / 100);
+			else
+				total += price;
+		}
+		
+		return total;
+		// return this.room.getPrice() * (checkOut - checkIn);
     }
 
     /**

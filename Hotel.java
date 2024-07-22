@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.HashMap;
 
 
 /**
@@ -14,6 +15,7 @@ public class Hotel
 	private ArrayList<Room> rooms;
 	private double price;
 	private ArrayList<Reservation> reservations;
+	private HashMap<Integer, Double> dayPriceMod;
 	
 	/**
 	  * Constructs a new hotel with the given parameters.
@@ -29,9 +31,10 @@ public class Hotel
 		
 		this.reservations = new ArrayList<Reservation>();
 		this.rooms = new ArrayList<Room>();
+		this.dayPriceMod = new HashMap<Integer, Double>();
 
 		// instantiates the first room
-		room = new Room((firstLetter + Integer.toString(101)), this.price);
+		room = new Room((firstLetter + Integer.toString(101)), this.price, this.dayPriceMod);
 
 		this.rooms.add(room);
 		this.capacity++;
@@ -61,11 +64,11 @@ public class Hotel
 		roomName = generateRoomName(roomType);
 		
 		if(roomType.equals("Deluxe"))
-			room = new Room(roomName, this.price);
+			room = new Room(roomName, this.price, this.dayPriceMod);
 		else if(roomType.equals("Executive"))
-			room = new ExecutiveRoom(roomName, this.price);
+			room = new ExecutiveRoom(roomName, this.price, this.dayPriceMod);
 		else
-			room = new Room(roomName, this.price);
+			room = new Room(roomName, this.price, this.dayPriceMod);
 		
 		// creates the room and adds it to the list
 		// room = new Room(roomName, this.price);
@@ -209,6 +212,34 @@ public class Hotel
 		
 		// return the room asked if found or the default room if not found
 		return room;
+	}
+	
+	public Boolean modDayPrice(int day, double mod)
+	{
+		Boolean reserved = false;
+		
+		if(mod == 100)
+		{
+			this.dayPriceMod.remove(day);
+			return true;
+		}
+		
+		for(Room r : this.rooms)
+		{
+			
+			if(r.getReserved().contains(day))
+			{
+				reserved = true;
+				break;
+			}
+		}
+		
+		if(reserved)
+			return false;
+		
+		this.dayPriceMod.put(day, mod);
+		
+		return true;
 	}
 	
 	/**
@@ -615,6 +646,11 @@ public class Hotel
 	public ArrayList<Reservation> getReservations()
 	{
 		return this.reservations;
+	}
+	
+	public HashMap<Integer, Double> getDayPriceMod()
+	{
+		return this.dayPriceMod;
 	}
 	
 	/**
