@@ -15,7 +15,6 @@ public class C{
 		ActionListener goViewHotel = goCard("View Hotel");
 		ActionListener goManageHotel = goCard("Manage Hotel");
 		
-		
 		v.setBtnCreHtlListener(goCard("Create Hotel"));
 		
 		v.setBtnVieHtlListener(goViewHotel);
