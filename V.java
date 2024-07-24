@@ -23,7 +23,12 @@ public class V{
 	private JTextField txtHotelName, txtNumRooms, txtEstimatedEarnings;
 
 	// card 3.2 view day availability
+	private String[] roomAvailable, roomReserved;
+	private JComboBox<String> cmbxAvail, cmbxReserved;
+	private JTextField txtTotalRoomAvail, txtTotalRoomReserved;
+
 	// card 3.3 view room info
+	
 	// card 3.4 view reservation info
 	
 	// card 4 manage hotel
@@ -146,6 +151,36 @@ public class V{
 
 		this.cards.add(card3_1, "View Hotel Info");
 	}
+
+	public void initCard3_2(){
+		JPanel card3_2 = new JPanel();
+
+		this.cmbxAvail = new JComboBox<>(this.roomAvailable);
+		this.cmbxReserved = new JComboBox<>(this.roomAvailable);
+
+		this.txtTotalRoomAvail = new JTextField();
+		this.txtTotalRoomAvail.setText("" + this.roomAvailable.length);
+		this.txtTotalRoomAvail.setEditable(false);
+
+		this.txtTotalRoomReserved = new JTextField();
+		this.txtTotalRoomAvail.setText("" + this.roomReserved.length);
+		this.txtTotalRoomAvail.setEditable(false);
+
+		card3_2.add(new JLabel("Rooms available:"));
+		card3_2.add(this.cmbxAvail);
+
+		card3_2.add(new JLabel("Total rooms available:"));
+		card3_2.add(this.txtTotalRoomAvail);
+
+		card3_2.add(new JLabel("Rooms reserved:"));
+		card3_2.add(this.cmbxReserved);
+
+		card3_2.add(new JLabel("Total reserved:"));
+		card3_2.add(this.txtTotalRoomReserved);
+
+		this.cards.add(card3_2);
+
+	}
 		
 	
 	public void initCard4(){
@@ -256,6 +291,15 @@ public class V{
 
 	public void setTxtEstimatedEarnings(double earnings){
 		this.txtEstimatedEarnings.setText("" + earnings);
+	}
+
+	//card 3_2 setters
+	public void setRoomAvailable(String[] roomAvailable){
+		this.roomAvailable = roomAvailable;
+	}
+
+	public void setRoomReserved(String[] roomReserved){
+		this.roomReserved = roomReserved;
 	}
 
 	// card 4
