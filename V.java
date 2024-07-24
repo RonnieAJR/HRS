@@ -24,6 +24,7 @@ public class V{
 
 	// card 3.2 view day availability
 	private String[] roomAvailable, roomReserved;
+	private JComboBox<Integer> cmbxDay;
 	private JComboBox<String> cmbxAvail, cmbxReserved;
 	private JTextField txtTotalRoomAvail, txtTotalRoomReserved;
 
@@ -153,8 +154,14 @@ public class V{
 	}
 
 	public void initCard3_2(){
+		int i;
 		JPanel card3_2 = new JPanel();
 
+		this.cmbxDay = new JComboBox<>();
+		for(i = 1; i<=31; i++)
+			cmbxDay.addItem(i);
+
+		this.cmbxAvail = new JComboBox<>();
 		this.cmbxAvail = new JComboBox<>(this.roomAvailable);
 		this.cmbxReserved = new JComboBox<>(this.roomAvailable);
 
@@ -167,6 +174,9 @@ public class V{
 		this.txtTotalRoomAvail.setEditable(false);
 
 		card3_2.add(new JLabel("Day Availability Info"));
+
+		card3_2.add(new JLabel("Select Day:"));
+		card3_2.add(this.cmbxDay);
 
 		card3_2.add(new JLabel("Rooms available:"));
 		card3_2.add(this.cmbxAvail);
