@@ -14,9 +14,10 @@ public class V{
 	// card 2 create hotel
 	private JTextField txtHtlName, txtPrice;
 	private JComboBox<Integer> cmbxCap;
+	private JButton btnCreHtlTry;
 	
 	// card 3 view hotel
-	private JButton btnVieHtl2, btnVieDay, btnVieRoom, btnVieRsrv, btnVieHtl2Bck;
+	private JButton btnVieHtl2, btnVieDay, btnVieRoom, btnVieRsrv, btnVieHtlBck;
 	
 	// card 3.1 view hotel
 	// card 3.2 view day availability
@@ -24,7 +25,7 @@ public class V{
 	// card 3.4 view reservation info
 	
 	// card 4 manage hotel
-	private JButton btnRnmHtl, btnAddRoom, btnRmvRoom, btnModPrice, btnUpdPrice, btnRmvRsrv, btnRmvHtl;
+	private JButton btnRnmHtl, btnAddRoom, btnRmvRoom, btnModPrice, btnUpdPrice, btnRmvRsrv, btnRmvHtl, btnManHtlBck;
 	private JTextField txtPriceMod;
 	
 	// card 4.1 rename hotel
@@ -72,6 +73,7 @@ public class V{
 		
 		this.txtHtlName = new JTextField(20);
 		this.txtPrice = new JTextField(20);
+		this.btnCreHtlTry = new JButton("Create Hotel");
 		
 		this.cmbxCap = new JComboBox<>();
 		for(int i = 1; i <= 50; i++)
@@ -88,6 +90,7 @@ public class V{
 		card2.add(new JLabel("Enter Price per Night"));
 		card2.add(this.txtPrice);
 		
+		card2.add(this.btnCreHtlTry);
 		card2.add(this.lblFeedback);
 		card2.add(this.btnMaiMenBck);
 		
@@ -101,7 +104,7 @@ public class V{
 		this.btnVieDay = new JButton("View Day Availability");
 		this.btnVieRoom = new JButton("View Room");
 		this.btnVieRsrv = new JButton("View Reservation");
-		this.btnVieHtl2Bck = new JButton("Back to View Hotel");
+		this.btnVieHtlBck = new JButton("Back to View Hotel");
 		
 		card3.add(this.btnVieHtl2);
 		card3.add(this.btnVieDay);
@@ -129,6 +132,7 @@ public class V{
 		this.btnUpdPrice = new JButton("Update Price");
 		this.btnRmvRsrv = new JButton("Remove Reservation");
 		this.btnRmvHtl = new JButton("Remove Hotel");
+		this.btnManHtlBck = new JButton("Back to Manage Hotel");
 		
 		card4.add(cmbxHtls);
 		card4.add(btnRnmHtl);
@@ -153,6 +157,83 @@ public class V{
 		initCard3();
 		initCard4();
 		this.frame.add(cards, BorderLayout.CENTER);
+	}
+	
+	// card 1 listeners
+	public void setBtnCreHtlListener(ActionListener actionListener){
+		this.btnCreHtl.addActionListener(actionListener);
+	}
+	
+	public void setBtnVieHtlListener(ActionListener actionListener){
+		this.btnVieHtl.addActionListener(actionListener);
+	}
+	
+	public void setBtnManHtlListener(ActionListener actionListener){
+		this.btnManHtl.addActionListener(actionListener);
+	}
+	
+	public void setBtnSimBookListener(ActionListener actionListener){
+		this.btnSimBook.addActionListener(actionListener);
+	}
+	
+	public void setBtnMaiMenBckListener(ActionListener actionListener){
+		this.btnMaiMenBck.addActionListener(actionListener);
+	}
+	// card 2 listeners
+	public void setBtnCreHtlTryListener(ActionListener actionListener){
+		this.btnCreHtlTry.addActionListener(actionListener);
+	}
+	// card 3 listeners
+	public void setBtnVieHtl2Listener(ActionListener actionListener){
+		this.btnVieHtl2.addActionListener(actionListener);
+	}
+	
+	public void setBtnVieDayListener(ActionListener actionListener){
+		this.btnVieDay.addActionListener(actionListener);
+	}
+	
+	public void setBtnVieRoomListener(ActionListener actionListener){
+		this.btnVieRoom.addActionListener(actionListener);
+	}
+	
+	public void setBtnVieRsrvListener(ActionListener actionListener){
+		this.btnVieRsrv.addActionListener(actionListener);
+	}
+	
+	public void setBtnVieHtl2BckListener(ActionListener actionListener){
+		this.btnVieHtlBck.addActionListener(actionListener);
+	}
+	// card 4
+	public void setBtnRnmHtlListener(ActionListener actionListener){
+		this.btnRnmHtl.addActionListener(actionListener);
+	}
+	
+	public void setBtnAddRoomListener(ActionListener actionListener){
+		this.btnAddRoom.addActionListener(actionListener);
+	}
+	
+	public void setBtnRmvRoomListener(ActionListener actionListener){
+		this.btnRmvRoom.addActionListener(actionListener);
+	}
+	
+	public void setBtnModPriceListener(ActionListener actionListener){
+		this.btnModPrice.addActionListener(actionListener);
+	}
+	
+	public void setBtnUpdPriceListener(ActionListener actionListener){
+		this.btnUpdPrice.addActionListener(actionListener);
+	}
+	
+	public void setBtnRmvRsrvListener(ActionListener actionListener){
+		this.btnRmvRsrv.addActionListener(actionListener);
+	}
+	
+	public void setBtnRmvHtl(ActionListener actionListener){
+		this.btnRmvHtl.addActionListener(actionListener);
+	}
+	
+	public void setBtnManHtlBckListener(ActionListener actionListener){
+		this.btnManHtlBck.addActionListener(actionListener);
 	}
 	
 	public static void main(String args[]){
