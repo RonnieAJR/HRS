@@ -1,4 +1,6 @@
 
+import java.awt.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,36 +12,37 @@ public class C{
 	{
 		// this.m = m;
 		this.v = v;
+		V_Card1 card = v.getCard1();
 		
 		ActionListener goMainMenu = goCard("Main Menu");
 		ActionListener goViewHotel = goCard("View Hotel");
 		ActionListener goManageHotel = goCard("Manage Hotel");
 		
-		v.setBtnCreHtlListener(goCard("Create Hotel"));
-		
-		v.setBtnVieHtlListener(goViewHotel);
-		
-		v.setBtnManHtlListener(goManageHotel);
-		
+		card.setBtnCreHtlListener(goCard("Create Hotel"));
+		card.setBtnVieHtlListener(goViewHotel);
+		card.setBtnManHtlListener(goManageHotel);
 		// sim booking btn MISSING
 		
-		v.setBtnMaiMenBck1Listener(goMainMenu);
-		v.setBtnMaiMenBck2Listener(goMainMenu);
-		v.setBtnMaiMenBck3Listener(goMainMenu);
 		// v.setBtnMaiMenBck4Listener(goMainMenu);
 		
-		
-		v.setBtnCreHtlTryListener(new ActionListener(){
+		this.initCard2Listener();
+		this.initCard3Listener();
+		this.initCard4Listener();
+	}
+	
+	public void initCard2Listener(){
+		V_Card2 card = this.v.getCard2();
+		card.setBtnCreHtlTryListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				String name = v.getTxtHtlName();
-				int capacity = v.getCmbxCapItem();
-				double price = v.getTxtPrice();
+				String name = card.getTxtHtlName();
+				int capacity = card.getCmbxCapItem();
+				double price = card.getTxtPrice();
 				
 				if(price < 100)
 				{
 					System.out.println("Invalid price input\n");
-					v.setFdbckCreHtl("Invalid price input");
+					card.setFdbckCreHtl("Invalid price input");
 				}
 				// else if(hrs.createHotel(name, capacity, price)) // m.createHotel(name, capacity, price)
 					// System.out.println("Hotel created\n");
@@ -47,13 +50,27 @@ public class C{
 				{
 					// System.out.println("Hotel already exists\n");
 					System.out.println("Hotel Created");
-					v.setFdbckCreHtl("Hotel Created");
+					card.setFdbckCreHtl("Hotel Created");
 				}
 				
 				// setSelectedIndex(0);
-				v.resetCreHtl();
+				card.resetCreHtl();
 			}
 		});
+		
+		card.setBtnMaiMenBckListener(goCard("Main Menu")); // clear fdbck upon exit
+	}
+	
+	public void initCard3Listener(){
+		V_Card3 card = this.v.getCard3();
+		card.setBtnMaiMenBckListener(goCard("Main Menu"));
+		
+	}
+		
+	public void initCard4Listener(){
+		V_Card4 card = this.v.getCard4();
+		card.setBtnMaiMenBckListener(goCard("Main Menu"));
+		
 	}
 	
 	public ActionListener goCard(String cardName){

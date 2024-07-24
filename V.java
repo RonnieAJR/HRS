@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class V{
 	private JFrame frame; // borderlayout
 	private JPanel cards; // cardlayout
+	private V_Card1 card1;
+	private V_Card2 card2;
+	private V_Card3 card3;
+	private V_Card4 card4;
 	
 	//  card 1 main menu
 	private JButton btnCreHtl, btnVieHtl, btnManHtl, btnSimBook;
@@ -66,7 +70,7 @@ public class V{
 		frame.setVisible(true);
 	}
 	
-	public void initCard1(){
+	/* public void initCard1(){
 		JPanel card1 = new JPanel();
 		
 		// Main Menu Card
@@ -81,9 +85,9 @@ public class V{
 		card1.add(this.btnSimBook);
 		
 		this.cards.add(card1, "Main Menu");
-	}
+	} */
 	
-	public void initCard2(){
+	/* public void initCard2(){
 		JPanel card2 = new JPanel();
 		
 		this.txtHtlName = new JTextField(20);
@@ -112,8 +116,8 @@ public class V{
 		card2.add(this.btnMaiMenBck1);
 		
 		this.cards.add(card2, "Create Hotel");
-	}
-	
+	} */
+	/* 
 	public void initCard3(){
 		JPanel card3 = new JPanel();
 		
@@ -130,9 +134,8 @@ public class V{
 		card3.add(this.btnVieRsrv);
 		card3.add(this.btnMaiMenBck2);
 		
-		// init cards 3.1, 3.2, 3.3, 3.4, here or in new methods and call here
 		this.cards.add(card3, "View Hotel");
-	}
+	} */
 
 	public void initCard3_1(){
 
@@ -234,7 +237,7 @@ public class V{
 		this.cards.add(card3_3, "View Room");
 	}
 		
-	
+	/* 
 	public void initCard4(){
 		JPanel card4 = new JPanel();
 		
@@ -265,22 +268,44 @@ public class V{
 		// init cards 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7 here or in new methods and call here
 		
 		this.cards.add(card4, "Manage Hotel");
-	}
+	} */
 	
 	public void initAll(){
 		this.cards = new JPanel(new CardLayout());
 		this.lblFeedback = new JLabel();
-		initCard1();
-		initCard2();
-		initCard3();
-		initCard4();
+		this.card1 = new V_Card1(this.cards);
+		this.card2 = new V_Card2(this.cards);
+		this.card3 = new V_Card3(this.cards);
+		this.card4 = new V_Card4(this.cards);
 		this.frame.add(cards, BorderLayout.CENTER);
 	}
 	
-	public void setCard(String string){
-		CardLayout cl = (CardLayout) this.cards.getLayout();
-		cl.show(this.cards, string);
+	public JPanel getCards(){
+		return this.cards;
 	}
+	
+	public void setCard(String cardName){
+		CardLayout cl = (CardLayout) this.cards.getLayout();
+		cl.show(this.cards, cardName);
+	}
+	
+	public V_Card1 getCard1(){
+		return this.card1;
+	}
+	
+	public V_Card2 getCard2(){
+		return this.card2;
+	}
+	
+	public V_Card3 getCard3(){
+		return this.card3;
+	}
+	
+	public V_Card4 getCard4(){
+		return this.card4;
+	}
+	
+	
 	
 	// card 1 listeners
 	public void setBtnCreHtlListener(ActionListener al){
