@@ -9,10 +9,11 @@ public class V{
 	
 	//  card 1 main menu
 	private JButton btnCreHtl, btnVieHtl, btnManHtl, btnSimBook, btnMaiMenBck;
-	
+
+
 	// card 2 create hotel
 	private JTextField txtHtlName, txtPrice;
-	private JComboBox cmbxCap;
+	private JComboBox<Integer> cmbxCap;
 	
 	// card 3 view hotel
 	private JButton btnVieHtl2, btnVieDay, btnVieRoom, btnVieRsrv, btnVieHtl2Bck;
@@ -44,19 +45,35 @@ public class V{
 		frame.setSize(420, 450);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.init();
+		this.initAll();
 		frame.setVisible(true);
 	}
 	
-	public void init(){
-		this.cards = new JPanel(new CardLayout());
+	public void initCard1(){
+		new JPanel(new CardLayout());
 		
-		// initialize gui here
-		
+		//Main Menu Card
+		this.btnCreHtl = new JButton("Create Hotel");
+		this.btnVieHtl = new JButton("View Hotel");
+		this.btnManHtl = new JButton("Manage Hotel");
+		this.btnSimBook = new JButton("Simulate Booking");
+		this.btnMaiMenBck = new JButton("Back to Main Menu");
+
+		//Create Hotel Card
+		this.txtHtlName = new JTextField(20);
+		this.txtPrice = new JTextField();
+		this.cmbxCap = new JComboBox<>();
+		for(int i = 1; i <= 50; i++)
+		{
+			this.cmbxCap.addItem(i);
+		}	
+	}
+	
+	public void initCard4(){
 		JPanel card4 = new JPanel(new GridLayout(8, 1, 0, 5));
 		
-		String[] hotels = {"Hotel1", "Hotel2", "Hotel3"};
-		this.cmbxHtls = new JComboBox<String>(hotels); // this is local
+		String[] hotels = {"Hotel1", "Hotel2", "Hotel3"}; // placeholder
+		this.cmbxHtls = new JComboBox<String>(hotels);
 		this.cmbxHtls.setEditable(false);
 		
 		this.btnRnmHtl = new JButton("Rename Hotel");
@@ -78,6 +95,12 @@ public class V{
 		
 		this.cards.add(card4);
 		this.frame.add(cards, BorderLayout.CENTER);
+	}
+	
+	public void initAll(){
+		this.cards = new JPanel(new CardLayout());
+		initCard1();
+		initCard4();
 	}
 	
 	public static void main(String args[]){
