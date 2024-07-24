@@ -28,7 +28,7 @@ public class V{
 	private JTextField txtTotalRoomAvail, txtTotalRoomReserved;
 
 	// card 3.3 view room info
-	
+
 	// card 3.4 view reservation info
 	
 	// card 4 manage hotel
@@ -166,6 +166,8 @@ public class V{
 		this.txtTotalRoomAvail.setText("" + this.roomReserved.length);
 		this.txtTotalRoomAvail.setEditable(false);
 
+		card3_2.add(new JLabel("Day Availability Info"));
+
 		card3_2.add(new JLabel("Rooms available:"));
 		card3_2.add(this.cmbxAvail);
 
@@ -178,7 +180,7 @@ public class V{
 		card3_2.add(new JLabel("Total reserved:"));
 		card3_2.add(this.txtTotalRoomReserved);
 
-		this.cards.add(card3_2);
+		this.cards.add(card3_2, "View Day Availability");
 
 	}
 		
