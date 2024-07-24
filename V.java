@@ -8,10 +8,11 @@ public class V{
 	
 	//  card 1 main menu
 	private JButton btnCreHtl, btnVieHtl, btnManHtl, btnSimBook, btnMaiMenBck;
-	
+
+
 	// card 2 create hotel
 	private JTextField txtHtlName, txtPrice;
-	private JComboBox cmbxCap;
+	private JComboBox<Integer> cmbxCap;
 	
 	// card 3 view hotel
 	private JButton btnVieHtl2, btnVieDay, btnVieRoom, btnVieRsrv, btnVieHtl2Bck;
@@ -22,7 +23,7 @@ public class V{
 	// card 3.4 view reservation info
 	
 	// card 4 manage hotel
-	private JButton btnRnmHtl, btnAddRoom, btnRmvRoom, btnModPrice, btnUpdPrice, btnRmvRsrv, btnRmvHtl
+	private JButton btnRnmHtl, btnAddRoom, btnRmvRoom, btnModPrice, btnUpdPrice, btnRmvRsrv, btnRmvHtl;
 	private JTextField txtPriceMod;
 	
 	// card 4.1 rename hotel
@@ -49,5 +50,21 @@ public class V{
 	
 	public void init(){
 		new JPanel(new CardLayout());
+
+		//Main Menu Card
+		this.btnCreHtl = new JButton("Create Hotel");
+		this.btnVieHtl = new JButton("View Hotel");
+		this.btnManHtl = new JButton("Manage Hotel");
+		this.btnSimBook = new JButton("Simulate Booking");
+		this.btnMaiMenBck = new JButton("Back to Main Menu");
+
+		//Create Hotel Card
+		this.txtHtlName = new JTextField(20);
+		this.txtPrice = new JTextField();
+		this.cmbxCap = new JComboBox<>();
+		for(int i = 1; i <= 50; i++)
+		{
+			this.cmbxCap.addItem(i);
+		}
 	}
 }
