@@ -20,6 +20,8 @@ public class V{
 	private JButton btnVieHtl2, btnVieDay, btnVieRoom, btnVieRsrv, btnVieHtlBck, btnMaiMenBck2;
 	
 	// card 3.1 view hotel
+	private JTextField txtHotelName, txtNumRooms, txtEstimatedEarnings;
+
 	// card 3.2 view day availability
 	// card 3.3 view room info
 	// card 3.4 view reservation info
@@ -104,7 +106,7 @@ public class V{
 	public void initCard3(){
 		JPanel card3 = new JPanel();
 		
-		this.btnVieHtl2 = new JButton("View Hotel");
+		this.btnVieHtl2 = new JButton("View Hotel Info");
 		this.btnVieDay = new JButton("View Day Availability");
 		this.btnVieRoom = new JButton("View Room");
 		this.btnVieRsrv = new JButton("View Reservation");
@@ -118,8 +120,31 @@ public class V{
 		card3.add(this.btnMaiMenBck2);
 		
 		// init cards 3.1, 3.2, 3.3, 3.4, here or in new methods and call here
-		
 		this.cards.add(card3, "View Hotel");
+	}
+
+	public void initCard3_1(){
+
+		JPanel card3_1 = new JPanel();
+		this.txtHotelName = new JTextField();
+		this.txtHotelName.setEditable(false);
+
+		this.txtNumRooms = new JTextField();
+		this.txtNumRooms.setEditable(false);
+
+		this.txtEstimatedEarnings = new JTextField();
+		this.txtEstimatedEarnings.setEditable(false);
+
+		card3_1.add(new JLabel("Hotel Name: "));
+		card3_1.add(this.txtHotelName);
+
+		card3_1.add(new JLabel("Number of Rooms: "));
+		card3_1.add(this.txtNumRooms);
+
+		card3_1.add(new JLabel("Estimated earnings: "));
+		card3_1.add(this.txtEstimatedEarnings);
+
+		this.cards.add(card3_1, "View Hotel Info");
 	}
 		
 	
@@ -219,6 +244,20 @@ public class V{
 	public void setBtnMaiMenBck2Listener(ActionListener al){
 		this.btnMaiMenBck2.addActionListener(al);
 	}
+
+	//card 3_1 setters
+	public void setTxtHotelName(String hotelName){
+		this.txtHotelName.setText(hotelName);
+	}
+
+	public void setTxtNumRooms(int numRooms){
+		this.txtNumRooms.setText("" + numRooms);
+	}
+
+	public void setTxtEstimatedEarnings(double earnings){
+		this.txtEstimatedEarnings.setText("" + earnings);
+	}
+
 	// card 4
 	public void setBtnRnmHtlListener(ActionListener al){
 		this.btnRnmHtl.addActionListener(al);
