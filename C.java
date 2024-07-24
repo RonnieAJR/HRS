@@ -27,6 +27,33 @@ public class C{
 		v.setBtnMaiMenBck2Listener(goMainMenu);
 		v.setBtnMaiMenBck3Listener(goMainMenu);
 		// v.setBtnMaiMenBck4Listener(goMainMenu);
+		
+		
+		v.setBtnCreHtlTryListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				String name = v.getTxtHtlName();
+				int capacity = v.getCmbxCapItem();
+				double price = v.getTxtPrice();
+				
+				if(price < 100)
+				{
+					System.out.println("Invalid price input\n");
+					v.setFdbckCreHtl("Invalid price input");
+				}
+				// else if(hrs.createHotel(name, capacity, price)) // m.createHotel(name, capacity, price)
+					// System.out.println("Hotel created\n");
+				else
+				{
+					// System.out.println("Hotel already exists\n");
+					System.out.println("Hotel Created");
+					v.setFdbckCreHtl("Hotel Created");
+				}
+				
+				// setSelectedIndex(0);
+				v.resetCreHtl();
+			}
+		});
 	}
 	
 	public ActionListener goCard(String cardName){

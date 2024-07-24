@@ -15,6 +15,7 @@ public class V{
 	private JTextField txtHtlName, txtPrice;
 	private JComboBox<Integer> cmbxCap;
 	private JButton btnCreHtlTry, btnMaiMenBck1;
+	private JLabel fdbckCreHtl;
 	
 	// card 3 view hotel
 	private JButton btnVieHtl2, btnVieDay, btnVieRoom, btnVieRsrv, btnVieHtlBck, btnMaiMenBck2;
@@ -79,6 +80,7 @@ public class V{
 		this.txtHtlName = new JTextField(20);
 		this.txtPrice = new JTextField(20);
 		this.btnCreHtlTry = new JButton("Create Hotel");
+		this.fdbckCreHtl = new JLabel();
 		this.btnMaiMenBck1 = new JButton("Back to Main Menu");
 		
 		this.cmbxCap = new JComboBox<>();
@@ -97,7 +99,7 @@ public class V{
 		card2.add(this.txtPrice);
 		
 		card2.add(this.btnCreHtlTry);
-		card2.add(this.lblFeedback);
+		card2.add(this.fdbckCreHtl);
 		card2.add(this.btnMaiMenBck1);
 		
 		this.cards.add(card2, "Create Hotel");
@@ -165,15 +167,15 @@ public class V{
 		this.btnManHtlBck = new JButton("Back to Manage Hotel");
 		this.btnMaiMenBck3 = new JButton("Back to Main Menu");
 		
-		card4.add(cmbxHtls); // this.
-		card4.add(btnRnmHtl);
-		card4.add(btnAddRoom);
-		card4.add(btnRmvRoom);
-		card4.add(btnModPrice);
-		card4.add(btnUpdPrice);
-		card4.add(btnRmvRsrv);
-		card4.add(btnRmvHtl);
-		card4.add(btnMaiMenBck3);
+		card4.add(this.cmbxHtls); // this.
+		card4.add(this.btnRnmHtl);
+		card4.add(this.btnAddRoom);
+		card4.add(this.btnRmvRoom);
+		card4.add(this.btnModPrice);
+		card4.add(this.btnUpdPrice);
+		card4.add(this.btnRmvRsrv);
+		card4.add(this.btnRmvHtl);
+		card4.add(this.btnMaiMenBck3);
 		
 		// init cards 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7 here or in new methods and call here
 		
@@ -212,7 +214,30 @@ public class V{
 		this.btnSimBook.addActionListener(al);
 	}
 	
-	// card 2 listeners
+	// card 2 listeners and getters and setters
+	public String getTxtHtlName(){
+		return this.txtHtlName.getText().toString();
+	}
+	
+	public int getCmbxCapItem(){
+		return (int) this.cmbxCap.getSelectedItem();
+	}
+	
+	public double getTxtPrice(){
+		return Double.parseDouble(this.txtPrice.getText());
+	}
+	
+	public void setFdbckCreHtl(String fdbck){
+		this.fdbckCreHtl.setText(fdbck);
+	}
+	
+	public void resetCreHtl(){
+		this.txtHtlName.setText("");
+		this.cmbxCap.setSelectedIndex(0);
+		this.txtPrice.setText("");
+		this.fdbckCreHtl.setText("");
+	}
+	
 	public void setBtnCreHtlTryListener(ActionListener al){
 		this.btnCreHtlTry.addActionListener(al);
 	}
