@@ -50,27 +50,73 @@ public class V{
 	}
 	
 	public void initCard1(){
-		new JPanel(new CardLayout());
+		JPanel card1 = new JPanel();
 		
-		//Main Menu Card
+		// Main Menu Card
 		this.btnCreHtl = new JButton("Create Hotel");
 		this.btnVieHtl = new JButton("View Hotel");
 		this.btnManHtl = new JButton("Manage Hotel");
 		this.btnSimBook = new JButton("Simulate Booking");
 		this.btnMaiMenBck = new JButton("Back to Main Menu");
-
-		//Create Hotel Card
+		
+		card1.add(this.btnCreHtl);
+		card1.add(this.btnVieHtl);
+		card1.add(this.btnManHtl);
+		card1.add(this.btnSimBook);
+		
+		this.cards.add(card1, "Main Menu");
+	}
+	
+	public void initCard2(){
+		JPanel card2 = new JPanel();
+		
 		this.txtHtlName = new JTextField(20);
-		this.txtPrice = new JTextField();
+		this.txtPrice = new JTextField(20);
+		
 		this.cmbxCap = new JComboBox<>();
 		for(int i = 1; i <= 50; i++)
 		{
 			this.cmbxCap.addItem(i);
 		}	
+		
+		card2.add(new JLabel("Enter Hotel Name"));
+		card2.add(this.txtHtlName);
+		
+		card2.add(new JLabel("Enter Hotel Capacity"));
+		card2.add(this.cmbxCap);
+		
+		card2.add(new JLabel("Enter Price per Night"));
+		card2.add(this.txtPrice);
+		
+		card2.add(this.lblFeedback);
+		card2.add(this.btnMaiMenBck);
+		
+		this.cards.add(card2, "Create Hotel");
 	}
 	
+	public void initCard3(){
+		JPanel card3 = new JPanel();
+		
+		this.btnVieHtl2 = new JButton("View Hotel");
+		this.btnVieDay = new JButton("View Day Availability");
+		this.btnVieRoom = new JButton("View Room");
+		this.btnVieRsrv = new JButton("View Reservation");
+		this.btnVieHtl2Bck = new JButton("Back to View Hotel");
+		
+		card3.add(this.btnVieHtl2);
+		card3.add(this.btnVieDay);
+		card3.add(this.btnVieRoom);
+		card3.add(this.btnVieRsrv);
+		card3.add(this.btnMaiMenBck);
+		
+		// init cards 3.1, 3.2, 3.3, 3.4, here or in new methods and call here
+		
+		this.cards.add(card3, "View Hotel");
+	}
+		
+	
 	public void initCard4(){
-		JPanel card4 = new JPanel(new GridLayout(8, 1, 0, 5));
+		JPanel card4 = new JPanel();
 		
 		String[] hotels = {"Hotel1", "Hotel2", "Hotel3"}; // placeholder
 		this.cmbxHtls = new JComboBox<String>(hotels);
@@ -92,15 +138,21 @@ public class V{
 		card4.add(btnUpdPrice);
 		card4.add(btnRmvRsrv);
 		card4.add(btnRmvHtl);
+		card4.add(btnMaiMenBck);
 		
-		this.cards.add(card4);
-		this.frame.add(cards, BorderLayout.CENTER);
+		// init cards 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7 here or in new methods and call here
+		
+		this.cards.add(card4, "Manage Hotel");
 	}
 	
 	public void initAll(){
 		this.cards = new JPanel(new CardLayout());
+		this.lblFeedback = new JLabel();
 		initCard1();
+		initCard2();
+		initCard3();
 		initCard4();
+		this.frame.add(cards, BorderLayout.CENTER);
 	}
 	
 	public static void main(String args[]){
