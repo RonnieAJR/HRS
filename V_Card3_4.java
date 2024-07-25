@@ -111,6 +111,10 @@ public class V_Card3_4 {
     public void setTxtTtlPrc(double totalPrice){
         this.txtTtlPrc.setText("" + totalPrice);
     }
+	
+	public void setCmbxRsrvListener(ActionListener al){
+		this.cmbxRsrvLst.addActionListener(al);
+	}
 
 	public void setBtnVieHtlBckListener(ActionListener al){
 		this.btnVieHtlBck.addActionListener(al);

@@ -62,8 +62,12 @@ public class V_Card3_3 {
 		
     public void setCmbxSlctRoom(String[] roomNames){
 		this.cmbxSlctRoom.removeAllItems();
-        for(String roomName: roomNames)
-            this.cmbxSlctRoom.addItem(roomName);
+		int i=0;
+        for(String roomName: roomNames){
+			this.cmbxSlctRoom.addItem(roomName);
+			i++;
+		}
+		System.out.println("initialized" + i);
     }
 	
 	public void resetVieRoom(){
@@ -93,6 +97,10 @@ public class V_Card3_3 {
         for(Integer day: dayReserved)
             this.cmbxDayReserved.addItem(day);
     }
+	
+	public void setCmbxRoomListener(ActionListener al){
+		this.cmbxSlctRoom.addActionListener(al);
+	}
 
 	public void setBtnVieHtlBckListener(ActionListener al){
 		this.btnVieHtlBck.addActionListener(al);

@@ -28,6 +28,7 @@ public class V_Card3{
 		this.btnVieRsrv = new JButton("View Reservation");
 		this.btnMaiMenBck = new JButton("Back to Main Menu");
 		
+		// cmbx
 		card3.add(this.btnVieHtl);
 		card3.add(this.btnVieDay);
 		card3.add(this.btnVieRoom);

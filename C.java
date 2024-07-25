@@ -23,26 +23,32 @@ public class C{
 			public void actionPerformed(ActionEvent e){
 				if(m.getHotels().isEmpty())
 					System.out.println("Hotels not found");
-				else
-				{
+				else{
+					initCard3();
 					v.setCard("View Hotel");
-					initCard3_1();
-					initCard3_2();
-					initCard3_3();
 				}
 			}
 		});
-		card.setBtnManHtlListener(goManageHotel);
+		card.setBtnManHtlListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if(m.getHotels().isEmpty())
+					System.out.println("Hotels not found");
+				else{
+					initCard4();
+					v.setCard("Manage Hotel");
+				}
+			}
+		});
+		
 		// sim booking btn MISSING
 		
 		// v.setBtnMaiMenBck4Listener(goMainMenu);
 		
-		this.initCard2Listener();
-		this.initCard3Listener();
-		this.initCard4Listener();
+		this.initCard2();
 	}
 	
-	public void initCard2Listener(){
+	public void initCard2(){
 		V_Card2 card = this.v.getCard2();
 		card.setBtnCreHtlTryListener(new ActionListener(){
 			@Override
@@ -79,28 +85,46 @@ public class C{
 		});
 	}
 	
-	public void initCard3Listener(){
+	public void initCard3(){
 		V_Card3 card = this.v.getCard3();
-		card.setBtnVieHtlListener(goCard("View Hotel Info"));
-		card.setBtnVieDayListener(goCard("View Day Availability"));
-		card.setBtnVieRoomListener(goCard("View Room"));
+		card.setBtnVieHtlListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				initCard3_1();
+				v.setCard("View Hotel Info");
+			}
+		});
+		
+		card.setBtnVieDayListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				initCard3_2();
+				v.setCard("View Day Availability");
+			}
+		});
+		
+		card.setBtnVieRoomListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				initCard3_3();
+				v.setCard("View Room");
+			}
+		});
+		
 		card.setBtnVieRsrvListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
 				Hotel hotel = m.findHotel(v.getCard3().getCmbxHtlsItem());
 				if(hotel.getReservations().isEmpty())
 					System.out.println("Reservations not found");
-				else
-				{
+				else{
 					initCard3_4();
 					v.setCard("View Reservation");
 				}
 			}
 		});
+		
 		card.setBtnMaiMenBckListener(goCard("Main Menu"));
-	}
-	
-	public void initCard3SubsListener(){
 	}
 	
 	public void initCard3_1(){
@@ -111,16 +135,11 @@ public class C{
 		// card3_1
 		V_Card3_1 card3_1 = card3.getCard3_1();
 		
+		card3_1.resetVieHtl();
 		card3_1.setTxtHtlName(hotel.getName());
 		card3_1.setTxtNumRooms(hotel.getCapacity());
 		card3_1.setTxtEstimatedEarnings(hotel.getEarnings());
-		card3_1.setBtnVieHtlBckListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				card3_1.resetVieHtl();
-				v.setCard("View Hotel");
-			}
-		});
+		card3_1.setBtnVieHtlBckListener(goCard("View Hotel"));
 	}
 	
 	public void initCard3_2(){
@@ -130,19 +149,22 @@ public class C{
 		
 		// card3_2
 		V_Card3_2 card3_2 = card3.getCard3_2();
-		int day = card3_2.getCmbxDayItem();
-		String[] available = hotel.getAvailableNames(day).toArray(new String[hotel.getAvailableNames(day).size()]);
-		String[] reserved = hotel.getReservedNames(day).toArray(new String[hotel.getReservedNames(day).size()]);
+		card3_2.resetVieDay();
 		
-		card3_2.setRoomAvailable(available);
-		card3_2.setRoomReserved(reserved);
-		card3_2.setBtnVieHtlBckListener(new ActionListener(){
+		card3_2.setCmbxDayListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				card3_2.resetVieDay();
-				v.setCard("View Hotel");
+				int day = card3_2.getCmbxDayItem();
+				
+				String[] available = hotel.getAvailableNames(day).toArray(new String[hotel.getAvailableNames(day).size()]);
+				String[] reserved = hotel.getReservedNames(day).toArray(new String[hotel.getReservedNames(day).size()]);
+				
+				card3_2.setRoomAvailable(available);
+				card3_2.setRoomReserved(reserved);
 			}
 		});
+				
+		card3_2.setBtnVieHtlBckListener(goCard("View Hotel"));
 	}
 	
 	public void initCard3_3(){
@@ -151,28 +173,32 @@ public class C{
 		// card 3_3
 		V_Card3_3 card3_3 = card3.getCard3_3();
 		
-		Hotel hotel = m.findHotel(card3.getCmbxHtlsItem()); // here
+		// Hotel hotel = m.findHotel(card3.getCmbxHtlsItem());
+		Hotel hotel = m.findHotel("temp");
 		
-		String[] roomNames = hotel.getRoomNames().toArray(new String[hotel.getRooms().size()]); // here
-		card3_3.setCmbxSlctRoom(roomNames);// here
+		String[] roomNames = hotel.getRoomNames().toArray(new String[hotel.getRooms().size()]);
+		card3_3.setCmbxSlctRoom(roomNames); // removeAllItems makes it goofy, how to reset contents tho?
+		// card3_3.resetVieRoom();
 		
-		Room room = hotel.findRoom(card3_3.getCmbxRoomItem());
-		
-		Integer[] availableDays = room.getAvailable().toArray(new Integer[room.getAvailable().size()]);
-		Integer[] reservedDays = room.getReserved().toArray(new Integer[room.getReserved().size()]);
-		
-		card3_3.setRoomName(room.getName()); // add room type
-		card3_3.setRoomFloor(room.getName().charAt(0));
-		card3_3.setPricePerNight(room.getPrice());
-		card3_3.setCmbxDayAvail(availableDays);
-		card3_3.setCmbxDayReserved(reservedDays);
-		card3_3.setBtnVieHtlBckListener(new ActionListener(){
+		card3_3.setCmbxRoomListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				card3_3.resetVieRoom();
-				v.setCard("View Hotel");
+				Room room = hotel.findRoom(card3_3.getCmbxRoomItem()); // this returned null
+				// why, when items are removed, it triggers the actionlistener while there are no items, imma fix after waking up
+				
+				Integer[] availableDays = room.getAvailable().toArray(new Integer[room.getAvailable().size()]);
+				Integer[] reservedDays = room.getReserved().toArray(new Integer[room.getReserved().size()]);
+				
+				// action listener
+				card3_3.setRoomName(room.getName()); // add room type
+				card3_3.setRoomFloor(room.getName().charAt(0));
+				card3_3.setPricePerNight(room.getPrice());
+				card3_3.setCmbxDayAvail(availableDays);
+				card3_3.setCmbxDayReserved(reservedDays);
 			}
 		});
+		
+		card3_3.setBtnVieHtlBckListener(goCard("View Hotel"));
 	}
 	
 	public void initCard3_4(){
@@ -184,28 +210,28 @@ public class C{
 		V_Card3_4 card3_4 = card3.getCard3_4();
 		
 		Integer[] reservationIds = hotel.getReservationIds().toArray(new Integer[hotel.getReservations().size()]);
-		
 		card3_4.setCmbxRsrvLst(reservationIds);
+		card3_4.resetVieRsrv();
 		
-		Reservation reservation = hotel.findReservation(card3_4.getCmbxRsrvItem());
-		
-		card3_4.setTxtResId(reservation.getId());
-		card3_4.setTxtGstNam(reservation.getGuestName());
-		card3_4.setTxtRmNam(reservation.getRoom().getName());
-		card3_4.setTxtChkIn(reservation.getCheckIn());
-		card3_4.setTxtChkOut(reservation.getCheckOut());
-		card3_4.setTxtPrcPrNght(reservation.getRoom().getPrice());
-		card3_4.setTxtTtlPrc(reservation.getTotalPrice());
-		card3_4.setBtnVieHtlBckListener(new ActionListener(){
+		card3_4.setCmbxRsrvListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				card3_4.resetVieRsrv();
-				v.setCard("View Hotel");
+				Reservation reservation = hotel.findReservation(card3_4.getCmbxRsrvItem());
+				
+				card3_4.setTxtResId(reservation.getId());
+				card3_4.setTxtGstNam(reservation.getGuestName());
+				card3_4.setTxtRmNam(reservation.getRoom().getName());
+				card3_4.setTxtChkIn(reservation.getCheckIn());
+				card3_4.setTxtChkOut(reservation.getCheckOut());
+				card3_4.setTxtPrcPrNght(reservation.getRoom().getPrice());
+				card3_4.setTxtTtlPrc(reservation.getTotalPrice());
 			}
 		});
+		
+		card3_4.setBtnVieHtlBckListener(goCard("View Hotel"));
 	}
 		
-	public void initCard4Listener(){
+	public void initCard4(){
 		V_Card4 card = this.v.getCard4();
 		card.setBtnMaiMenBckListener(goCard("Main Menu"));
 	}

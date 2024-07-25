@@ -67,6 +67,7 @@ public class V{
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.initAll();
+		
 		frame.setVisible(true);
 	}
 	
@@ -136,7 +137,7 @@ public class V{
 		
 		this.cards.add(card3, "View Hotel");
 	} */
-
+/* 
 	public void initCard3_1(){
 
 		JPanel card3_1 = new JPanel();
@@ -235,7 +236,7 @@ public class V{
 		card3_3.add(this.cmbxDayReserved);
 
 		this.cards.add(card3_3, "View Room");
-	}
+	} */
 		
 	/* 
 	public void initCard4(){
@@ -277,6 +278,7 @@ public class V{
 		this.card2 = new V_Card2(this.cards);
 		this.card3 = new V_Card3(this.cards);
 		this.card4 = new V_Card4(this.cards);
+		//this.card5 = new V_Card5(this.cards);
 		this.frame.add(cards, BorderLayout.CENTER);
 	}
 	

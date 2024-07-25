@@ -75,6 +75,10 @@ public class V_Card3_2 {
 	public void resetVieDay(){
 		this.cmbxDay.setSelectedIndex(0);
 	}
+	
+	public void setCmbxDayListener(ActionListener al){
+		this.cmbxDay.addActionListener(al);
+	}
 
 	public void setBtnVieHtlBckListener(ActionListener al){
 		this.btnVieHtlBck.addActionListener(al);

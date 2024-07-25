@@ -5,6 +5,8 @@ import java.awt.*;
 public class V_Card4{
 	private JPanel cards;
 	
+	// subs
+	
 	private JButton btnRnmHtl, btnAddRoom, btnRmvRoom, btnModPrice, btnUpdPrice, btnRmvRsrv, btnRmvHtl, btnManHtlBck, btnMaiMenBck;
 	private JTextField txtPriceMod;
 	private JComboBox<String> cmbxHtls;
