@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class V_Card3_3 {
     private JPanel cards;
@@ -6,6 +7,7 @@ public class V_Card3_3 {
     private JComboBox<String> cmbxSlctRoom;
     private JTextField roomName, floor, pricePerNight;
     private JComboBox<Integer> cmbxDayAvail, cmbxDayReserved;
+	private JButton btnVieHtlBck;
 
     public V_Card3_3(JPanel cards){
         this.cards = cards;
@@ -25,6 +27,8 @@ public class V_Card3_3 {
 
         this.cmbxDayAvail = new JComboBox<>();
         this.cmbxDayReserved = new JComboBox<>();
+		
+		this.btnVieHtlBck = new JButton("Back to View Hotel");
 
         card3_3.add(new JLabel("Room Info"));
 
@@ -45,15 +49,25 @@ public class V_Card3_3 {
 
         card3_3.add(new JLabel("Days Reserved"));
         card3_3.add(this.cmbxDayReserved);
+		
+		card3_3.add(this.btnVieHtlBck);
 
         this.cards.add(card3_3, "View Room");
     }
 
     //card 3_3 setters
+	public String getCmbxRoomItem(){
+		return this.cmbxSlctRoom.getSelectedItem().toString();
+	}
+		
     public void setCmbxSlctRoom(String[] roomNames){
         for(String roomName: roomNames)
             this.cmbxSlctRoom.addItem(roomName);
     }
+	
+	public void resetVieDay(){
+		this.cmbxSlctRoom.setSelectedIndex(0);
+	}
 
     public void setRoomName(String roomName){
         this.roomName.setText(roomName);
@@ -76,4 +90,8 @@ public class V_Card3_3 {
         for(Integer day: dayReserved)
             this.cmbxDayReserved.addItem(day);
     }
+
+	public void setBtnVieHtlBckListener(ActionListener al){
+		this.btnVieHtlBck.addActionListener(al);
+	}
 }

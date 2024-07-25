@@ -58,13 +58,23 @@ public class C{
 			}
 		});
 		
-		card.setBtnMaiMenBckListener(goCard("Main Menu")); // clear fdbck upon exit
+		card.setBtnMaiMenBckListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				card.resetCreHtl();
+				card.setFdbckCreHtl("");
+				v.setCard("Main Menu");
+			}
+		});
 	}
 	
 	public void initCard3Listener(){
 		V_Card3 card = this.v.getCard3();
+		card.setBtnVieHtlListener(goCard("View Hotel Info");
+		card.setBtnVieDayListener(goCard("View Day Availability");
+		card.setBtnVieRoomListener(goCard("View Room");
+		card.setBtnVieRsrvListener(goCard("View Reservation");
 		card.setBtnMaiMenBckListener(goCard("Main Menu"));
-		
 	}
 		
 	public void initCard4Listener(){

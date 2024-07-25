@@ -1,10 +1,12 @@
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class V_Card3_4 {
     private JPanel cards;
 
     private JTextField txtResId, txtGstNam, txtRmNam, txtChkIn, txtChkOut, txtPrcPrNght, txtTtlPrc;
     private JComboBox<Integer> cmbxRsrvLst;
+	private JButton btnVieHtlBck;
 
     public V_Card3_4(JPanel cards){
         this.cards = cards;
@@ -34,6 +36,8 @@ public class V_Card3_4 {
 
         this.cmbxRsrvLst = new JComboBox<>();
 
+		this.btnVieHtlBck = new JButton("Back to View Hotel");
+
         card3_4.add(new JLabel("Reservation Info"));
 
         card3_4.add(new JLabel("Select Reservation"));
@@ -59,15 +63,25 @@ public class V_Card3_4 {
 
         card3_4.add(new JLabel("Total Price:"));
         card3_4.add(this.txtTtlPrc);
+		
+		card3_4.add(this.btnVieHtlBck);
 
         this.cards.add(card3_4, "View reservation info");
     }
 
     //card3_4 setters
+	public int getCmbxRsrvItem(){
+		return (int) this.cmbxRsrvLst.getSelectedItem();
+	}
+	
     public void setCmbxRsrvLst(Integer[] reservationIDs){
         for(Integer Reservation : reservationIDs)
             this.cmbxRsrvLst.addItem(Reservation);
     }
+	
+	public void resetVieRsrv(){
+		this.cmbxRsrvLst.setSelectedIndex(0);
+	}
 
     public void setTxtResId(String reservationID){
         this.txtResId.setText(reservationID);
@@ -97,5 +111,7 @@ public class V_Card3_4 {
         this.txtTtlPrc.setText("" + totalPrice);
     }
 
-
+	public void setBtnVieHtlBckListener(ActionListener al){
+		this.btnVieHtlBck.addActionListener(al);
+	}
 }
