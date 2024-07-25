@@ -426,8 +426,7 @@ public class Hotel
 			length = 14;
 
 		// computes the estimated earnings
-		for(i=0; i < this.reservations.size(); i++)
-			earnings += this.reservations.get(i).getTotalPrice();
+		earnings = this.getEarnings();
 		
 		// top of the table
 		for(i=0; i < length + 23; i++)
@@ -621,6 +620,65 @@ public class Hotel
 			}
 			System.out.print("------------------\n\n");
 		}
+	}
+	
+	public ArrayList<String> getRoomNames()
+	{
+		ArrayList<String> rooms = new ArrayList<>();
+		
+		for(Room room : this.rooms)
+		{
+			rooms.add(room.getName());
+		}
+		return rooms;
+	}
+	
+	public ArrayList<Integer> getReservationIds()
+	{
+		ArrayList<Integer> reservationIds = new ArrayList<>();
+		
+		for(Reservation r: this.reservations)
+		{
+			reservationIds.add(r.getId());
+		}
+		return reservationIds;
+	}
+	
+	public ArrayList<String> getReservedNames(int day)
+	{
+		ArrayList<String> reserved = new ArrayList<>();
+		
+		for(Room room : this.rooms)
+		{
+			if(room.getReserved().contains(Integer.valueOf(day)))
+				reserved.add(room.getName());
+		}
+		return reserved;
+	}
+	
+	
+	public ArrayList<String> getAvailableNames(int day)
+	{
+		ArrayList<String> available = new ArrayList<>();
+		ArrayList<String> reserved = getReservedNames(day);
+		
+		for(Room room : this.rooms)
+		{
+			if(!reserved.contains(room.getName()))
+				available.add(room.getName());
+		}
+		return available;
+	}
+	
+	public double getEarnings()
+	{
+		int i;
+		double earnings = 0;
+		
+		for(i=0; i < this.reservations.size(); i++)
+			earnings += this.reservations.get(i).getTotalPrice();
+		
+		return earnings;
 	}
 	
 	/**

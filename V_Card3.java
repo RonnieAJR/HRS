@@ -1,9 +1,16 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class V_Card3{
 	private JPanel cards;
+	private JComboBox<String> cmbxHtls;
+	private ArrayList<String> htlNames;
+	private V_Card3_1 card3_1;
+	private V_Card3_2 card3_2;
+	private V_Card3_3 card3_3;
+	private V_Card3_4 card3_4;
 	
 	// card 3 view hotel
 	private JButton btnVieHtl, btnVieDay, btnVieRoom, btnVieRsrv, btnMaiMenBck;
@@ -12,6 +19,8 @@ public class V_Card3{
 		this.cards = cards;
 		
 		JPanel card3 = new JPanel();
+		
+		this.cmbxHtls = new JComboBox<>();
 		
 		this.btnVieHtl = new JButton("View Hotel Info");
 		this.btnVieDay = new JButton("View Day Availability");
@@ -25,11 +34,39 @@ public class V_Card3{
 		card3.add(this.btnVieRsrv);
 		card3.add(this.btnMaiMenBck);
 		
-		// init cards 3.1, 3.2, 3.3, 3.4, here or in new methods and call here
+		this.card3_1 = new V_Card3_1(cards);
+		this.card3_2 = new V_Card3_2(cards);
+		this.card3_3 = new V_Card3_3(cards);
+		this.card3_4 = new V_Card3_4(cards);
+		
 		this.cards.add(card3, "View Hotel");
 	}
 	
-	// card 3 listeners
+	public V_Card3_1 getCard3_1(){
+		return this.card3_1;
+	}
+	public V_Card3_2 getCard3_2(){
+		return this.card3_2;
+	}
+	public V_Card3_3 getCard3_3(){
+		return this.card3_3;
+	}
+	public V_Card3_4 getCard3_4(){
+		return this.card3_4;
+	}
+	
+	public String getCmbxHtlsItem(){
+		return (String) this.cmbxHtls.getSelectedItem();
+	}
+	
+	public void addCmbxHtlsItem(String hotelName){
+		this.cmbxHtls.addItem(hotelName);
+	}
+	
+	public void removeCmbxHtlsItem(String hotelName){
+		this.cmbxHtls.removeItem(hotelName);
+	}
+		
 	public void setBtnVieHtlListener(ActionListener al){
 		this.btnVieHtl.addActionListener(al);
 	}

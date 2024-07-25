@@ -155,6 +155,7 @@ public class HRS
 	 *
 	 * @param args
 	 */
+	 /*
 	public static void main(String[] args)
 	{
 		HRS hrs = new HRS();
@@ -519,5 +520,6 @@ public class HRS
 		scan.close();
 		System.out.println("Terminating program...");
 	}
+	*/
 }
 

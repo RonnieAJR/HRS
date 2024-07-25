@@ -220,6 +220,21 @@ public class Room
 	{
 		this.name = newLetter + Integer.toString(getRoomNumber());
 	}
+	
+	public ArrayList<Integer> getAvailable()
+	{
+		ArrayList<Integer> available = new ArrayList<>();
+		int i;
+		Integer day;
+		for(i=1; i<=31; i++)
+		{
+			day = Integer.valueOf(i);
+			if(!this.reserved.contains(day))
+				available.add(day);
+		}
+		
+		return available;
+	}
 
 	/**
 	 * Returns the list of days reserved.

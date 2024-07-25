@@ -61,11 +61,12 @@ public class V_Card3_3 {
 	}
 		
     public void setCmbxSlctRoom(String[] roomNames){
+		this.cmbxSlctRoom.removeAllItems();
         for(String roomName: roomNames)
             this.cmbxSlctRoom.addItem(roomName);
     }
 	
-	public void resetVieDay(){
+	public void resetVieRoom(){
 		this.cmbxSlctRoom.setSelectedIndex(0);
 	}
 
@@ -82,11 +83,13 @@ public class V_Card3_3 {
     }
 
     public void setCmbxDayAvail(Integer[] dayAvail){
+		this.cmbxDayAvail.removeAllItems();
         for(Integer day: dayAvail)
             this.cmbxDayAvail.addItem(day);
     }
 
     public void setCmbxDayReserved(Integer[] dayReserved){
+		this.cmbxDayReserved.removeAllItems();
         for(Integer day: dayReserved)
             this.cmbxDayReserved.addItem(day);
     }

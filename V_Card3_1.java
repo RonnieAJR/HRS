@@ -45,7 +45,7 @@ public class V_Card3_1 {
 		this.txtEstimatedEarnings.setText("");
 	}
 	
-    public void setTxtHotelName(String hotelName){
+    public void setTxtHtlName(String hotelName){
         this.txtHtlName.setText(hotelName);
     }
 
@@ -57,7 +57,7 @@ public class V_Card3_1 {
         this.txtEstimatedEarnings.setText("" + earnings);
     }
 	
-	public void setBtnVieHtlBck(ActionListener al){
+	public void setBtnVieHtlBckListener(ActionListener al){
 		this.btnVieHtlBck.addActionListener(al);
 	}
 }

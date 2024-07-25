@@ -21,15 +21,13 @@ public class V_Card3_2 {
             cmbxDay.addItem(i);
 
         this.cmbxAvail = new JComboBox<>();
-        this.cmbxAvail = new JComboBox<>(this.roomAvailable);
-        this.cmbxReserved = new JComboBox<>(this.roomAvailable);
+        // this.cmbxAvail = new JComboBox<>(this.roomAvailable);
+        this.cmbxReserved = new JComboBox<>();
 
         this.txtTotalRoomAvail = new JTextField();
-        this.txtTotalRoomAvail.setText("" + this.roomAvailable.length);
         this.txtTotalRoomAvail.setEditable(false);
 
         this.txtTotalRoomReserved = new JTextField();
-        this.txtTotalRoomAvail.setText("" + this.roomReserved.length);
         this.txtTotalRoomAvail.setEditable(false);
 		
 		this.btnVieHtlBck = new JButton("Back to View Hotel");
@@ -58,16 +56,18 @@ public class V_Card3_2 {
 
     //card 3_2 setters
 	
-	public int getCmbDayItem(){
+	public int getCmbxDayItem(){
 		return (int) this.cmbxDay.getSelectedItem();
 	}
 	
     public void setRoomAvailable(String[] roomsAvailable){
+		this.cmbxAvail.removeAllItems();
         for(String roomAvail: roomsAvailable)
             this.cmbxAvail.addItem(roomAvail);
     }
 
     public void setRoomReserved(String[] roomsReserved){
+		this.cmbxReserved.removeAllItems();
         for(String roomRes: roomsReserved)
             this.cmbxReserved.addItem(roomRes);
     }

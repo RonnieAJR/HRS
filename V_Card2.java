@@ -61,6 +61,7 @@ public class V_Card2{
 	
 	public void resetCreHtl(){
 		this.txtHtlName.setText("");
+		this.txtPrice.setText("");
 		this.cmbxCap.setSelectedIndex(0);
 	}
 	

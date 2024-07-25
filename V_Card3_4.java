@@ -66,7 +66,7 @@ public class V_Card3_4 {
 		
 		card3_4.add(this.btnVieHtlBck);
 
-        this.cards.add(card3_4, "View reservation info");
+        this.cards.add(card3_4, "View Reservation");
     }
 
     //card3_4 setters
@@ -75,6 +75,7 @@ public class V_Card3_4 {
 	}
 	
     public void setCmbxRsrvLst(Integer[] reservationIDs){
+		this.cmbxRsrvLst.removeAllItems();
         for(Integer Reservation : reservationIDs)
             this.cmbxRsrvLst.addItem(Reservation);
     }
@@ -83,8 +84,8 @@ public class V_Card3_4 {
 		this.cmbxRsrvLst.setSelectedIndex(0);
 	}
 
-    public void setTxtResId(String reservationID){
-        this.txtResId.setText(reservationID);
+    public void setTxtResId(int reservationID){
+        this.txtResId.setText("" + reservationID);
     }
 
     public void setTxtGstNam(String gstNam){
@@ -95,11 +96,11 @@ public class V_Card3_4 {
         this.txtRmNam.setText(roomNam);
     }
 
-    public void setTxtChkIn(Integer chkIn){
+    public void setTxtChkIn(int chkIn){
         this.txtChkIn.setText("" + chkIn);
     }
 
-    public void setTxtChkOut(Integer chkOut){
+    public void setTxtChkOut(int chkOut){
         this.txtChkOut.setText("" + chkOut);
     }
 
