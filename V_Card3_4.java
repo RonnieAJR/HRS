@@ -1,0 +1,101 @@
+import javax.swing.*;
+
+public class V_Card3_4 {
+    private JPanel cards;
+
+    private JTextField txtResId, txtGstNam, txtRmNam, txtChkIn, txtChkOut, txtPrcPrNght, txtTtlPrc;
+    private JComboBox<Integer> cmbxRsrvLst;
+
+    public V_Card3_4(JPanel cards){
+        this.cards = cards;
+
+        JPanel card3_4 = new JPanel();
+
+        this.txtResId = new JTextField();
+        this.txtResId.setEditable(false);
+
+        this.txtGstNam = new JTextField();
+        this.txtGstNam.setEditable(false);
+
+        this.txtRmNam = new JTextField();
+        this.txtRmNam.setEditable(false);
+
+        this.txtChkIn = new JTextField();
+        this.txtChkIn.setEditable(false);
+
+        this.txtChkOut = new JTextField();
+        this.txtChkOut.setEditable(false);
+
+        this.txtPrcPrNght = new JTextField();
+        this.txtPrcPrNght.setEditable(false);
+
+        this.txtTtlPrc = new JTextField();
+        this.txtTtlPrc.setEditable(false);
+
+        this.cmbxRsrvLst = new JComboBox<>();
+
+        card3_4.add(new JLabel("Reservation Info"));
+
+        card3_4.add(new JLabel("Select Reservation"));
+        card3_4.add(this.cmbxRsrvLst);
+
+        card3_4.add(new JLabel("Reservation ID:"));
+        card3_4.add(this.txtResId);
+
+        card3_4.add(new JLabel("Guest Name:"));
+        card3_4.add(this.txtGstNam);
+
+        card3_4.add(new JLabel("Room Name:"));
+        card3_4.add(this.txtRmNam);
+
+        card3_4.add(new JLabel("Check In Day:"));
+        card3_4.add(this.txtChkIn);
+
+        card3_4.add(new JLabel("Check Out Day:"));
+        card3_4.add(this.txtChkOut);
+
+        card3_4.add(new JLabel("Price per night:"));
+        card3_4.add(this.txtPrcPrNght);
+
+        card3_4.add(new JLabel("Total Price:"));
+        card3_4.add(this.txtTtlPrc);
+
+        this.cards.add(card3_4, "View reservation info");
+    }
+
+    //card3_4 setters
+    public void setCmbxRsrvLst(Integer[] reservationIDs){
+        for(Integer Reservation : reservationIDs)
+            this.cmbxRsrvLst.addItem(Reservation);
+    }
+
+    public void setTxtResId(String reservationID){
+        this.txtResId.setText(reservationID);
+    }
+
+    public void setTxtGstNam(String gstNam){
+        this.txtGstNam.setText(gstNam);
+    }
+
+    public void setTxtRmNam(String roomNam){
+        this.txtRmNam.setText(roomNam);
+    }
+
+    public void setTxtChkIn(Integer chkIn){
+        this.txtChkIn.setText("" + chkIn);
+    }
+
+    public void setTxtChkOut(Integer chkOut){
+        this.txtChkOut.setText("" + chkOut);
+    }
+
+    public void setTxtPrcPrNght(double prcPrNght){
+        this.txtPrcPrNght.setText("" + prcPrNght);
+    }
+
+    public void setTxtTtlPrc(double totalPrice){
+        this.txtTtlPrc.setText("" + totalPrice);
+    }
+
+
+}
