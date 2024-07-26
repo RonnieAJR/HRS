@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 public class V_Card3_4 {
     private JPanel cards;
@@ -70,6 +71,7 @@ public class V_Card3_4 {
     }
 
     //card3_4 setters
+	
 	public int getCmbxRsrvItem(){
 		return (int) this.cmbxRsrvLst.getSelectedItem();
 	}
@@ -112,11 +114,13 @@ public class V_Card3_4 {
         this.txtTtlPrc.setText("" + totalPrice);
     }
 	
-	public void setCmbxRsrvListener(ActionListener al){
-		this.cmbxRsrvLst.addActionListener(al);
+	public void setCmbxRsrvListener(ItemListener il){
+		if(this.cmbxRsrvLst.getItemListeners().length == 0)
+			this.cmbxRsrvLst.addItemListener(il);
 	}
 
 	public void setBtnVieHtlBckListener(ActionListener al){
-		this.btnVieHtlBck.addActionListener(al);
+		if(this.btnVieHtlBck.getActionListeners().length == 0)
+			this.btnVieHtlBck.addActionListener(al);
 	}
 }

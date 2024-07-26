@@ -55,6 +55,10 @@ public class V_Card2{
 		return Double.parseDouble(this.txtPrice.getText());
 	}
 	
+	public JButton getBtnCreHtlTry(){
+		return this.btnCreHtlTry;
+	}
+	
 	public void setFdbckCreHtl(String fdbck){
 		this.fdbckCreHtl.setText(fdbck);
 	}

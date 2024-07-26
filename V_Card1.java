@@ -27,7 +27,22 @@ public class V_Card1{
 		this.cards.add(card1, "Main Menu");
 	}
 	
-	// card 1 listeners
+	public JButton getBtnCretl(){
+		return this.btnCreHtl;
+	}
+	
+	public JButton getBtnVieHtl(){
+		return this.btnVieHtl;
+	}
+	
+	public JButton getBtnManHtl(){
+		return this.btnManHtl;
+	}
+	
+	public JButton getBtnSimBook(){
+		return this.btnSimBook;
+	}
+	
 	public void setBtnCreHtlListener(ActionListener al){
 		this.btnCreHtl.addActionListener(al);
 	}

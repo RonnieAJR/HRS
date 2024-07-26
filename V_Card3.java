@@ -56,6 +56,14 @@ public class V_Card3{
 		return this.card3_4;
 	}
 	
+	public JButton getBtnVieRoom(){
+		return this.btnVieRoom;
+	}
+	
+	public JButton getBtnVieRsrv(){
+		return this.btnVieRsrv;
+	}
+	
 	public String getCmbxHtlsItem(){
 		return (String) this.cmbxHtls.getSelectedItem();
 	}
@@ -69,22 +77,27 @@ public class V_Card3{
 	}
 		
 	public void setBtnVieHtlListener(ActionListener al){
-		this.btnVieHtl.addActionListener(al);
+		if(this.btnVieHtl.getActionListeners().length == 0)
+			this.btnVieHtl.addActionListener(al);
 	}
 	
 	public void setBtnVieDayListener(ActionListener al){
-		this.btnVieDay.addActionListener(al);
+		if(this.btnVieDay.getActionListeners().length == 0)
+			this.btnVieDay.addActionListener(al);
 	}
 	
 	public void setBtnVieRoomListener(ActionListener al){
-		this.btnVieRoom.addActionListener(al);
+		if(this.btnVieRoom.getActionListeners().length == 0)
+			this.btnVieRoom.addActionListener(al);
 	}
 	
 	public void setBtnVieRsrvListener(ActionListener al){
-		this.btnVieRsrv.addActionListener(al);
+		if(this.btnVieRsrv.getActionListeners().length == 0)
+			this.btnVieRsrv.addActionListener(al);
 	}
 	
 	public void setBtnMaiMenBckListener(ActionListener al){
-		this.btnMaiMenBck.addActionListener(al);
+		if(this.btnMaiMenBck.getActionListeners().length == 0)
+			this.btnMaiMenBck.addActionListener(al);
 	}
 }

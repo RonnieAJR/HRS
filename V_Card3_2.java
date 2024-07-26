@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 public class V_Card3_2 {
     private JPanel cards;
@@ -28,7 +29,7 @@ public class V_Card3_2 {
         this.txtTotalRoomAvail.setEditable(false);
 
         this.txtTotalRoomReserved = new JTextField();
-        this.txtTotalRoomAvail.setEditable(false);
+        this.txtTotalRoomReserved.setEditable(false);
 		
 		this.btnVieHtlBck = new JButton("Back to View Hotel");
 
@@ -72,15 +73,27 @@ public class V_Card3_2 {
             this.cmbxReserved.addItem(roomRes);
     }
 	
+	public void setTxtTotalRoomAvail(int num){
+		this.txtTotalRoomAvail.setText("" + num);
+	}
+	
+	public void setTxtTotalRoomReserved(int num){
+		this.txtTotalRoomReserved.setText("" + num);
+	}
+	
 	public void resetVieDay(){
 		this.cmbxDay.setSelectedIndex(0);
 	}
 	
-	public void setCmbxDayListener(ActionListener al){
-		this.cmbxDay.addActionListener(al);
+	public void setCmbxDayListener(ItemListener il){
+		if(this.cmbxDay.getItemListeners().length != 0)
+			for(ItemListener i : this.cmbxDay.getItemListeners())
+				this.cmbxDay.removeItemListener(i);	
+		this.cmbxDay.addItemListener(il);
 	}
 
 	public void setBtnVieHtlBckListener(ActionListener al){
-		this.btnVieHtlBck.addActionListener(al);
+		if(this.btnVieHtlBck.getActionListeners().length == 0)
+			this.btnVieHtlBck.addActionListener(al);
 	}
 }

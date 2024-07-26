@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 public class V_Card3_3 {
     private JPanel cards;
@@ -56,6 +57,7 @@ public class V_Card3_3 {
     }
 
     //card 3_3 setters
+	
 	public String getCmbxRoomItem(){
 		return this.cmbxSlctRoom.getSelectedItem().toString();
 	}
@@ -67,7 +69,6 @@ public class V_Card3_3 {
 			this.cmbxSlctRoom.addItem(roomName);
 			i++;
 		}
-		System.out.println("initialized" + i);
     }
 	
 	public void resetVieRoom(){
@@ -98,11 +99,16 @@ public class V_Card3_3 {
             this.cmbxDayReserved.addItem(day);
     }
 	
-	public void setCmbxRoomListener(ActionListener al){
-		this.cmbxSlctRoom.addActionListener(al);
+	public void setCmbxRoomListener(ItemListener il){
+		// buggy
+		if(this.cmbxSlctRoom.getItemListeners().length != 0)
+			for(ItemListener i : this.cmbxSlctRoom.getItemListeners())
+				this.cmbxSlctRoom.removeItemListener(i);
+		this.cmbxSlctRoom.addItemListener(il);
 	}
 
 	public void setBtnVieHtlBckListener(ActionListener al){
-		this.btnVieHtlBck.addActionListener(al);
+		if(this.btnVieHtlBck.getActionListeners().length == 0)
+			this.btnVieHtlBck.addActionListener(al);
 	}
 }
