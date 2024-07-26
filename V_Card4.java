@@ -10,7 +10,15 @@ public class V_Card4{
 	private JButton btnRnmHtl, btnAddRoom, btnRmvRoom, btnModPrice, btnUpdPrice, btnRmvRsrv, btnRmvHtl, btnManHtlBck, btnMaiMenBck;
 	private JTextField txtPriceMod;
 	private JComboBox<String> cmbxHtls;
-	
+
+	private V_Card4_1 card4_1;
+	private V_Card4_2 card4_2;
+	private V_Card4_3 card4_3;
+	private V_Card4_4 card4_4;
+	private V_Card4_5 card4_5;
+	private V_Card4_6 card4_6;
+	private V_Card4_7 card4_7;
+
 	// card 4.1 rename hotel
 	// card 4.2 add room
 	// card 4.3 remove room
@@ -51,10 +59,46 @@ public class V_Card4{
 		card4.add(this.btnMaiMenBck);
 		
 		// init cards 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7 here or in new methods and call here
+		this.card4_1 = new V_Card4_1(cards);
+		this.card4_2 = new V_Card4_2(cards);
+		this.card4_3 = new V_Card4_3(cards);
+		this.card4_4 = new V_Card4_4(cards);
+		this.card4_5 = new V_Card4_5(cards);
+		this.card4_6 = new V_Card4_6(cards);
+		this.card4_7 = new V_Card4_7(cards);
+
 		
 		this.cards.add(card4, "Manage Hotel");
 	}
-	
+	//subcard getters
+	public V_Card4_1 getCard4_1(){
+		return this.card4_1;
+	}
+
+	public V_Card4_2 getCard4_2(){
+		return this.card4_2;
+	}
+
+	public V_Card4_3 getCard4_3(){
+		return this.card4_3;
+	}
+
+	public V_Card4_4 getCard4_4(){
+		return this.card4_4;
+	}
+
+	public V_Card4_5 getCard4_5(){
+		return this.card4_5;
+	}
+
+	public V_Card4_6 getCard4_6(){
+		return this.card4_6;
+	}
+
+	public V_Card4_7 getCard4_7(){
+		return this.card4_7;
+	}
+
 	// card 4
 	public void resetManHtl(){
 		this.cmbxHtls.setSelectedIndex(0);

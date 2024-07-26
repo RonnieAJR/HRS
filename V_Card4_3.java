@@ -5,7 +5,7 @@ public class V_Card4_3 {
     private JPanel cards;
 
     private JTextField txtRmtRmov, txtCnfrm;
-    private JButton btnSbmt, btnMngHtlBck;
+    private JButton btnRmovRm, btnMngHtlBck;
     private JLabel txtFdbck;
 
     public V_Card4_3(JPanel cards){
@@ -15,7 +15,7 @@ public class V_Card4_3 {
         this.txtRmtRmov = new JTextField(20);
         this.txtCnfrm = new JTextField(10);
 
-        this.btnSbmt = new JButton("Submit");
+        this.btnRmovRm = new JButton("Remove");
         this.btnMngHtlBck = new JButton("Back to Manage Hotel");
 
         this.txtFdbck = new JLabel();
@@ -23,7 +23,7 @@ public class V_Card4_3 {
         card4_3.add(new JLabel("Enter room name to remove"));
         card4_3.add(this.txtRmtRmov);
 
-        card4_3.add(this.btnSbmt);
+        card4_3.add(this.btnRmovRm);
         card4_3.add(this.btnMngHtlBck);
         card4_3.add(this.txtCnfrm);
         card4_3.add(this.txtFdbck);
@@ -35,17 +35,23 @@ public class V_Card4_3 {
 
     public String getTxtCnfrm(){return this.txtCnfrm.getText().toString();}
 
-    public void resetTxtAddRm(){this.txtRmtRmov.setText("");}
-
-    public void resetTxtConfirm(){this.txtCnfrm.setText("");}
-
-    public void resetTxtFdbck(){this.txtFdbck.setText("");}
+    public void resetRmovRoom(){
+        this.txtRmtRmov.setText("");
+        this.txtCnfrm.setText("");
+        this.txtFdbck.setText("");
+    }
 
     public void setTxtConfirm(String confirm){this.txtCnfrm.setText(confirm);}
 
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
 
-    public void setBtnSbmtListener(ActionListener al){this.btnSbmt.addActionListener(al);}
+    public void setBtnRmovRmListener(ActionListener al){
+        if(this.btnRmovRm.getActionListeners().length == 0)
+            this.btnRmovRm.addActionListener(al);
+    }
 
-    public void setBtnMngHtlBckListener(ActionListener al){this.btnMngHtlBck.addActionListener(al);}
+    public void setBtnMngHtlBckListener(ActionListener al){
+        if(this.btnMngHtlBck.getActionListeners().length == 0)
+            this.btnMngHtlBck.addActionListener(al);
+    }
 }

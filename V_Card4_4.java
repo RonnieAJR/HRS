@@ -6,7 +6,7 @@ public class V_Card4_4 {
 
     private JComboBox<Integer> cmbxDay;
     private JTextField txtPrcMod, txtCnfrm;
-    private JButton btnSbmt, btnMngHtlBck;
+    private JButton btnMdfyPrc, btnMngHtlBck;
     private JLabel txtFdbck;
 
     public V_Card4_4(JPanel cards){
@@ -22,7 +22,7 @@ public class V_Card4_4 {
         this.txtPrcMod = new JTextField(10);
         this.txtCnfrm = new JTextField();
 
-        this.btnSbmt = new JButton("Submit");
+        this.btnMdfyPrc = new JButton("Modify");
         this.btnMngHtlBck = new JButton("Back to Manage Hotel");
 
         this.txtFdbck = new JLabel();
@@ -33,7 +33,7 @@ public class V_Card4_4 {
         card4_4.add(new JLabel("Input percentage to modify price"));
         card4_4.add(this.txtPrcMod);
 
-        card4_4.add(this.btnSbmt);
+        card4_4.add(this.btnMdfyPrc);
         card4_4.add(this.btnMngHtlBck);
         card4_4.add(this.txtCnfrm);
         card4_4.add(this.txtFdbck);
@@ -43,17 +43,25 @@ public class V_Card4_4 {
 
     public double getTxtPrcMod(){return Double.parseDouble(txtPrcMod.getText());}
 
-    public void resetTxtPrcMod(){this.txtPrcMod.setText("");}
+    public int getCmbxDayItem(){return (int) this.cmbxDay.getSelectedItem();}
 
-    public void resetTxtConfirm(){this.txtCnfrm.setText("");}
-
-    public void resetTxtFdbck(){this.txtFdbck.setText("");}
+    public void resetMdfyPrc(){
+        this.txtPrcMod.setText("");
+        this.txtCnfrm.setText("");
+        this.txtFdbck.setText("");
+    }
 
     public void setTxtConfirm(String confirm){this.txtCnfrm.setText(confirm);}
 
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
 
-    public void setBtnSbmtListener(ActionListener al){this.btnSbmt.addActionListener(al);}
+    public void setBtnMdfyPrcListener(ActionListener al){
+        if(this.btnMdfyPrc.getActionListeners().length == 0)
+            this.btnMdfyPrc.addActionListener(al);
+    }
 
-    public void setBtnMngHtlBckListener(ActionListener al){this.btnMngHtlBck.addActionListener(al);}
+    public void setBtnMngHtlBckListener(ActionListener al){
+        if(this.btnMngHtlBck.getActionListeners().length == 0)
+            this.btnMngHtlBck.addActionListener(al);
+    }
 }
