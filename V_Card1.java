@@ -8,24 +8,51 @@ public class V_Card1{
 	//  card 1 main menu
 	private JButton btnCreHtl, btnVieHtl, btnManHtl, btnSimBook;
 	
-	public V_Card1(JPanel cards){
-		this.cards = cards;
-		
-		JPanel card1 = new JPanel();
-		
-		// Main Menu Card
-		this.btnCreHtl = new JButton("Create Hotel");
-		this.btnVieHtl = new JButton("View Hotel");
-		this.btnManHtl = new JButton("Manage Hotel");
-		this.btnSimBook = new JButton("Simulate Booking");
-		
-		card1.add(this.btnCreHtl);
-		card1.add(this.btnVieHtl);
-		card1.add(this.btnManHtl);
-		card1.add(this.btnSimBook);
-		
-		this.cards.add(card1, "Main Menu");
-	}
+	public V_Card1(JPanel cards) {
+        this.cards = cards;
+
+        JPanel card1 = new JPanel(new BorderLayout());
+
+        // Main Menu Header
+        JLabel header = new JLabel("Main Menu", JLabel.CENTER);
+        card1.add(header, BorderLayout.NORTH);
+
+        // Buttons Panel
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+
+        this.btnCreHtl = new JButton("Create Hotel");
+        this.btnVieHtl = new JButton("View Hotel");
+        this.btnManHtl = new JButton("Manage Hotel");
+        this.btnSimBook = new JButton("Simulate Booking");
+
+        Dimension buttonSize = new Dimension(150, 30); // Adjust the size as needed
+
+        this.btnCreHtl.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.btnVieHtl.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.btnManHtl.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.btnSimBook.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        this.btnCreHtl.setMaximumSize(buttonSize);
+        this.btnVieHtl.setMaximumSize(buttonSize);
+        this.btnManHtl.setMaximumSize(buttonSize);
+        this.btnSimBook.setMaximumSize(buttonSize);
+
+        // Add buttons to the panel
+        buttonsPanel.add(Box.createVerticalStrut(10)); // Add space before the first button
+        buttonsPanel.add(this.btnCreHtl);
+        buttonsPanel.add(Box.createVerticalStrut(10)); // Add space between buttons
+        buttonsPanel.add(this.btnVieHtl);
+        buttonsPanel.add(Box.createVerticalStrut(10)); // Add space between buttons
+        buttonsPanel.add(this.btnManHtl);
+        buttonsPanel.add(Box.createVerticalStrut(10)); // Add space between buttons
+        buttonsPanel.add(this.btnSimBook);
+        buttonsPanel.add(Box.createVerticalStrut(10)); // Add space after the last button
+
+        card1.add(buttonsPanel, BorderLayout.CENTER);
+
+        this.cards.add(card1, "Main Menu");
+    }
 	
 	public JButton getBtnCretl(){
 		return this.btnCreHtl;

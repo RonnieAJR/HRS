@@ -63,7 +63,7 @@ public class V{
 	public V(){
 		frame = new JFrame("Hotel Reservation System");
 		frame.setLayout(new BorderLayout());
-		frame.setSize(370, 450);
+		frame.setSize(320, 370);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.initAll();
