@@ -20,6 +20,7 @@ public class C{
 		ActionListener goManageHotel = goCard("Manage Hotel");
 		
 		card.setBtnCreHtlListener(goCard("Create Hotel"));
+		
 		card.setBtnVieHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
@@ -37,11 +38,13 @@ public class C{
 		card.setBtnManHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				if(m.getHotels().isEmpty())
-					System.out.println("Hotels not found");
-				else{
-					initCard4();
-					v.setCard("Manage Hotel");
+				if(e.getSource() == card.getBtnManHtl()){
+					if(m.getHotels().isEmpty())
+						System.out.println("Hotels not found");
+					else{
+						initCard4();
+						v.setCard("Manage Hotel");
+					}
 				}
 			}
 		});
@@ -98,16 +101,20 @@ public class C{
 		card.setBtnVieHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				initCard3_1();
-				v.setCard("View Hotel Info");
+				if(e.getSource() == card.getBtnVieHtl()){
+					initCard3_1();
+					v.setCard("View Hotel Info");
+				}
 			}
 		});
 		
 		card.setBtnVieDayListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				initCard3_2();
-				v.setCard("View Day Availability");
+				if(e.getSource() == card.getBtnVieDay()){
+					initCard3_2();
+					v.setCard("View Day Availability");
+				}
 			}
 		});
 		
@@ -124,7 +131,7 @@ public class C{
 		card.setBtnVieRsrvListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// if(e.getSource() == card.getBtnVieRsrv()){
+				if(e.getSource() == card.getBtnVieRsrv()){
 					Hotel hotel = m.findHotel(card.getCmbxHtlsItem());
 					if(hotel.getReservations().isEmpty())
 						System.out.println("Reservations not found");
@@ -132,7 +139,7 @@ public class C{
 						initCard3_4();
 						v.setCard("View Reservation");
 					}
-				// }
+				}
 			}
 		});
 		
