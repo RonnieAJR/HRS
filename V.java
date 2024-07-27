@@ -273,13 +273,16 @@ public class V{
 	
 	public void initAll(){
 		this.cards = new JPanel(new CardLayout());
-		this.lblFeedback = new JLabel();
 		this.card1 = new V_Card1(this.cards);
 		this.card2 = new V_Card2(this.cards);
 		this.card3 = new V_Card3(this.cards);
 		this.card4 = new V_Card4(this.cards);
 		//this.card5 = new V_Card5(this.cards);
 		this.frame.add(cards, BorderLayout.CENTER);
+	}
+	
+	public JFrame getFrame(){
+		return this.frame;
 	}
 	
 	public JPanel getCards(){
@@ -307,6 +310,9 @@ public class V{
 		return this.card4;
 	}
 	
+	// public V_Card5 getCard5(){
+		// return this.card5;
+	// }
 	
 	
 	// card 1 listeners

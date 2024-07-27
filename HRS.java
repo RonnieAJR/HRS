@@ -95,7 +95,7 @@ public class HRS
 	/**
 	 * Displays all hotels
 	 */
-	public void displayHotels()
+	public void displayHotels() // not needed anymore
 	{
 		int i, k;
 		int length=11;

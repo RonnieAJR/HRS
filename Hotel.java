@@ -290,7 +290,7 @@ public class Hotel
 	  * @param DiscountInput input of discount
 	  * @return true if reservation is successfully created
 	  */
-	public boolean createReservation(String guestName, int checkIn, int checkOut, String DiscountInput)
+	public boolean createReservation(String guestName, int checkIn, int checkOut, String roomType, String DiscountInput)
 	{
 		ArrayList<Integer> targetDays = new ArrayList<Integer>();
 		HashSet<Integer> combinedDays = new HashSet<Integer>();

@@ -95,7 +95,7 @@ public class C{
 		});
 	}
 	
-	public void initCard3(){
+	public void initCard3(){ ///////////////////////////////////////////// card3 as param
 		V_Card3 card = this.v.getCard3();
 		
 		card.setBtnVieHtlListener(new ActionListener(){
@@ -262,7 +262,7 @@ public class C{
 		card4.setBtnRnmHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				initCard4_1();
+				initCard4_1(card4);
 				v.setCard("Rename Hotel");
 			}
 		});
@@ -270,7 +270,7 @@ public class C{
 		card4.setBtnAddRoomListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				initCard4_2();
+				initCard4_2(card4);
 				v.setCard("Add Room");
 			}
 		});
@@ -278,7 +278,7 @@ public class C{
 		card4.setBtnRmvRoomListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// initCard4_3();
+				// initCard4_3(card4);
 				v.setCard("Remove Room");
 			}
 		});
@@ -286,7 +286,7 @@ public class C{
 		card4.setBtnModPriceListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// initCard4_4();
+				// initCard4_4(card4);
 				v.setCard("Modify Day Price");
 			}
 		});
@@ -294,7 +294,7 @@ public class C{
 		card4.setBtnUpdPriceListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// initCard4_5();
+				// initCard4_5(card4);
 				v.setCard("Update Price");
 			}
 		});
@@ -302,7 +302,7 @@ public class C{
 		card4.setBtnRmvRsrvListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// initCard4_6();
+				// initCard4_6(card4);
 				v.setCard("Remove Reservation");
 			}
 		});
@@ -310,7 +310,7 @@ public class C{
 		card4.setBtnRmvHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// initCard4_7();
+				// initCard4_7(card4);
 				v.setCard("Remove Hotel");
 			}
 		});
@@ -318,12 +318,10 @@ public class C{
 		card4.setBtnMaiMenBckListener(goCard("Main Menu"));
 	}
 	
-	public void initCard4_1(){
-		V_Card4 card4 = this.v.getCard4();
-		
-		Hotel hotel = m.findHotel(card4.getCmbxHtlsItem());
-		
+	public void initCard4_1(V_Card4 card4){
 		V_Card4_1 card4_1 = card4.getCard4_1();
+		
+		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
 		
 		card4_1.setBtnRnmListener(new ActionListener(){
 			@Override
@@ -331,12 +329,10 @@ public class C{
 				String newName = card4_1.getTxtNewHtlNm();
 				String oldName = hotel.getName();
 				
-				if(m.renameHotel(oldName, newName))
-				{
-					// card4.rmvHtlName(oldName);
-					// card4.addHtlName(newName);
+				if(m.renameHotel(oldName, newName)){
+					card4.removeCmbxHtlsItem(oldName);
+					card4.addCmbxHtlsItem(newName);
 					card4_1.setFdbckRnmHtl("Hotel renamed");
-					
 				}
 				else
 					card4_1.setFdbckRnmHtl("Hotel already exists");
@@ -346,12 +342,10 @@ public class C{
 		card4_1.setBtnMngHtlBckListener(goCard("Manage Hotel"));
 	}
 	
-	public void initCard4_2(){
-		V_Card4 card4 = this.v.getCard4();
-		
-		Hotel hotel = m.findHotel(card4.getCmbxHtlsItem());
-		
+	public void initCard4_2(V_Card4 card4){
 		V_Card4_2 card4_2 = card4.getCard4_2();
+		
+		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
 		
 		card4_2.setBtnAddRmListener(new ActionListener(){
 			@Override
@@ -363,8 +357,8 @@ public class C{
 				
 				if(target + hotel.getCapacity() > 50)
 					card4_2.setTxtFdbck("Amount of rooms exceed the maximum capacity");
-				else{
-					confirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to add " + target + "rooms?", "Confirmation", JOptionPane.YES_NO_OPTION);
+				else{ // try null component
+					confirmation = JOptionPane.showConfirmDialog(v.getFrame(), "Are you sure you want to add " + target + "rooms?", "Confirmation", JOptionPane.YES_NO_OPTION);
 					if(confirmation == JOptionPane.YES_OPTION){
 						while(actual < target){
 							hotel.addRoom(roomType);
@@ -379,9 +373,21 @@ public class C{
 			}
 		});
 		
+		card.setBtnMngHtlBckListener(goCard("Manage Hotel"));
 	}
 	
-	// public void 
+	public void initCard4_3(V_Card4 card4){
+		V_Card4_3 card4_3 = card4.getCard4_3();
+		
+		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
+		
+		card4_3.setBtnRmovRmListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				
+			}
+		});
+	}
 	
 	public ActionListener goCard(String cardName){
 		ActionListener al = new ActionListener(){
