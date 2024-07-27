@@ -33,7 +33,12 @@ public class V_Card4{
 	public V_Card4(JPanel cards){
 		this.cards = cards;
 		
-		JPanel card4 = new JPanel();
+		JPanel card4 = new JPanel(new BorderLayout());
+
+		//header
+		JLabel header = new JLabel("View Hotel", JLabel.CENTER);
+		header.setFont(new Font("Default", Font.PLAIN, 20));
+		card4.add(header, BorderLayout.NORTH);
 		
 		String[] hotels = {"Hotel1", "Hotel2", "Hotel3"}; // placeholder
 		this.cmbxHtls = new JComboBox<String>(hotels);
@@ -47,19 +52,51 @@ public class V_Card4{
 		this.btnRmvRsrv = new JButton("Remove Reservation");
 		this.btnRmvHtl = new JButton("Remove Hotel");
 		this.btnMaiMenBck = new JButton("Back to Main Menu");
-		
-		card4.add(this.cmbxHtls);
-		card4.add(this.btnRnmHtl);
-		card4.add(this.btnAddRoom);
-		card4.add(this.btnRmvRoom);
-		card4.add(this.btnModPrice);
-		card4.add(this.btnUpdPrice);
-		card4.add(this.btnRmvRsrv);
-		card4.add(this.btnRmvHtl);
-		card4.add(this.btnMaiMenBck);
+
+		// Buttons Panel
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+		Dimension buttonSize = new Dimension(180, 30);
+
+		this.btnRnmHtl.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.btnAddRoom.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.btnRmvRoom.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.btnModPrice.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.btnUpdPrice.setAlignmentX(Component.CENTER_ALIGNMENT); 
+		this.btnRmvRsrv.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.btnRmvHtl.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.btnMaiMenBck.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		this.btnRnmHtl.setMaximumSize(buttonSize);
+		this.btnAddRoom.setMaximumSize(buttonSize); 
+		this.btnRmvRoom.setMaximumSize(buttonSize); 
+		this.btnModPrice.setMaximumSize(buttonSize); 
+		this.btnUpdPrice.setMaximumSize(buttonSize);
+		this.btnRmvRsrv.setMaximumSize(buttonSize); 
+		this.btnRmvHtl.setMaximumSize(buttonSize);
+		this.btnMaiMenBck.setMaximumSize(buttonSize);
+
+		buttonsPanel.add(Box.createVerticalStrut(10));	
+		buttonsPanel.add(this.btnRnmHtl);
+		buttonsPanel.add(Box.createVerticalStrut(5));
+		buttonsPanel.add(this.btnAddRoom);
+		buttonsPanel.add(Box.createVerticalStrut(5));
+		buttonsPanel.add(this.btnRmvRoom);	
+		buttonsPanel.add(Box.createVerticalStrut(5));
+		buttonsPanel.add(this.btnModPrice);
+		buttonsPanel.add(Box.createVerticalStrut(5));
+		buttonsPanel.add(this.btnUpdPrice);
+		buttonsPanel.add(Box.createVerticalStrut(5));
+		buttonsPanel.add(this.btnRmvRsrv);
+		buttonsPanel.add(Box.createVerticalStrut(5));
+		buttonsPanel.add(this.btnRmvHtl);
+		buttonsPanel.add(Box.createVerticalStrut(20));
+		buttonsPanel.add(this.btnMaiMenBck);
+
+		card4.add(buttonsPanel, BorderLayout.CENTER);
 		
 		// init cards 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7 here or in new methods and call here
-		this.card4_1 = new V_Card4_1(cards);
+		this.card4_1 = new V_Card4_1(cards);	
 		this.card4_2 = new V_Card4_2(cards);
 		this.card4_3 = new V_Card4_3(cards);
 		this.card4_4 = new V_Card4_4(cards);
