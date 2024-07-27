@@ -1,6 +1,6 @@
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
+import java.awt.*;
+import java.awt.event.*;
 
 public class V_Card3_2 {
     private JPanel cards;
@@ -15,7 +15,11 @@ public class V_Card3_2 {
         this.cards = cards;
 
         int i;
-        JPanel card3_2 = new JPanel();
+        JPanel card3_2 = new JPanel(new BorderLayout());
+
+        JLabel header = new JLabel("Day Availability Info", JLabel.CENTER);
+		header.setFont(new Font("Default", Font.PLAIN, 20));
+		card3_2.add(header, BorderLayout.NORTH);
 
         this.cmbxDay = new JComboBox<>();
         for(i = 1; i<=31; i++)
@@ -33,25 +37,76 @@ public class V_Card3_2 {
 		
 		this.btnVieHtlBck = new JButton("Back to View Hotel");
 
-        card3_2.add(new JLabel("Day Availability Info"));
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        card3_2.add(new JLabel("Select Day:"));
-        card3_2.add(this.cmbxDay);
+        // Day Selector
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Select Day:"), gbc);
 
-        card3_2.add(new JLabel("Rooms available:"));
-        card3_2.add(this.cmbxAvail);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxDay, gbc);
 
-        card3_2.add(new JLabel("Total rooms available:"));
-        card3_2.add(this.txtTotalRoomAvail);
+        //Room Selector
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Rooms Available:"), gbc);
 
-        card3_2.add(new JLabel("Rooms reserved:"));
-        card3_2.add(this.cmbxReserved);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxAvail, gbc);
 
-        card3_2.add(new JLabel("Total reserved:"));
-        card3_2.add(this.txtTotalRoomReserved);
+        //Total rooms available
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Total rooms available:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtTotalRoomAvail.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.txtTotalRoomAvail, gbc);
+
+        //Room Selector
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Rooms Reserved:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxReserved, gbc);
+
+        //Total rooms Reserved
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Total rooms Reserved:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtTotalRoomAvail.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.txtTotalRoomReserved, gbc);
+        
+        card3_2.add(centerPanel, BorderLayout.CENTER);
 		
-		card3_2.add(this.btnVieHtlBck);
+		//Panel for Button
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
 
+        this.btnVieHtlBck.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        buttonsPanel.add(Box.createVerticalStrut(5));
+        buttonsPanel.add(this.btnVieHtlBck);
+		card3_2.add(buttonsPanel, BorderLayout.PAGE_END);
+		
         this.cards.add(card3_2, "View Day Availability");
     }
 

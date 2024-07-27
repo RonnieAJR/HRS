@@ -1,6 +1,6 @@
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
+import java.awt.*;
+import java.awt.event.*;
 
 public class V_Card3_4 {
     private JPanel cards;
@@ -12,7 +12,11 @@ public class V_Card3_4 {
     public V_Card3_4(JPanel cards){
         this.cards = cards;
 
-        JPanel card3_4 = new JPanel();
+        JPanel card3_4 = new JPanel(new BorderLayout());
+
+        JLabel header = new JLabel("Reservation Info", JLabel.CENTER);
+		header.setFont(new Font("Default", Font.PLAIN, 20));
+		card3_4.add(header, BorderLayout.NORTH);
 
         this.txtResId = new JTextField();
         this.txtResId.setEditable(false);
@@ -39,33 +43,116 @@ public class V_Card3_4 {
 
 		this.btnVieHtlBck = new JButton("Back to View Hotel");
 
-        card3_4.add(new JLabel("Reservation Info"));
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        card3_4.add(new JLabel("Select Reservation"));
-        card3_4.add(this.cmbxRsrvLst);
 
-        card3_4.add(new JLabel("Reservation ID:"));
-        card3_4.add(this.txtResId);
+        //Room Selector
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Select Reservation"), gbc);
 
-        card3_4.add(new JLabel("Guest Name:"));
-        card3_4.add(this.txtGstNam);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxRsrvLst, gbc);
 
-        card3_4.add(new JLabel("Room Name:"));
-        card3_4.add(this.txtRmNam);
+        //Reservation ID
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Reservation ID:"), gbc);
 
-        card3_4.add(new JLabel("Check In Day:"));
-        card3_4.add(this.txtChkIn);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtResId.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.txtResId, gbc);
 
-        card3_4.add(new JLabel("Check Out Day:"));
-        card3_4.add(this.txtChkOut);
 
-        card3_4.add(new JLabel("Price per night:"));
-        card3_4.add(this.txtPrcPrNght);
+        //Guest Name
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Guest Name:"), gbc);
 
-        card3_4.add(new JLabel("Total Price:"));
-        card3_4.add(this.txtTtlPrc);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtGstNam.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.txtGstNam, gbc);
+
+        //Room Name
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Room Name:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtRmNam.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.txtRmNam, gbc);
+
+        //Check in Day
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Check In Day"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtChkIn.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.txtChkIn, gbc);
+
+
+        //Check Out Day
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Check Out Day"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtChkOut.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.txtChkOut, gbc);
+
+        
+        //Price Per Night
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Price per night"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtPrcPrNght.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.txtPrcPrNght, gbc);
+
+
+        //Total Price
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Total Price"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtTtlPrc.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.txtTtlPrc, gbc);
+
+
+        card3_4.add(centerPanel, BorderLayout.CENTER);
 		
-		card3_4.add(this.btnVieHtlBck);
+		//Panel for Button
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+
+        this.btnVieHtlBck.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        buttonsPanel.add(Box.createVerticalStrut(5));
+        buttonsPanel.add(this.btnVieHtlBck);    
+		card3_4.add(buttonsPanel, BorderLayout.PAGE_END);
 
         this.cards.add(card3_4, "View Reservation");
     }

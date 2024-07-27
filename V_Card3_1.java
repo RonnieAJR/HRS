@@ -1,5 +1,6 @@
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
 public class V_Card3_1 {
     private JPanel cards;
@@ -9,31 +10,78 @@ public class V_Card3_1 {
     public V_Card3_1(JPanel cards){
         this.cards = cards;
 
-        JPanel card3_1 = new JPanel();
+        JPanel card3_1 = new JPanel(new BorderLayout());
 
-        this.txtHtlName = new JTextField();
+
+        JLabel header = new JLabel("View Hotel", JLabel.CENTER);
+		header.setFont(new Font("Default", Font.PLAIN, 20));
+		card3_1.add(header, BorderLayout.NORTH);
+
+        this.txtHtlName = new JTextField(20);
         this.txtHtlName.setEditable(false);
 
-        this.txtNumRooms = new JTextField();
+        this.txtNumRooms = new JTextField(20);
         this.txtNumRooms.setEditable(false);
 
-        this.txtEstimatedEarnings = new JTextField();
+        this.txtEstimatedEarnings = new JTextField(20);
         this.txtEstimatedEarnings.setEditable(false);
 		
 		this.btnVieHtlBck = new JButton("Back to View Hotel");
 
-        card3_1.add(new JLabel("Hotel Info"));
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        
+        Dimension textFieldSize = new Dimension(300, 20);
 
-        card3_1.add(new JLabel("Hotel Name: "));
-        card3_1.add(this.txtHtlName);
+        //Hotel Name
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        centerPanel.add(new JLabel("Hotel Name:"), gbc);
 
-        card3_1.add(new JLabel("Number of Rooms: "));
-        card3_1.add(this.txtNumRooms);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtHtlName.setPreferredSize(textFieldSize);
+        centerPanel.add(this.txtHtlName, gbc);
 
-        card3_1.add(new JLabel("Estimated earnings: "));
-        card3_1.add(this.txtEstimatedEarnings);
 
-		card3_1.add(this.btnVieHtlBck);
+        // Hotel Capacity
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Number of Rooms: "), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtNumRooms.setPreferredSize(textFieldSize);
+        centerPanel.add(this.txtNumRooms, gbc);
+
+
+        //Hotel Estimated Earnings
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Estimated earnings: "), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtEstimatedEarnings.setPreferredSize(textFieldSize);
+        centerPanel.add(this.txtEstimatedEarnings, gbc);
+        
+        card3_1.add(centerPanel, BorderLayout.CENTER);
+
+        //Panel for Button
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+
+        this.btnVieHtlBck.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        buttonsPanel.add(Box.createVerticalStrut(5));
+        buttonsPanel.add(this.btnVieHtlBck);
+		card3_1.add(buttonsPanel, BorderLayout.PAGE_END);
 		
         this.cards.add(card3_1, "View Hotel Info");
     }

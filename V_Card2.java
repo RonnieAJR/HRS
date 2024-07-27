@@ -125,5 +125,4 @@ public class V_Card2{
 	public void setBtnMaiMenBckListener(ActionListener al){
 		this.btnMaiMenBck.addActionListener(al);
 	}
-	
 }

@@ -1,6 +1,6 @@
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
+import java.awt.*;
+import java.awt.event.*;
 
 public class V_Card3_3 {
     private JPanel cards;
@@ -13,7 +13,11 @@ public class V_Card3_3 {
     public V_Card3_3(JPanel cards){
         this.cards = cards;
 
-        JPanel card3_3 = new JPanel();
+        JPanel card3_3 = new JPanel(new BorderLayout());
+
+        JLabel header = new JLabel("Room Info", JLabel.CENTER);
+		header.setFont(new Font("Default", Font.PLAIN, 20));
+		card3_3.add(header, BorderLayout.NORTH);
 
         this.cmbxSlctRoom = new JComboBox<>();
 
@@ -31,27 +35,88 @@ public class V_Card3_3 {
 		
 		this.btnVieHtlBck = new JButton("Back to View Hotel");
 
-        card3_3.add(new JLabel("Room Info"));
 
-        card3_3.add(new JLabel("Select Room"));
-        card3_3.add(this.cmbxSlctRoom);
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        card3_3.add(new JLabel("Room Name:"));
-        card3_3.add(this.roomName);
 
-        card3_3.add(new JLabel("Room Floor:"));
-        card3_3.add(this.floor);
+        //Room Selector
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Select Room:"), gbc);
 
-        card3_3.add(new JLabel("Room Price Per Night:"));
-        card3_3.add(this.pricePerNight);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxSlctRoom, gbc);
 
-        card3_3.add(new JLabel("Days Available:"));
-        card3_3.add(this.cmbxDayAvail);
+        //Room Name
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Room Name:"), gbc);
 
-        card3_3.add(new JLabel("Days Reserved"));
-        card3_3.add(this.cmbxDayReserved);
-		
-		card3_3.add(this.btnVieHtlBck);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.roomName.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.roomName, gbc);
+
+        //Room Floor
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Room Floor:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.roomName.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.floor, gbc);
+
+        //Room Price Per Night
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Room Price Per Night:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.roomName.setPreferredSize(new Dimension(300, 20));
+        centerPanel.add(this.pricePerNight, gbc);
+
+        //Day Avail Selector
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Days Available:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxDayAvail, gbc);
+
+        //Day Reserv Selector
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Days Reserved:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxDayReserved, gbc);
+
+        card3_3.add(centerPanel, BorderLayout.CENTER);
+
+		//Panel for Button
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+
+        this.btnVieHtlBck.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        buttonsPanel.add(Box.createVerticalStrut(5));
+        buttonsPanel.add(this.btnVieHtlBck);
+		card3_3.add(buttonsPanel, BorderLayout.PAGE_END);
 
         this.cards.add(card3_3, "View Room");
     }
@@ -64,10 +129,10 @@ public class V_Card3_3 {
 		
     public void setCmbxSlctRoom(String[] roomNames){
 		this.cmbxSlctRoom.removeAllItems();
-		int i=0;
+		// int i=0;
         for(String roomName: roomNames){
 			this.cmbxSlctRoom.addItem(roomName);
-			i++;
+			// i++;
 		}
     }
 	
