@@ -7,8 +7,7 @@ public class V_Card4{
 	
 	// subs
 	
-	private JButton btnRnmHtl, btnAddRoom, btnRmvRoom, btnModPrice, btnUpdPrice, btnRmvRsrv, btnRmvHtl, btnManHtlBck, btnMaiMenBck;
-	private JTextField txtPriceMod;
+	private JButton btnRnmHtl, btnAddRoom, btnRmvRoom, btnModPrice, btnUpdPrice, btnRmvRsrv, btnRmvHtl, btnMaiMenBck;
 	private JComboBox<String> cmbxHtls;
 
 	private V_Card4_1 card4_1;
@@ -27,86 +26,86 @@ public class V_Card4{
 	// card 4.6 remove reservation
 	// card 4.7 remove hotel
 	
-	private JTextField txtHtlName;
 	
 	
 	public V_Card4(JPanel cards){
 		this.cards = cards;
-		
-		JPanel card4 = new JPanel(new BorderLayout());
+    
+    JPanel card4 = new JPanel(new BorderLayout());
 
-		//header
-		JLabel header = new JLabel("View Hotel", JLabel.CENTER);
-		header.setFont(new Font("Default", Font.PLAIN, 20));
-		card4.add(header, BorderLayout.NORTH);
-		
-		String[] hotels = {"Hotel1", "Hotel2", "Hotel3"}; // placeholder
-		this.cmbxHtls = new JComboBox<String>(hotels);
-		this.cmbxHtls.setEditable(false);
-		
-		this.btnRnmHtl = new JButton("Rename Hotel");
-		this.btnAddRoom = new JButton("Add Room");
-		this.btnRmvRoom = new JButton("Remove Room");
-		this.btnModPrice = new JButton("Modify Day Price");
-		this.btnUpdPrice = new JButton("Update Price");
-		this.btnRmvRsrv = new JButton("Remove Reservation");
-		this.btnRmvHtl = new JButton("Remove Hotel");
-		this.btnMaiMenBck = new JButton("Back to Main Menu");
+    // Header
+    JLabel header = new JLabel("Manage Hotel", JLabel.CENTER);
+    header.setFont(new Font("Default", Font.PLAIN, 20));
+    card4.add(header, BorderLayout.NORTH);
 
-		// Buttons Panel
-        JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
-		Dimension buttonSize = new Dimension(180, 30);
+    this.cmbxHtls = new JComboBox<>();
+    this.cmbxHtls.setEditable(false);
+    
+    this.btnRnmHtl = new JButton("Rename Hotel");
+    this.btnAddRoom = new JButton("Add Room");
+    this.btnRmvRoom = new JButton("Remove Room");
+    this.btnModPrice = new JButton("Modify Day Price");
+    this.btnUpdPrice = new JButton("Update Price");
+    this.btnRmvRsrv = new JButton("Remove Reservation");
+    this.btnRmvHtl = new JButton("Remove Hotel");
+    this.btnMaiMenBck = new JButton("Back to Main Menu");
 
-		this.btnRnmHtl.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.btnAddRoom.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.btnRmvRoom.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.btnModPrice.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.btnUpdPrice.setAlignmentX(Component.CENTER_ALIGNMENT); 
-		this.btnRmvRsrv.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.btnRmvHtl.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.btnMaiMenBck.setAlignmentX(Component.CENTER_ALIGNMENT);
+    // Central panel for hotel selector and buttons
+    JPanel centerPanel = new JPanel(new GridBagLayout());
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.insets = new Insets(5, 5, 5, 5);
+    gbc.weightx = 1.0;
+    gbc.fill = GridBagConstraints.HORIZONTAL;
 
-		this.btnRnmHtl.setMaximumSize(buttonSize);
-		this.btnAddRoom.setMaximumSize(buttonSize); 
-		this.btnRmvRoom.setMaximumSize(buttonSize); 
-		this.btnModPrice.setMaximumSize(buttonSize); 
-		this.btnUpdPrice.setMaximumSize(buttonSize);
-		this.btnRmvRsrv.setMaximumSize(buttonSize); 
-		this.btnRmvHtl.setMaximumSize(buttonSize);
-		this.btnMaiMenBck.setMaximumSize(buttonSize);
+    // Hotel Selector
+    gbc.gridx = 0;
+    gbc.gridy = 0;
+    gbc.fill = GridBagConstraints.NONE;
+    centerPanel.add(new JLabel("Select Hotel To Manage"), gbc);
 
-		buttonsPanel.add(Box.createVerticalStrut(10));	
-		buttonsPanel.add(this.btnRnmHtl);
-		buttonsPanel.add(Box.createVerticalStrut(5));
-		buttonsPanel.add(this.btnAddRoom);
-		buttonsPanel.add(Box.createVerticalStrut(5));
-		buttonsPanel.add(this.btnRmvRoom);	
-		buttonsPanel.add(Box.createVerticalStrut(5));
-		buttonsPanel.add(this.btnModPrice);
-		buttonsPanel.add(Box.createVerticalStrut(5));
-		buttonsPanel.add(this.btnUpdPrice);
-		buttonsPanel.add(Box.createVerticalStrut(5));
-		buttonsPanel.add(this.btnRmvRsrv);
-		buttonsPanel.add(Box.createVerticalStrut(5));
-		buttonsPanel.add(this.btnRmvHtl);
-		buttonsPanel.add(Box.createVerticalStrut(20));
-		buttonsPanel.add(this.btnMaiMenBck);
+    gbc.gridx = 1;
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+    centerPanel.add(this.cmbxHtls, gbc);
 
-		card4.add(buttonsPanel, BorderLayout.CENTER);
+    // Buttons Panel
+    JPanel buttonsPanel = new JPanel();
+    buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+    Dimension buttonSize = new Dimension(180, 30);
+
+    JButton[] buttons = {
+        this.btnRnmHtl, this.btnAddRoom, this.btnRmvRoom, 
+        this.btnModPrice, this.btnUpdPrice, this.btnRmvRsrv, 
+        this.btnRmvHtl, this.btnMaiMenBck
+    };
+
+    for (JButton button : buttons) {
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setMaximumSize(buttonSize);
+        buttonsPanel.add(Box.createVerticalStrut(5));
+        buttonsPanel.add(button);
+    }
+
+    gbc.gridx = 0;
+    gbc.gridy = 1;
+    gbc.gridwidth = 2;
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+    centerPanel.add(buttonsPanel, gbc);
+
+	card4.add(centerPanel, BorderLayout.CENTER);
 		
 		// init cards 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7 here or in new methods and call here
-		this.card4_1 = new V_Card4_1(cards);	
-		this.card4_2 = new V_Card4_2(cards);
-		this.card4_3 = new V_Card4_3(cards);
-		this.card4_4 = new V_Card4_4(cards);
-		this.card4_5 = new V_Card4_5(cards);
-		this.card4_6 = new V_Card4_6(cards);
-		this.card4_7 = new V_Card4_7(cards);
+		// this.card4_1 = new V_Card4_1(cards);	
+		// this.card4_2 = new V_Card4_2(cards);
+		// this.card4_3 = new V_Card4_3(cards);
+		// this.card4_4 = new V_Card4_4(cards);
+		// this.card4_5 = new V_Card4_5(cards);
+		// this.card4_6 = new V_Card4_6(cards);
+		// this.card4_7 = new V_Card4_7(cards);
 
 		
 		this.cards.add(card4, "Manage Hotel");
 	}
+
 	//subcard getters
 	public V_Card4_1 getCard4_1(){
 		return this.card4_1;
@@ -141,6 +140,14 @@ public class V_Card4{
 		this.cmbxHtls.setSelectedIndex(0);
 	}
 	
+	public void addCmbxHtlsItem(String Hotel){
+		this.cmbxHtls.addItem(Hotel);
+	}
+
+	public void removeCmbxHtlsItem(String hotelName){
+		this.cmbxHtls.removeItem(hotelName);
+	}
+
 	public void setBtnRnmHtlListener(ActionListener al){
 		this.btnRnmHtl.addActionListener(al);
 	}

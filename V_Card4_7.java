@@ -1,43 +1,64 @@
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
 public class V_Card4_7 {
     private JPanel cards;
 
-    private JTextField txtCnfrm;
-    private JButton btnYes, btnNo, btnMngHtlBck;
+    private JButton btnYes, btnNo, btnMainBck;
     private JLabel txtFdbck;
 
-    public V_Card4_7(JPanel cards){
+    
+    public V_Card4_7(JPanel cards) {
         this.cards = cards;
-        JPanel card4_7 = new JPanel();
-
-        this.txtCnfrm = new JTextField();
-
+        JPanel card4_7 = new JPanel(new BorderLayout());
+    
+        // Header
+        JLabel header = new JLabel("Remove Hotel", JLabel.CENTER);
+        header.setFont(new Font("Default", Font.PLAIN, 20));
+        card4_7.add(header, BorderLayout.NORTH);
+    
         this.btnYes = new JButton("Yes");
         this.btnNo = new JButton("No");
+        this.btnMainBck = new JButton("Back to Main Menu");
+        this.txtFdbck = new JLabel("L GUI");
+    
+        // Central panel for labels and buttons
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+    
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        centerPanel.add(new JLabel("          Remove Hotel?"), gbc);
+    
+        gbc.gridy = 1;
+        JPanel yesNoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        yesNoPanel.add(this.btnYes);
+        yesNoPanel.add(this.btnNo);
+        centerPanel.add(yesNoPanel, gbc);
+    
+        gbc.gridy = 2;
+        centerPanel.add(this.btnMainBck, gbc);
+    
+        card4_7.add(centerPanel, BorderLayout.CENTER);
+    
+        // Panel for feedback label and buttons
+        JPanel feedbackPanel = new JPanel(new BorderLayout());
+        this.txtFdbck.setHorizontalAlignment(JLabel.CENTER);
 
-        this.btnMngHtlBck = new JButton("Back to Manage Hotel");
-
-        this.txtFdbck = new JLabel();
-
-        card4_7.add(new JLabel("Remove Hotel?"));
-        card4_7.add(this.btnNo);
-        card4_7.add(this.btnYes);
-
-        card4_7.add(this.btnMngHtlBck);
-        card4_7.add(this.txtCnfrm);
-        card4_7.add(this.txtFdbck);
-
+        feedbackPanel.add(this.txtFdbck, BorderLayout.CENTER);
+    
+        card4_7.add(feedbackPanel, BorderLayout.SOUTH);
+    
         this.cards.add(card4_7, "Remove Hotel");
     }
 
-    public void resetTxtConfirm(){
-        this.txtCnfrm.setText("");
+    public void resetTxt(){
         this.txtFdbck.setText("");
     }
-
-    public void setTxtConfirm(String confirm){this.txtCnfrm.setText(confirm);}
 
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
 
@@ -52,7 +73,7 @@ public class V_Card4_7 {
     }
 
     public void setBtnMngHtlBckListener(ActionListener al){
-        if(this.btnMngHtlBck.getActionListeners().length == 0)
-            this.btnMngHtlBck.addActionListener(al);
+        if(this.btnMainBck.getActionListeners().length == 0)
+            this.btnMainBck.addActionListener(al);
     }
 }

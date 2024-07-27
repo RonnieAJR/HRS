@@ -11,7 +11,12 @@ public class V_Card4_1 {
 
     public V_Card4_1(JPanel cards){
         this.cards = cards;
-        JPanel card4_1 = new JPanel();
+        JPanel card4_1 = new JPanel(new BorderLayout());
+
+        //header
+		JLabel header = new JLabel("Rename Hotel", JLabel.CENTER);
+		header.setFont(new Font("Default", Font.PLAIN, 20));
+		card4_1.add(header, BorderLayout.NORTH);
 
         this.txtnewHtlNm = new JTextField(20);
 
@@ -20,12 +25,41 @@ public class V_Card4_1 {
         this.btnRnm = new JButton("Rename");
         this.btnMngHtlBck = new JButton("Back to Manage Hotel");
 
-        card4_1.add(new JLabel("Enter new Hotel Name:"));
-        card4_1.add(this.txtnewHtlNm);
+        // Central panel for labels and text fields
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        card4_1.add(this.btnRnm);
-        card4_1.add(this.fdbckRnmHtl);
-        card4_1.add(this.btnMngHtlBck);
+        Dimension textFieldSize = new Dimension(300, 20);
+
+        // Hotel Name
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        centerPanel.add(new JLabel("Enter New Hotel Name:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtnewHtlNm = new JTextField(20);
+        this.txtnewHtlNm.setPreferredSize(textFieldSize);
+        centerPanel.add(this.txtnewHtlNm, gbc);
+
+        card4_1.add(centerPanel, BorderLayout.CENTER);
+
+        // Panel for buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(this.btnRnm);
+        buttonPanel.add(this.btnMngHtlBck);
+
+        // Panel for feedback label and buttons
+        JPanel feedbackPanel = new JPanel(new BorderLayout());
+        this.fdbckRnmHtl.setHorizontalAlignment(JLabel.CENTER);
+        feedbackPanel.add(buttonPanel, BorderLayout.SOUTH);
+        feedbackPanel.add(this.fdbckRnmHtl, BorderLayout.CENTER);
+
+        card4_1.add(feedbackPanel, BorderLayout.SOUTH);
 
         this.cards.add(card4_1, "Rename Hotel");
     }
@@ -48,5 +82,4 @@ public class V_Card4_1 {
         if(this.btnMngHtlBck.getActionListeners().length == 0)
             this.btnMngHtlBck.addActionListener(al);
     }
-
 }

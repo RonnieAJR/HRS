@@ -5,18 +5,21 @@ import java.awt.event.*;
 public class V_Card4_2 {
     private JPanel cards;
 
-    private JTextField txtAddRm, txtCnfrm;
+    private JTextField txtAddRm;
     private JComboBox<String> cmbxRmTyp;
     private JButton btnAddRm, btnMngHtlBck;
     private JLabel txtFdbck;
 
     public V_Card4_2(JPanel cards){
         this.cards = cards;
-        JPanel card4_2 = new JPanel();
+        JPanel card4_2 = new JPanel(new BorderLayout());
 
+        //header
+		JLabel header = new JLabel("Add Room", JLabel.CENTER);
+		header.setFont(new Font("Default", Font.PLAIN, 20));
+		card4_2.add(header, BorderLayout.NORTH);
 
         this.txtAddRm = new JTextField(20);
-        this.txtCnfrm = new JTextField(10);
 
         this.cmbxRmTyp = new JComboBox<>();
         this.cmbxRmTyp.addItem("Standard");
@@ -25,24 +28,55 @@ public class V_Card4_2 {
 
         this.txtFdbck = new JLabel();
 
-
-
         this.btnAddRm = new JButton("Add");
         this.btnMngHtlBck = new JButton("Back to Manage Hotel");
 
-        card4_2.add(new JLabel("Add Room"));
+        // Central panel for labels and text fields
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        card4_2.add(new JLabel("Enter number of Rooms:"));
-        card4_2.add(this.txtAddRm);
+        Dimension textFieldSize = new Dimension(300, 20);
 
-        card4_2.add(new JLabel("Choose Room Type"));
-        card4_2.add(this.cmbxRmTyp);
+        //Room Number
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        centerPanel.add(new JLabel("Enter number of Rooms"), gbc);
 
-        card4_2.add(this.btnAddRm);
-        card4_2.add(this.btnMngHtlBck);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtAddRm = new JTextField(20);
+        this.txtAddRm.setPreferredSize(textFieldSize);
+        centerPanel.add(this.txtAddRm, gbc);
 
-        card4_2.add(this.txtCnfrm);
-        card4_2.add(this.txtFdbck);
+
+        //Room Type Selector
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Choose Room Type"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxRmTyp, gbc);
+
+        card4_2.add(centerPanel, BorderLayout.CENTER);
+
+        // Panel for buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(this.btnAddRm);
+        buttonPanel.add(this.btnMngHtlBck);
+
+        // Panel for feedback label and buttons
+        JPanel feedbackPanel = new JPanel(new BorderLayout());
+        this.txtFdbck.setHorizontalAlignment(JLabel.CENTER);
+        feedbackPanel.add(buttonPanel, BorderLayout.SOUTH);
+        feedbackPanel.add(this.txtFdbck, BorderLayout.CENTER);
+
+        card4_2.add(feedbackPanel, BorderLayout.SOUTH);
 
         this.cards.add(card4_2, "Add Room");
     }
@@ -51,15 +85,10 @@ public class V_Card4_2 {
 
     public String getCmbxRmTypItem(){return this.cmbxRmTyp.getSelectedItem().toString();}
 
-    public String getTxtCnfrm(){return this.txtCnfrm.getName().toString();}
-
     public void resetAddRm(){
         this.txtAddRm.setText("");
-        this.txtCnfrm.setText("");
         this.txtFdbck.setText("");
     }
-    
-    public void setTxtConfirm(String confirm){this.txtCnfrm.setText(confirm);}
 
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
 
@@ -72,5 +101,4 @@ public class V_Card4_2 {
         if(this.btnMngHtlBck.getActionListeners().length == 0)
             this.btnMngHtlBck.addActionListener(al);
     }
-
 }
