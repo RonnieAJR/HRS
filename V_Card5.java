@@ -1,5 +1,6 @@
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
 public class V_Card5 {
     private JPanel cards;
@@ -12,7 +13,12 @@ public class V_Card5 {
 
     public V_Card5(JPanel cards){
         this.cards = cards;
-        JPanel card5 = new JPanel();
+        JPanel card5 = new JPanel(new BorderLayout());
+
+        //header
+		JLabel header = new JLabel("Simulate Booking", JLabel.CENTER);
+		header.setFont(new Font("Default", Font.PLAIN, 20));
+		card5.add(header, BorderLayout.NORTH);
 
         this.txtGstNme = new JTextField(20);
         this.txtDscntCde = new JTextField(15);
@@ -33,29 +39,90 @@ public class V_Card5 {
         this.cmbxRmTyp.addItem("Executive");
 
         this.btnBook = new JButton("Book");
-        this.btnApplDisc = new JButton("Apply Discount");
         this.btnMaiMenBck = new JButton("Back to Main Menu");
 
         this.txtFdbck = new JLabel();
 
-        card5.add(new JLabel("Enter Guest Name:"));
-        card5.add(this.txtGstNme);
+        // Central panel for labels and text fields
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        card5.add(new JLabel("Choose Room Type"));
-        card5.add(this.cmbxRmTyp);
+        Dimension textFieldSize = new Dimension(300, 20);
 
-        card5.add(new JLabel("Choose Check in day"));
-        card5.add(this.cmbxChkIn);
 
-        card5.add(new JLabel("Choose Check out day"));
-        card5.add(this.cmbxChkOut);
+        //Guest Name
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        centerPanel.add(new JLabel("Enter Guest Name:"), gbc);
 
-        card5.add(new JLabel("Enter Discount Code (Optional)"));
-        card5.add(this.txtDscntCde);
-        card5.add(this.btnApplDisc);
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtGstNme = new JTextField(20);
+        this.txtGstNme.setPreferredSize(textFieldSize);
+        centerPanel.add(this.txtGstNme, gbc);
 
-        card5.add(this.btnBook);
-        card5.add(this.btnMaiMenBck);
+
+        //Room Type Selector
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Choose Room Type"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxRmTyp, gbc);
+
+
+        //Check in Day Selector
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Choose Check in Day"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxChkIn, gbc);
+
+        //Check in Day Selector
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Choose Check out Day"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxChkOut, gbc);
+
+        //Guest Name
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.WEST;
+        centerPanel.add(new JLabel("Enter Discount Code (optional):"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.txtDscntCde = new JTextField(20);
+        this.txtDscntCde.setPreferredSize(textFieldSize);
+        centerPanel.add(this.txtDscntCde, gbc);
+
+        card5.add(centerPanel, BorderLayout.CENTER);
+        
+        // Panel for buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(this.btnBook);
+        buttonPanel.add(this.btnMaiMenBck);
+
+        // Panel for feedback label and buttons
+        JPanel feedbackPanel = new JPanel(new BorderLayout());
+        this.txtFdbck.setHorizontalAlignment(JLabel.CENTER);
+        feedbackPanel.add(buttonPanel, BorderLayout.SOUTH);
+        feedbackPanel.add(this.txtFdbck, BorderLayout.CENTER);
+
+        card5.add(feedbackPanel, BorderLayout.SOUTH);
 
         this.cards.add(card5, "Simulate Booking");
     }
@@ -96,5 +163,4 @@ public class V_Card5 {
         if(this.btnMaiMenBck.getActionListeners().length == 0)
             this.btnMaiMenBck.addActionListener(al);
     }
-
 }
