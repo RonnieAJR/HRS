@@ -24,28 +24,28 @@ public class C{
 		card.setBtnVieHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				if(e.getSource() == card.getBtnVieHtl()){
+				// if(e.getSource() == card.getBtnVieHtl()){
 					if(m.getHotels().isEmpty())
 						System.out.println("Hotels not found"); // set fdbck on gui
 					else{
 						initCard3();
 						v.setCard("View Hotel");
 					}
-				}
+				// }
 			}
 		});
 		
 		card.setBtnManHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				if(e.getSource() == card.getBtnManHtl()){
+				// if(e.getSource() == card.getBtnManHtl()){
 					if(m.getHotels().isEmpty())
 						System.out.println("Hotels not found");
 					else{
 						initCard4();
 						v.setCard("Manage Hotel");
 					}
-				}
+				// }
 			}
 		});
 		
@@ -61,7 +61,7 @@ public class C{
 		card.setBtnCreHtlTryListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				if(e.getSource() == card.getBtnCreHtlTry()){
+				// if(e.getSource() == card.getBtnCreHtlTry()){
 					String name = card.getTxtHtlName();
 					int capacity = card.getCmbxCapItem();
 					double price = card.getTxtPrice();
@@ -81,7 +81,7 @@ public class C{
 					}
 					
 					card.resetCreHtl();
-				}
+				// }
 			}
 		});
 		
@@ -101,37 +101,37 @@ public class C{
 		card.setBtnVieHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				if(e.getSource() == card.getBtnVieHtl()){
+				// if(e.getSource() == card.getBtnVieHtl()){
 					initCard3_1();
 					v.setCard("View Hotel Info");
-				}
+				// }
 			}
 		});
 		
 		card.setBtnVieDayListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				if(e.getSource() == card.getBtnVieDay()){
+				// if(e.getSource() == card.getBtnVieDay()){
 					initCard3_2();
 					v.setCard("View Day Availability");
-				}
+				// }
 			}
 		});
 		
 		card.setBtnVieRoomListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				if(e.getSource() == card.getBtnVieRoom()){
+				// if(e.getSource() == card.getBtnVieRoom()){
 					initCard3_3();
 					v.setCard("View Room");
-				}
+				// }
 			}
 		});
 		
 		card.setBtnVieRsrvListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				if(e.getSource() == card.getBtnVieRsrv()){
+				// if(e.getSource() == card.getBtnVieRsrv()){
 					Hotel hotel = m.findHotel(card.getCmbxHtlsItem());
 					if(hotel.getReservations().isEmpty())
 						System.out.println("Reservations not found");
@@ -139,7 +139,7 @@ public class C{
 						initCard3_4();
 						v.setCard("View Reservation");
 					}
-				}
+				// }
 			}
 		});
 		
@@ -207,7 +207,6 @@ public class C{
 			@Override
 			public void itemStateChanged(ItemEvent e){
 				if(e.getStateChange() == ItemEvent.SELECTED){
-				
 					Room room = hotel.findRoom(card3_3.getCmbxRoomItem());
 					
 					Integer[] availableDays = room.getAvailable().toArray(new Integer[room.getAvailable().size()]);
@@ -258,9 +257,131 @@ public class C{
 	}
 		
 	public void initCard4(){
-		V_Card4 card = this.v.getCard4();
-		card.setBtnMaiMenBckListener(goCard("Main Menu"));
+		V_Card4 card4 = this.v.getCard4();
+		
+		card4.setBtnRnmHtlListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				initCard4_1();
+				v.setCard("Rename Hotel");
+			}
+		});
+		
+		card4.setBtnAddRoomListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				initCard4_2();
+				v.setCard("Add Room");
+			}
+		});
+		
+		card4.setBtnRmvRoomListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				// initCard4_3();
+				v.setCard("Remove Room");
+			}
+		});
+		
+		card4.setBtnModPriceListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				// initCard4_4();
+				v.setCard("Modify Day Price");
+			}
+		});
+		
+		card4.setBtnUpdPriceListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				// initCard4_5();
+				v.setCard("Update Price");
+			}
+		});
+		
+		card4.setBtnRmvRsrvListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				// initCard4_6();
+				v.setCard("Remove Reservation");
+			}
+		});
+		
+		card4.setBtnRmvHtlListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				// initCard4_7();
+				v.setCard("Remove Hotel");
+			}
+		});
+		
+		card4.setBtnMaiMenBckListener(goCard("Main Menu"));
 	}
+	
+	public void initCard4_1(){
+		V_Card4 card4 = this.v.getCard4();
+		
+		Hotel hotel = m.findHotel(card4.getCmbxHtlsItem());
+		
+		V_Card4_1 card4_1 = card4.getCard4_1();
+		
+		card4_1.setBtnRnmListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				String newName = card4_1.getTxtNewHtlNm();
+				String oldName = hotel.getName();
+				
+				if(m.renameHotel(oldName, newName))
+				{
+					// card4.rmvHtlName(oldName);
+					// card4.addHtlName(newName);
+					card4_1.setFdbckRnmHtl("Hotel renamed");
+					
+				}
+				else
+					card4_1.setFdbckRnmHtl("Hotel already exists");
+			}
+		});
+		
+		card4_1.setBtnMngHtlBckListener(goCard("Manage Hotel"));
+	}
+	
+	public void initCard4_2(){
+		V_Card4 card4 = this.v.getCard4();
+		
+		Hotel hotel = m.findHotel(card4.getCmbxHtlsItem());
+		
+		V_Card4_2 card4_2 = card4.getCard4_2();
+		
+		card4_2.setBtnAddRmListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				String roomType = card4_2.getCmbxRmTypItem();
+				int target = card4_2.getTxtAddRm();
+				int actual = 0;
+				int confirmation;
+				
+				if(target + hotel.getCapacity() > 50)
+					card4_2.setTxtFdbck("Amount of rooms exceed the maximum capacity");
+				else{
+					confirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to add " + target + "rooms?", "Confirmation", JOptionPane.YES_NO_OPTION);
+					if(confirmation == JOptionPane.YES_OPTION){
+						while(actual < target){
+							hotel.addRoom(roomType);
+							actual++;
+						}
+						card4_2.setTxtFdbck(actual + " rooms added");
+					}
+					else{
+						card4_2.setTxtFdbck("Aborting add rooms");
+					}
+				}
+			}
+		});
+		
+	}
+	
+	// public void 
 	
 	public ActionListener goCard(String cardName){
 		ActionListener al = new ActionListener(){

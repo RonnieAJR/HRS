@@ -135,6 +135,10 @@ public class V_Card4{
 	public V_Card4_7 getCard4_7(){
 		return this.card4_7;
 	}
+	
+	public String getCmbxHtlsItem(){
+		return this.cmbxHtls.getSelectedItem().toString();
+	}
 
 	// card 4
 	public void resetManHtl(){
@@ -165,7 +169,7 @@ public class V_Card4{
 		this.btnRmvRsrv.addActionListener(al);
 	}
 	
-	public void setBtnRmvHtl(ActionListener al){
+	public void setBtnRmvHtlListener(ActionListener al){
 		this.btnRmvHtl.addActionListener(al);
 	}
 	

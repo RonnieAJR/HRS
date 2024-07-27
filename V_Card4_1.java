@@ -30,7 +30,7 @@ public class V_Card4_1 {
         this.cards.add(card4_1, "Rename Hotel");
     }
 
-    public String getTxtnewHtlNm(){return this.txtnewHtlNm.getText().toString();}
+    public String getTxtNewHtlNm(){return this.txtnewHtlNm.getText().toString();}
 
     public void resetRnmHtl(){
         this.txtnewHtlNm.setText("");
