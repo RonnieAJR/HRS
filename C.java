@@ -49,7 +49,17 @@ public class C{
 			}
 		});
 		
-		// sim booking btn MISSING
+		card.setBtnSimBookListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if(m.getHotels().isEmpty())
+					;// set feedback
+				else{
+					initCard5();
+					v.setCard("Simulate Booking");
+				}
+			}
+		});
 		
 		// v.setBtnMaiMenBck4Listener(goMainMenu);
 		
@@ -75,6 +85,7 @@ public class C{
 						card.setFdbckCreHtl("Hotel created");
 						v.getCard3().addCmbxHtlsItem(name);
 						v.getCard4().addCmbxHtlsItem(name);
+						// v.getCard5().addCmbxHtlsItem(name);
 					}
 					else{
 						System.out.println("Hotel already exists\n");
@@ -329,6 +340,7 @@ public class C{
 					v.getCard3().addCmbxHtlsItem(newName);
 					card4.removeCmbxHtlsItem(oldName);
 					card4.addCmbxHtlsItem(newName);
+					// card5
 					card4_1.setFdbckRnmHtl("Hotel renamed");
 				}
 				else
@@ -500,6 +512,29 @@ public class C{
 	
 	public void initCard5(){
 		V_Card5 card5 = this.v.getCard5();
+		
+		card5.resetSim();
+		
+		card5.setBtnBook(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				Hotel hotel = m.findHotel(card5.getCmbxHtls());
+				String guestName = card5.getTxtGstNme();
+				String discountCode = card5.getTxtDscntCde();
+				String roomType = card5.getCmbxRmItem();
+				int checkIn = card5.getCmbxChkInItem();
+				int checkOut = card5.getCmbxChkOutItem();
+				
+				if(checkIn < checkOut){
+					if(hotel.createReservation(guestName, checkIn, checkOut, roomType, discountCode))
+						card5.setTxtFdbck("Reservation created");
+					else
+						card5.setTxtFdbck("No room available");
+				}
+				else
+					card5.setTxtFdbck("Invalid days");
+			}
+		});
 		
 		card5.setBtnMaiMenBck(goCard("Main Menu"));
 	}

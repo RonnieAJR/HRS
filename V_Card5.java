@@ -154,6 +154,8 @@ public class V_Card5 {
         this.txtGstNme.setText("");
         this.txtDscntCde.setText("");
         this.txtFdbck.setText("");
+		this.cmbxChkIn.setSelectedIndex(0);
+		this.cmbxChkOut.setSelectedIndex(0);
         this.cmbxRmTyp.setSelectedIndex(0);
         this.cmbxHtls.setSelectedIndex(0);
 
