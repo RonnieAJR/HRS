@@ -5,7 +5,6 @@ import java.awt.event.*;
 public class V_Card3_2 {
     private JPanel cards;
 
-    private String[] roomAvailable, roomReserved;
     private JComboBox<Integer> cmbxDay;
     private JComboBox<String> cmbxAvail, cmbxReserved;
     private JTextField txtTotalRoomAvail, txtTotalRoomReserved;

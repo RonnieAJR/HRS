@@ -168,6 +168,14 @@ public class V_Card5 {
         }
     }
 
+    public void addCmbxHtlsItem(String hotelName){
+		this.cmbxHtls.addItem(hotelName);
+	}
+
+    public void removeCmbxHtlsItem(String hotelName){
+		this.cmbxHtls.removeItem(hotelName);
+	}
+
     public void setTxtFdbck(String Fdbck){
         this.txtFdbck.setText(Fdbck);
     }

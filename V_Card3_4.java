@@ -6,7 +6,7 @@ public class V_Card3_4 {
     private JPanel cards;
 
     private JTextField txtResId, txtGstNam, txtRmNam, txtChkIn, txtChkOut, txtPrcPrNght, txtTtlPrc;
-    private JComboBox<Integer> cmbxRsrvLst;
+    private JComboBox<Integer> cmbxRsrvLst, cmbxDayPrcPerNyt;
 	private JButton btnVieHtlBck;
 
     public V_Card3_4(JPanel cards){
@@ -40,6 +40,7 @@ public class V_Card3_4 {
         this.txtTtlPrc.setEditable(false);
 
         this.cmbxRsrvLst = new JComboBox<>();
+        this.cmbxDayPrcPerNyt = new JComboBox<>();
 
 		this.btnVieHtlBck = new JButton("Back to View Hotel");
 
@@ -117,10 +118,19 @@ public class V_Card3_4 {
         this.txtChkOut.setPreferredSize(new Dimension(300, 20));
         centerPanel.add(this.txtChkOut, gbc);
 
-        
-        //Price Per Night
+        //Day Price per night
         gbc.gridx = 0;
         gbc.gridy = 6;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Choose Day to check price per night"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxDayPrcPerNyt, gbc);
+
+        //Price Per Night
+        gbc.gridx = 0;
+        gbc.gridy = 7;
         gbc.fill = GridBagConstraints.NONE;
         centerPanel.add(new JLabel("Price per night"), gbc);
 
@@ -132,7 +142,7 @@ public class V_Card3_4 {
 
         //Total Price
         gbc.gridx = 0;
-        gbc.gridy = 7;
+        gbc.gridy = 8;
         gbc.fill = GridBagConstraints.NONE;
         centerPanel.add(new JLabel("Total Price"), gbc);
 
@@ -162,6 +172,16 @@ public class V_Card3_4 {
 	public int getCmbxRsrvItem(){
 		return (int) this.cmbxRsrvLst.getSelectedItem();
 	}
+
+    public int getCmbxDayItem(){
+        return (int) this.cmbxDayPrcPerNyt.getSelectedItem();
+    }
+
+    public void setCmbxDayPrcPerNyt(int[] days){
+        this.cmbxDayPrcPerNyt.removeAllItems();
+        for(int day : days)
+            this.cmbxDayPrcPerNyt.addItem(day);
+    }
 	
     public void setCmbxRsrvLst(Integer[] reservationIDs){
 		this.cmbxRsrvLst.removeAllItems();
