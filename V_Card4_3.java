@@ -32,13 +32,11 @@ public class V_Card4_3 {
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        Dimension textFieldSize = new Dimension(300, 20);
-
         //Room to remove
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
-        centerPanel.add(new JLabel("Enter room to remove"), gbc);
+        centerPanel.add(new JLabel("Choose room to remove"), gbc);
 
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
