@@ -309,24 +309,26 @@ public class Hotel
 		// checks each room
 		for(Room r : this.rooms)
 		{
-			// gets the combined size of target days and days reserved
-			sizeSum = targetDays.size() + r.getReserved().size();
+			// check if the roomtype entered and roomtype of current room matches before doing all this
 			
-			// adds the days reserved and the target days into a hashset
-			combinedDays.addAll(r.getReserved());
-			combinedDays.addAll(targetDays);
-			
-			// if the size is as expected, all target days are newly added into the hashset...
-			// ...meaning, it is not present in the days reserved
-			if(sizeSum == combinedDays.size())
-			{
-				room = r;
-				available = true;
-				break;
-			}
-			
-			// resets the hash set
-			combinedDays.clear();
+				// gets the combined size of target days and days reserved
+				sizeSum = targetDays.size() + r.getReserved().size();
+				
+				// adds the days reserved and the target days into a hashset
+				combinedDays.addAll(r.getReserved());
+				combinedDays.addAll(targetDays);
+				
+				// if the size is as expected, all target days are newly added into the hashset...
+				// ...meaning, it is not present in the days reserved
+				if(sizeSum == combinedDays.size())
+				{
+					room = r;
+					available = true;
+					break;
+				}
+				
+				// resets the hash set
+				combinedDays.clear();
 		}
 		
 		if(!available)
