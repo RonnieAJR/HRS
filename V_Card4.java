@@ -94,13 +94,13 @@ public class V_Card4{
 	card4.add(centerPanel, BorderLayout.CENTER);
 		
 		// init cards 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7 here or in new methods and call here
-		// this.card4_1 = new V_Card4_1(cards);	
-		// this.card4_2 = new V_Card4_2(cards);
-		// this.card4_3 = new V_Card4_3(cards);
-		// this.card4_4 = new V_Card4_4(cards);
-		// this.card4_5 = new V_Card4_5(cards);
-		// this.card4_6 = new V_Card4_6(cards);
-		// this.card4_7 = new V_Card4_7(cards);
+		this.card4_1 = new V_Card4_1(cards);	
+		this.card4_2 = new V_Card4_2(cards);
+		this.card4_3 = new V_Card4_3(cards);
+		this.card4_4 = new V_Card4_4(cards);
+		this.card4_5 = new V_Card4_5(cards);
+		this.card4_6 = new V_Card4_6(cards);
+		this.card4_7 = new V_Card4_7(cards);
 
 		
 		this.cards.add(card4, "Manage Hotel");

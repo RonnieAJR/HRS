@@ -316,6 +316,8 @@ public class C{
 		
 		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
 		
+		card4_1.resetRnmHtl();
+		
 		card4_1.setBtnRnmListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
@@ -323,6 +325,8 @@ public class C{
 				String oldName = hotel.getName();
 				
 				if(m.renameHotel(oldName, newName)){
+					v.getCard3().removeCmbxHtlsItem(oldName);
+					v.getCard3().addCmbxHtlsItem(newName);
 					card4.removeCmbxHtlsItem(oldName);
 					card4.addCmbxHtlsItem(newName);
 					card4_1.setFdbckRnmHtl("Hotel renamed");
@@ -339,6 +343,8 @@ public class C{
 		V_Card4_2 card4_2 = card4.getCard4_2();
 		
 		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
+		
+		card4_2.resetAddRm();
 		
 		card4_2.setBtnAddRmListener(new ActionListener(){
 			@Override
@@ -376,6 +382,8 @@ public class C{
 		
 		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
 		
+		card4_3.resetRmovRoom();
+		
 		String[] roomNames = hotel.getRoomNames().toArray(new String[hotel.getRooms().size()]);
 		card4_3.setCmbxRmtRmov(roomNames);
 		
@@ -412,6 +420,8 @@ public class C{
 		
 		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
 		
+		card4_4.resetMdfyPrc();
+		
 		card4_4.setBtnMdfyPrcListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
@@ -437,6 +447,8 @@ public class C{
 		
 		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
 		
+		card4_5.resetUpdtHtlPrc();
+		
 		card4_5.setBtnUpdtListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
@@ -460,6 +472,8 @@ public class C{
 		V_Card4_6 card4_6 = card4.getCard4_6();
 		
 		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
+		
+		card4_6.resetRmovRsrv();
 		
 		Integer[] reservationIds = hotel.getReservationIds().toArray(new Integer[hotel.getReservationIds().size()]);
 		card4_6.setCmbxRsrvId(reservationIds);
