@@ -7,7 +7,7 @@ public class V_Card5 {
 
     private JTextField txtGstNme, txtDscntCde;
     private JComboBox<Integer> cmbxChkIn, cmbxChkOut;
-    private JComboBox<String> cmbxRmTyp;
+    private JComboBox<String> cmbxRmTyp, cmbxHtls;
     private JButton btnApplDisc, btnBook, btnMaiMenBck;
     private JLabel txtFdbck;
 
@@ -33,6 +33,7 @@ public class V_Card5 {
                 cmbxChkOut.addItem(i);
         }
 
+        this.cmbxHtls = new JComboBox<>();
         this.cmbxRmTyp = new JComboBox<>();
         this.cmbxRmTyp.addItem("Standard");
         this.cmbxRmTyp.addItem("Deluxe");
@@ -52,10 +53,20 @@ public class V_Card5 {
 
         Dimension textFieldSize = new Dimension(300, 20);
 
+        //Choose Hotel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        centerPanel.add(new JLabel("Choose hotel to book"), gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(this.cmbxHtls, gbc);
+
 
         //Guest Name
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.WEST;
         centerPanel.add(new JLabel("Enter Guest Name:"), gbc);
 
@@ -68,7 +79,7 @@ public class V_Card5 {
 
         //Room Type Selector
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.fill = GridBagConstraints.NONE;
         centerPanel.add(new JLabel("Choose Room Type"), gbc);
 
@@ -79,7 +90,7 @@ public class V_Card5 {
 
         //Check in Day Selector
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.fill = GridBagConstraints.NONE;
         centerPanel.add(new JLabel("Choose Check in Day"), gbc);
 
@@ -89,7 +100,7 @@ public class V_Card5 {
 
         //Check in Day Selector
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.fill = GridBagConstraints.NONE;
         centerPanel.add(new JLabel("Choose Check out Day"), gbc);
 
@@ -99,7 +110,7 @@ public class V_Card5 {
 
         //Guest Name
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.WEST;
         centerPanel.add(new JLabel("Enter Discount Code (optional):"), gbc);
 
@@ -127,6 +138,8 @@ public class V_Card5 {
         this.cards.add(card5, "Simulate Booking");
     }
 
+    public String getCmbxHtls(){return this.cmbxHtls.getSelectedItem().toString();}
+
     public String getTxtGstNme(){return this.txtGstNme.getText().toString();}
 
     public String getTxtDscntCde(){return this.txtDscntCde.getText().toString();}
@@ -142,7 +155,15 @@ public class V_Card5 {
         this.txtDscntCde.setText("");
         this.txtFdbck.setText("");
         this.cmbxRmTyp.setSelectedIndex(0);
+        this.cmbxHtls.setSelectedIndex(0);
 
+    }
+
+    public void setCmbxHtls(String[] hotels){
+        this.cmbxHtls.removeAllItems();
+        for(String hotel : hotels){
+            this.cmbxHtls.addItem(hotel);
+        }
     }
 
     public void setTxtFdbck(String Fdbck){
