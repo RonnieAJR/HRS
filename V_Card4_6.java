@@ -61,6 +61,7 @@ public class V_Card4_6 {
     public int getCmbxRsrvId(){return (int)this.cmbxRsrvId.getSelectedItem();}
 
     public void setCmbxRsrvId(int[] ids){
+        this.cmbxRsrvId.removeAllItems();
         for(int id : ids)
             this.cmbxRsrvId.addItem(id);
     }
