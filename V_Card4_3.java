@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class V_Card4_3 {
     private JPanel cards;
 
-    private JTextField txtRmtRmov;
+    private JComboBox<String> cmbxRmtRmov;
     private JButton btnRmovRm, btnMngHtlBck;
     private JLabel txtFdbck;
 
@@ -18,7 +18,7 @@ public class V_Card4_3 {
 		header.setFont(new Font("Default", Font.PLAIN, 20));
 		card4_3.add(header, BorderLayout.NORTH);
 
-        this.txtRmtRmov = new JTextField(20);
+        this.cmbxRmtRmov = new JComboBox<>();
 
         this.btnRmovRm = new JButton("Remove");
         this.btnMngHtlBck = new JButton("Back to Manage Hotel");
@@ -42,9 +42,7 @@ public class V_Card4_3 {
 
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        this.txtRmtRmov = new JTextField(20);
-        this.txtRmtRmov.setPreferredSize(textFieldSize);
-        centerPanel.add(this.txtRmtRmov, gbc);
+        centerPanel.add(this.cmbxRmtRmov, gbc);
 
         card4_3.add(centerPanel, BorderLayout.CENTER);
 
@@ -64,11 +62,17 @@ public class V_Card4_3 {
         this.cards.add(card4_3, "Remove Room");
     }
 
-    public String getTxtRmtRmov(){return txtRmtRmov.getName().toString();}
+    public String getCmbxRmtRmov(){return this.cmbxRmtRmov.getSelectedItem().toString();}
 
     public void resetRmovRoom(){
-        this.txtRmtRmov.setText("");
+        this.cmbxRmtRmov.setSelectedIndex(0);
         this.txtFdbck.setText("");
+    }
+
+    public void setCmbxRmtRmov(String[] rooms){
+        this.cmbxRmtRmov.removeAllItems();
+        for(String room : rooms)
+            this.cmbxRmtRmov.addItem(room);
     }
 
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
