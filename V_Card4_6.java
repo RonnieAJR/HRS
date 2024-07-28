@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class V_Card4_6 {
     private JPanel cards;
 
-    private JTextField txtRsrvId;
+    private JComboBox<Integer> cmbxRsrvId;
     private JButton btnRmovRsrv, btnMngHtlBck;
     private JLabel txtFdbck;
 
@@ -18,7 +18,7 @@ public class V_Card4_6 {
 		header.setFont(new Font("Default", Font.PLAIN, 20));
 		card4_6.add(header, BorderLayout.NORTH);
 
-        this.txtRsrvId = new JTextField(10);
+        this.cmbxRsrvId = new JComboBox<>();
 
         this.btnRmovRsrv = new JButton("Remove");
         this.btnMngHtlBck = new JButton("Back to Manage Hotel");
@@ -32,19 +32,14 @@ public class V_Card4_6 {
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        Dimension textFieldSize = new Dimension(300, 20);
-
-        //Remove reservation
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
-        centerPanel.add(new JLabel("Input Reservation ID"), gbc);
+        centerPanel.add(new JLabel("Choose Reservation ID"), gbc);
 
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        this.txtRsrvId = new JTextField(20);
-        this.txtRsrvId.setPreferredSize(textFieldSize);
-        centerPanel.add(this.txtRsrvId, gbc);
+        centerPanel.add(this.cmbxRsrvId, gbc);
 
         card4_6.add(centerPanel, BorderLayout.CENTER);
         
@@ -63,10 +58,15 @@ public class V_Card4_6 {
 
         this.cards.add(card4_6, "Remove Reservation");
     }
-    public String getTxtRsrvId(){return this.txtRsrvId.getText().toString();}
+    public int getCmbxRsrvId(){return (int)this.cmbxRsrvId.getSelectedItem();}
+
+    public void setCmbxRsrvId(int[] ids){
+        for(int id : ids)
+            this.cmbxRsrvId.addItem(id);
+    }
 
     public void resetRmovRsrv(){
-        this.txtRsrvId.setText("");
+        this.cmbxRsrvId.setSelectedIndex(0);
         this.txtFdbck.setText("");
     }
 
