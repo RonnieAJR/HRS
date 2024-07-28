@@ -72,7 +72,7 @@ public class V_Card4_7 {
             this.btnNo.addActionListener(al);
     }
 
-    public void setBtnMngHtlBckListener(ActionListener al){
+    public void setBtnMainBckListener(ActionListener al){
         if(this.btnMainBck.getActionListeners().length == 0)
             this.btnMainBck.addActionListener(al);
     }

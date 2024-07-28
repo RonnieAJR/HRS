@@ -10,6 +10,7 @@ public class V{
 	private V_Card2 card2;
 	private V_Card3 card3;
 	private V_Card4 card4;
+	private V_Card5 card5;
 	
 	//  card 1 main menu
 	private JButton btnCreHtl, btnVieHtl, btnManHtl, btnSimBook;
@@ -277,7 +278,7 @@ public class V{
 		this.card2 = new V_Card2(this.cards);
 		this.card3 = new V_Card3(this.cards);
 		this.card4 = new V_Card4(this.cards);
-		//this.card5 = new V_Card5(this.cards);
+		this.card5 = new V_Card5(this.cards);
 		this.frame.add(cards, BorderLayout.CENTER);
 	}
 	
@@ -310,9 +311,9 @@ public class V{
 		return this.card4;
 	}
 	
-	// public V_Card5 getCard5(){
-		// return this.card5;
-	// }
+	public V_Card5 getCard5(){
+		return this.card5;
+	}
 	
 	
 	// card 1 listeners
