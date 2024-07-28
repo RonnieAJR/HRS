@@ -177,9 +177,9 @@ public class V_Card3_4 {
         return (int) this.cmbxDayPrcPerNyt.getSelectedItem();
     }
 
-    public void setCmbxDayPrcPerNyt(int[] days){
+    public void setCmbxDayPrcPerNyt(Integer[] days){
         this.cmbxDayPrcPerNyt.removeAllItems();
-        for(int day : days)
+        for(Integer day : days)
             this.cmbxDayPrcPerNyt.addItem(day);
     }
 	
@@ -220,6 +220,13 @@ public class V_Card3_4 {
     public void setTxtTtlPrc(double totalPrice){
         this.txtTtlPrc.setText("" + totalPrice);
     }
+	
+	public void setCmbxDayPrcPerNytListener(ItemListener il){
+		if(this.cmbxDayPrcPerNyt.getItemListeners().length != 0)
+			for(ItemListener i : this.cmbxDayPrcPerNyt.getItemListeners())
+				this.cmbxDayPrcPerNyt.removeItemListener(i);
+		this.cmbxDayPrcPerNyt.addItemListener(il);
+	}
 	
 	public void setCmbxRsrvListener(ItemListener il){
 		if(this.cmbxRsrvLst.getItemListeners().length == 0)

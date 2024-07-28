@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashMap;
 
 public class C{
 	private HRS m;
@@ -245,14 +246,40 @@ public class C{
 			public void itemStateChanged(ItemEvent e){
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					Reservation reservation = hotel.findReservation(card3_4.getCmbxRsrvItem());
+					Integer[] days = new Integer[reservationIds.length];
+					int checkIn = reservation.getCheckIn();
+					int checkOut = reservation.getCheckOut();
+					int i, day;
 					
 					card3_4.setTxtResId(reservation.getId());
 					card3_4.setTxtGstNam(reservation.getGuestName());
 					card3_4.setTxtRmNam(reservation.getRoom().getName());
-					card3_4.setTxtChkIn(reservation.getCheckIn());
-					card3_4.setTxtChkOut(reservation.getCheckOut());
-					card3_4.setTxtPrcPrNght(reservation.getRoom().getPrice());
+					card3_4.setTxtChkIn(checkIn);
+					card3_4.setTxtChkOut(checkOut);
 					card3_4.setTxtTtlPrc(reservation.getTotalPrice());
+					
+					day = checkIn;
+					i=0;
+					while(i < checkOut){
+						days[i++] = day++;
+					}
+					
+					card3_4.setCmbxDayPrcPerNyt(days);
+					
+					card3_4.setCmbxDayPrcPerNytListener(new ItemListener(){
+						@Override
+						public void itemStateChanged(ItemEvent e){
+							Room room = reservation.getRoom();
+							HashMap<Integer, Double> dayPriceMod = room.getDayPriceMod();
+							Integer day = Integer.valueOf(card3_4.getCmbxDayItem());
+							double mod = 100;
+							
+							if(dayPriceMod.containsKey(day))
+								mod = dayPriceMod.get(day);
+							
+							card3_4.setTxtPrcPrNght(room.getPrice() * (mod / 100));
+						}
+					});
 				}
 			}
 		});
@@ -314,8 +341,18 @@ public class C{
 		card4.setBtnRmvHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				initCard4_7(card4);
-				v.setCard("Remove Hotel");
+				// initCard4_7(card4);
+				// v.setCard("Remove Hotel");
+				String hotelName = card4.getCmbxHtlsItem();
+				
+				int confirmation = JOptionPane.showConfirmDialog(v.getFrame(), "Are you sure you want to remove hotel " +
+				hotelName + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+				
+				if(confirmation == JOptionPane.YES_OPTION){
+					m.removeHotel(hotelName);
+					// feedback on main menu
+					v.setCard("Main Menu");
+				}
 			}
 		});
 		
