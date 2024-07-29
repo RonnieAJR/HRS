@@ -69,6 +69,7 @@ public class C{
 	
 	public void initCard2(){
 		V_Card2 card = this.v.getCard2();
+		
 		card.setBtnCreHtlTryListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
@@ -333,25 +334,31 @@ public class C{
 		card4.setBtnRmvRsrvListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				initCard4_6(card4);
-				v.setCard("Remove Reservation");
+				Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
+				
+				if(hotel.getReservations().isEmpty())
+					// set fdbck
+				else{
+					initCard4_6(card4);
+					v.setCard("Remove Reservation");
+				}
 			}
 		});
 		
 		card4.setBtnRmvHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// initCard4_7(card4);
-				// v.setCard("Remove Hotel");
 				String hotelName = card4.getCmbxHtlsItem();
 				
 				int confirmation = JOptionPane.showConfirmDialog(v.getFrame(), "Are you sure you want to remove hotel " +
 				hotelName + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-				
+				///////////////////////////////////////////////////// current listeners must be removed before adding new listener
+				System.out.println(confirmation + " == " + JOptionPane.YES_OPTION);
 				if(confirmation == JOptionPane.YES_OPTION){
 					m.removeHotel(hotelName);
 					// feedback on main menu
 					v.setCard("Main Menu");
+					// remove hotel from cmbx
 				}
 			}
 		});
@@ -382,10 +389,13 @@ public class C{
 				}
 				else
 					card4_1.setFdbckRnmHtl("Hotel already exists");
+				
+				// reset textfield
 			}
 		});
 		
 		card4_1.setBtnMngHtlBckListener(goCard("Manage Hotel"));
+		// reset fdbck
 	}
 	
 	public void initCard4_2(V_Card4 card4){
@@ -416,22 +426,21 @@ public class C{
 						}
 						card4_2.setTxtFdbck(actual + " rooms added");
 					}
-					else{
+					else
 						card4_2.setTxtFdbck("Aborting room additions");
-					}
+					// reset add room. cmbx and txtfld
 				}
 			}
 		});
 		
 		card4_2.setBtnMngHtlBckListener(goCard("Manage Hotel"));
+		// reset fdbck
 	}
 	
 	public void initCard4_3(V_Card4 card4){
 		V_Card4_3 card4_3 = card4.getCard4_3();
 		
 		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
-		
-		card4_3.resetRmovRoom();
 		
 		String[] roomNames = hotel.getRoomNames().toArray(new String[hotel.getRooms().size()]);
 		card4_3.setCmbxRmtRmov(roomNames);
@@ -452,12 +461,14 @@ public class C{
 					if(confirmation == JOptionPane.YES_OPTION){
 						if(hotel.removeRoom(roomName))
 							card4_3.setTxtFdbck("Room removed");
+						// rmeove in cmbx
 						else
 							card4_3.setTxtFdbck("Cannot remove a room with reservations");
 					}
 					else
 						card4_3.setTxtFdbck("Aborting room removal");
 				}
+				// reset?
 			}
 		});
 		
@@ -496,8 +507,6 @@ public class C{
 		
 		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
 		
-		card4_5.resetUpdtHtlPrc();
-		
 		card4_5.setBtnUpdtListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
@@ -511,10 +520,12 @@ public class C{
 				}
 				else
 					card4_5.setTxtFdbck("Price cannot be less than 100");
+				// cleart txtfld
 			}
 		});
 		
 		card4_5.setBtnMngHtlBckListener(goCard("Manage Hotel"));
+		// rst fdbck
 	}
 	
 	public void initCard4_6(V_Card4 card4){
@@ -522,7 +533,7 @@ public class C{
 		
 		Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
 		
-		card4_6.resetRmovRsrv();
+		// card4_6.resetRmovRsrv();
 		
 		Integer[] reservationIds = hotel.getReservationIds().toArray(new Integer[hotel.getReservationIds().size()]);
 		card4_6.setCmbxRsrvId(reservationIds);
@@ -535,22 +546,18 @@ public class C{
 				hotel.removeReservation(reservationId);
 				
 				card4_6.setTxtFdbck("Reservation removed");
+				
+				// update cmbx, remove rsrv id
+				// rst cmbx
 			}
 		});
 		
 		card4_6.setBtnMngHtlBckListener(goCard("Manage Hotel"));
-	}
-	
-	public void initCard4_7(V_Card4 card4){
-		V_Card4_7 card4_7 = card4.getCard4_7();
-		//////////////////////////////////////////// what if walang 4.7??? sa card 4 nalang mag remove and show confirmation
-		/////////////////////////////////////////// then aftering removing, go to main menu and set fddbck in main menu
+		// rst fdbck
 	}
 	
 	public void initCard5(){
 		V_Card5 card5 = this.v.getCard5();
-		
-		card5.resetSim();
 		
 		card5.setBtnBook(new ActionListener(){
 			@Override
@@ -570,10 +577,13 @@ public class C{
 				}
 				else
 					card5.setTxtFdbck("Invalid days");
+				
+				// rst txt flds, cmbx
 			}
 		});
 		
 		card5.setBtnMaiMenBck(goCard("Main Menu"));
+		// rst fdbck
 	}
 	
 	public ActionListener goCard(String cardName){

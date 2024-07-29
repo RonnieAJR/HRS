@@ -62,7 +62,7 @@ public class V_Card4_5 {
 
         card4_5.add(feedbackPanel, BorderLayout.SOUTH);
 
-        this.cards.add(card4_5, "Update Hotel Price");
+        this.cards.add(card4_5, "Update Price");
     }
 
     public double getTxtUpdtNew(){return Double.parseDouble(txtUpdtNew.getText());}
