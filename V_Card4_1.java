@@ -68,7 +68,6 @@ public class V_Card4_1 {
 
     public void resetRnmHtl(){
         this.txtnewHtlNm.setText("");
-        this.fdbckRnmHtl.setText("");
     }
 
     public void setFdbckRnmHtl(String fdbck){this.fdbckRnmHtl.setText(fdbck);}

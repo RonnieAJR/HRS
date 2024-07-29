@@ -69,7 +69,6 @@ public class V_Card4_5 {
 
     public void resetUpdtHtlPrc(){
         this.txtUpdtNew.setText("");
-        this.txtFdbck.setText("");
     }
 
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}

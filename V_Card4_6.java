@@ -68,7 +68,6 @@ public class V_Card4_6 {
 
     public void resetRmovRsrv(){
         this.cmbxRsrvId.setSelectedIndex(0);
-        this.txtFdbck.setText("");
     }
 
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}

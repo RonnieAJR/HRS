@@ -88,7 +88,6 @@ public class V_Card4_4 {
     public void resetMdfyPrc(){
 		this.cmbxDay.setSelectedItem(0);
         this.txtPrcMod.setText("");
-        this.txtFdbck.setText("");
     }
 
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}

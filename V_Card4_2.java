@@ -88,7 +88,6 @@ public class V_Card4_2 {
     public void resetAddRm(){
 		this.cmbxRmTyp.setSelectedItem(0);
         this.txtAddRm.setText("");
-        this.txtFdbck.setText("");
     }
 
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}

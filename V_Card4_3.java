@@ -64,7 +64,6 @@ public class V_Card4_3 {
 
     public void resetRmovRoom(){
         this.cmbxRmtRmov.setSelectedIndex(0);
-        this.txtFdbck.setText("");
     }
 
     public void setCmbxRmtRmov(String[] rooms){
