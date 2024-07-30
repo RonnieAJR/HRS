@@ -12,33 +12,38 @@ public class C{
 		this.v = v;
 		V_Card1 card = v.getCard1();
 		
-		card.setBtnCreHtlListener(goCard("Create Hotel"));
+		card.setBtnCreHtlListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				initCard2();
+				v.setCard("Create Hotel");
+				card.setTxtFdbck("");
+			}
+		});
 		
 		card.setBtnVieHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// if(e.getSource() == card.getBtnVieHtl()){
-					if(m.getHotels().isEmpty())
-						card.setTxtFdbck("Hotels not found");
-					else{
-						initCard3();
-						v.setCard("View Hotel");
-					}
-				// }
+				if(m.getHotels().isEmpty())
+					card.setTxtFdbck("Hotels not found");
+				else{
+					initCard3();
+					v.setCard("View Hotel");
+				}
+				card.setTxtFdbck("");
 			}
 		});
 		
 		card.setBtnManHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// if(e.getSource() == card.getBtnManHtl()){
-					if(m.getHotels().isEmpty())
-						card.setTxtFdbck("Hotels not found");
-					else{
-						initCard4();
-						v.setCard("Manage Hotel");
-					}
-				// }
+				if(m.getHotels().isEmpty())
+					card.setTxtFdbck("Hotels not found");
+				else{
+					initCard4();
+					v.setCard("Manage Hotel");
+				}
+				card.setTxtFdbck("");
 			}
 		});
 		
@@ -51,10 +56,9 @@ public class C{
 					initCard5();
 					v.setCard("Simulate Booking");
 				}
+				card.setTxtFdbck("");
 			}
 		});
-		
-		this.initCard2();
 	}
 	
 	public void initCard2(){
@@ -63,29 +67,25 @@ public class C{
 		card.setBtnCreHtlTryListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// if(e.getSource() == card.getBtnCreHtlTry()){
-					String name = card.getTxtHtlName();
-					int capacity = card.getCmbxCapItem();
-					double price = card.getTxtPrice();
-					
-					if(price < 100){
-						System.out.println("Invalid price input\n");
-						card.setFdbckCreHtl("Invalid price input");
-					}
-					else if(m.createHotel(name, capacity, price)){
-						System.out.println("Hotel created\n");
-						card.setFdbckCreHtl("Hotel created");
-						v.getCard3().addCmbxHtlsItem(name);
-						v.getCard4().addCmbxHtlsItem(name);
-						v.getCard5().addCmbxHtlsItem(name);
-					}
-					else{
-						System.out.println("Hotel already exists\n");
-						card.setFdbckCreHtl("Hotel already exists");
-					}
-					
-					card.resetCreHtl();
-				// }
+				String name = card.getTxtHtlName();
+				int capacity = card.getCmbxCapItem();
+				double price = card.getTxtPrice();
+				
+				if(price < 100){
+					System.out.println("Invalid price input\n");
+					card.setFdbckCreHtl("Invalid price input");
+				}
+				else if(m.createHotel(name, capacity, price)){
+					card.setFdbckCreHtl("Hotel created");
+					v.getCard3().addCmbxHtlsItem(name);
+					v.getCard4().addCmbxHtlsItem(name);
+					v.getCard5().addCmbxHtlsItem(name);
+				}
+				else{
+					System.out.println("Hotel already exists\n");
+					card.setFdbckCreHtl("Hotel already exists");
+				}
+				card.resetCreHtl();
 			}
 		});
 		
@@ -102,56 +102,50 @@ public class C{
 	public void initCard3(){
 		V_Card3 card3 = this.v.getCard3();
 		
-		// reset cmbx
+		card3.resetViewHtl();
+		card3.setTxtFdbck("");
 		
 		card3.setBtnVieHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// if(e.getSource() == card3.getBtnVieHtl()){
-					initCard3_1(card3);
-					v.setCard("View Hotel Info");
-				// }
+				card3.setTxtFdbck("");
+				initCard3_1(card3);
+				v.setCard("View Hotel Info");
 			}
 		});
 		
 		card3.setBtnVieDayListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// if(e.getSource() == card3.getBtnVieDay()){
-					initCard3_2(card3);
-					v.setCard("View Day Availability");
-				// }
+				card3.setTxtFdbck("");
+				initCard3_2(card3);
+				v.setCard("View Day Availability");
 			}
 		});
 		
 		card3.setBtnVieRoomListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// if(e.getSource() == card3.getBtnVieRoom()){
-					initCard3_3(card3);
-					v.setCard("View Room");
-				// }
+				card3.setTxtFdbck("");
+				initCard3_3(card3);
+				v.setCard("View Room");
 			}
 		});
 		
 		card3.setBtnVieRsrvListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				// if(e.getSource() == card3.getBtnVieRsrv()){
-					System.out.println("2==" + e.paramString());
-					Hotel hotel = m.findHotel(card3.getCmbxHtlsItem());
-					if(hotel.getReservations().isEmpty())
-						card3.setTxtFdbck("Reservations not found");
-					else{
-						initCard3_4(card3);
-						v.setCard("View Reservation");
-					}
-				// }
+				Hotel hotel = m.findHotel(card3.getCmbxHtlsItem());
+				if(hotel.getReservations().isEmpty())
+					card3.setTxtFdbck("Reservations not found");
+				else{
+					initCard3_4(card3);
+					v.setCard("View Reservation");
+				}
 			}
 		});
 		
 		card3.setBtnMaiMenBckListener(goCard("Main Menu"));
-		// reset hotel? on back to main menu only, then add e.getSource == button
 	}
 	
 	public void initCard3_1(V_Card3 card3){
@@ -213,7 +207,7 @@ public class C{
 		Integer[] availableDays = room.getAvailable().toArray(new Integer[room.getAvailable().size()]);
 		Integer[] reservedDays = room.getReserved().toArray(new Integer[room.getReserved().size()]);
 		
-		card3_3.setRoomName(room.getName()); // add room type?
+		card3_3.setRoomName(room.getName());
 		card3_3.setRoomFloor(room.getName().charAt(1));
 		card3_3.setPricePerNight(room.getPrice());
 		card3_3.setCmbxDayAvail(availableDays);
@@ -230,7 +224,7 @@ public class C{
 					Integer[] availableDays = room.getAvailable().toArray(new Integer[room.getAvailable().size()]);
 					Integer[] reservedDays = room.getReserved().toArray(new Integer[room.getReserved().size()]);
 					
-					card3_3.setRoomName(room.getName()); // add room type?
+					card3_3.setRoomName(room.getName());
 					card3_3.setRoomFloor(room.getName().charAt(1));
 					card3_3.setPricePerNight(room.getPrice());
 					card3_3.setCmbxDayAvail(availableDays);
@@ -414,23 +408,24 @@ public class C{
 				
 				int confirmation = JOptionPane.showConfirmDialog(v.getFrame(), "Are you sure you want to remove hotel " +
 				hotelName + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-				///////////////////////////////////////////////////// current listeners must be removed before adding new listener
-				System.out.println(confirmation + " == " + JOptionPane.YES_OPTION);
+				
 				if(confirmation == JOptionPane.YES_OPTION){
 					m.removeHotel(hotelName);
 					v.getCard3().removeCmbxHtlsItem(hotelName);
 					card4.removeCmbxHtlsItem(hotelName);
 					v.getCard5().removeCmbxHtlsItem(hotelName);
-					v.getCard1().setTxtFdbck("Hotel " + hotelName + " removed");
-					v.setCard("Main Menu");
-					// remove hotel from cmbx
+					
+					if(m.getHotels().isEmpty()){
+						v.getCard1().setTxtFdbck("Hotel " + hotelName + " removed");
+						v.setCard("Main Menu");
+					}
+					else
+						card4.setTxtFdbck("Hotel " + hotelName + " removed");
 				}
-				card4.setTxtFdbck("");
 			}
 		});
 		
 		card4.setBtnMaiMenBckListener(goCard("Main Menu"));
-		// reset fdbck
 	}
 	
 	public void initCard4_1(V_Card4 card4){
@@ -528,11 +523,11 @@ public class C{
 					
 					if(confirmation == JOptionPane.YES_OPTION){
 						if(hotel.removeRoom(roomName)){
-							//////////////////////////////// remove in selection
+							card4_3.removeItem(roomName);
 							card4_3.setTxtFdbck("Room removed");
 						}
 						else
-							card4_3.setTxtFdbck("Cannot remove a room with reservations");
+							card4_3.setTxtFdbck("Cannot remove room with reservations");
 					}
 					else
 						card4_3.setTxtFdbck("Aborting room removal");
@@ -561,7 +556,7 @@ public class C{
 					if(hotel.modDayPrice(day, mod))
 						card4_4.setTxtFdbck("Day price modified");
 					else
-						card4_4.setTxtFdbck("Cannot modify day with reservation");
+						card4_4.setTxtFdbck("Cannot modify day with reservations");
 				}
 				else
 					card4_4.setTxtFdbck("Modification can only be 50%-150% of the base price");
@@ -589,7 +584,7 @@ public class C{
 					if(hotel.updatePrice(newPrice))
 						card4_5.setTxtFdbck("Price updated");
 					else
-						card4_5.setTxtFdbck("Cannot update the price of a hotel with reservations");
+						card4_5.setTxtFdbck("Cannot update the price of hotel with reservations");
 				}
 				else
 					card4_5.setTxtFdbck("Price cannot be less than 100");
@@ -653,7 +648,7 @@ public class C{
 					if(hotel.createReservation(guestName, checkIn, checkOut, roomType, discountCode))
 						card5.setTxtFdbck("Reservation created");
 					else
-						card5.setTxtFdbck("No room available");
+						card5.setTxtFdbck("No rooms available");
 				}
 				else
 					card5.setTxtFdbck("Invalid days");
