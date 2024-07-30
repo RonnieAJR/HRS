@@ -294,14 +294,15 @@ public class Hotel
 	{
 		ArrayList<Integer> targetDays = new ArrayList<Integer>();
 		HashSet<Integer> combinedDays = new HashSet<Integer>();
+		String roomExe = roomType.substring(0, 3).toUpperCase();
 		int discountCode = findDiscount(DiscountInput);
 		int size = this.reservations.size();
 		Room room = this.rooms.get(0);
 		boolean available = false;
+		boolean roomMatch = false;
 		int day = checkIn;
 		int sizeSum;
 		int id;
-		
 		// convert the target days to be reserved into a list
 		while(day < checkOut)
 			targetDays.add(day++);
@@ -310,7 +311,18 @@ public class Hotel
 		for(Room r : this.rooms)
 		{
 			// check if the roomtype entered and roomtype of current room matches before doing all this
+			roomMatch = false;
 			
+			if(r.getName().length() == 4)
+			{
+				if(roomExe.equals("STA"))
+					roomMatch = true;
+			}
+			else if(r.getName().substring(5).equals(roomExe)) // is this correct or am i high
+				roomMatch = true;
+				
+			if(roomMatch)
+			{
 				// gets the combined size of target days and days reserved
 				sizeSum = targetDays.size() + r.getReserved().size();
 				
@@ -329,6 +341,7 @@ public class Hotel
 				
 				// resets the hash set
 				combinedDays.clear();
+			}
 		}
 		
 		if(!available)

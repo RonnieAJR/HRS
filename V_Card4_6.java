@@ -65,6 +65,10 @@ public class V_Card4_6 {
         for(Integer id : ids)
             this.cmbxRsrvId.addItem(id);
     }
+	
+	public void removeCmbxItem(int reservationId){
+		this.cmbxRsrvId.remove(reservationId);
+	}
 
     public void resetRmovRsrv(){
         this.cmbxRsrvId.setSelectedIndex(0);

@@ -543,7 +543,6 @@ public class C{
 		
 		card4_6.setTxtFdbck("");
 		
-		// what if add and remove lang to?/////////////////////////////////////////////////////////////////////
 		Integer[] reservationIds = hotel.getReservationIds().toArray(new Integer[hotel.getReservationIds().size()]);
 		card4_6.setCmbxRsrvId(reservationIds);
 		
@@ -555,13 +554,12 @@ public class C{
 				hotel.removeReservation(reservationId);
 				
 				card4_6.setTxtFdbck("Reservation removed");
+				card4_6.removeCmbxItem(reservationId);
 				
 				if(hotel.getReservations().isEmpty())
 					v.setCard("Manage Hotel");
 				else
 					card4_6.resetRmovRsrv();
-				// update cmbx, remove rsrv id
-				// rst cmbx
 			}
 		});
 		
@@ -586,7 +584,6 @@ public class C{
 				if(checkIn < checkOut){
 					if(hotel.createReservation(guestName, checkIn, checkOut, roomType, discountCode))
 						card5.setTxtFdbck("Reservation created");
-					// add to rsrv cmbxs
 					else
 						card5.setTxtFdbck("No room available");
 				}
