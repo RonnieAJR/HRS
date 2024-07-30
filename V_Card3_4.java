@@ -48,7 +48,6 @@ public class V_Card3_4 {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.weightx = 1.0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
 
 
         //Room Selector

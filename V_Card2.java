@@ -119,10 +119,12 @@ public class V_Card2{
 	}
 	
 	public void setBtnCreHtlTryListener(ActionListener al){
-		this.btnCreHtlTry.addActionListener(al);
+        if(this.btnCreHtlTry.getActionListeners().length == 0)
+            this.btnCreHtlTry.addActionListener(al);
 	}
 	
 	public void setBtnMaiMenBckListener(ActionListener al){
-		this.btnMaiMenBck.addActionListener(al);
+        if(this.btnMaiMenBck.getActionListeners().length == 0)
+		    this.btnMaiMenBck.addActionListener(al);
 	}
 }

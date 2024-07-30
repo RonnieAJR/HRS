@@ -7,6 +7,7 @@ public class V_Card1{
 	
 	//  card 1 main menu
 	private JButton btnCreHtl, btnVieHtl, btnManHtl, btnSimBook;
+    private JLabel txtFdbck;
 	
 	public V_Card1(JPanel cards) {
         this.cards = cards;
@@ -15,7 +16,11 @@ public class V_Card1{
 
         // Main Menu Header
         JLabel header = new JLabel("Main Menu", JLabel.CENTER);
+        header.setFont(new Font("Default", Font.PLAIN, 20));
         card1.add(header, BorderLayout.NORTH);
+
+        //fdback label
+        this.txtFdbck = new JLabel();
 
         // Buttons Panel
         JPanel buttonsPanel = new JPanel();
@@ -49,6 +54,12 @@ public class V_Card1{
         buttonsPanel.add(this.btnSimBook);
         buttonsPanel.add(Box.createVerticalStrut(10)); // Add space after the last button
 
+        //feedback panel
+        JPanel feedbackPanel = new JPanel(new BorderLayout());
+        this.txtFdbck.setHorizontalAlignment(JLabel.CENTER);
+        feedbackPanel.add(this.txtFdbck, BorderLayout.CENTER);
+        buttonsPanel.add(feedbackPanel, BorderLayout.CENTER);
+
         card1.add(buttonsPanel, BorderLayout.CENTER);
 
         this.cards.add(card1, "Main Menu");
@@ -69,20 +80,28 @@ public class V_Card1{
 	public JButton getBtnSimBook(){
 		return this.btnSimBook;
 	}
+
+    public void setTxtFdbck(String feedback){
+        this.txtFdbck.setText(feedback);
+    }
 	
 	public void setBtnCreHtlListener(ActionListener al){
-		this.btnCreHtl.addActionListener(al);
+        if(this.btnCreHtl.getActionListeners().length == 0)
+		    this.btnCreHtl.addActionListener(al);
 	}
 	
 	public void setBtnVieHtlListener(ActionListener al){
-		this.btnVieHtl.addActionListener(al);
+        if(this.btnVieHtl.getActionListeners().length == 0)
+		    this.btnVieHtl.addActionListener(al);
 	}
 	
 	public void setBtnManHtlListener(ActionListener al){
-		this.btnManHtl.addActionListener(al);
+		if(this.btnManHtl.getActionListeners().length == 0)
+            this.btnManHtl.addActionListener(al);
 	}
 	
 	public void setBtnSimBookListener(ActionListener al){
-		this.btnSimBook.addActionListener(al);
+        if(this.btnSimBook.getActionListeners().length == 0)
+		    this.btnSimBook.addActionListener(al);
 	}
 }

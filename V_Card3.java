@@ -5,6 +5,7 @@ import java.awt.*;
 public class V_Card3{
 	private JPanel cards;
 	private JComboBox<String> cmbxHtls;
+	private JLabel txtFdbck;
 	private V_Card3_1 card3_1;
 	private V_Card3_2 card3_2;
 	private V_Card3_3 card3_3;
@@ -36,9 +37,9 @@ public class V_Card3{
 		topPanel.add(hotelLabel);
 		
 		this.cmbxHtls = new JComboBox<>();
-		this.cmbxHtls.setMaximumSize(new Dimension(100, 20));
+		this.cmbxHtls.setMaximumSize(new Dimension(100, 25));
 		topPanel.add(this.cmbxHtls);
-		mainPanel.add(Box.createVerticalStrut(10));
+		mainPanel.add(Box.createVerticalStrut(15));
 		mainPanel.add(topPanel);
 	
 		// Buttons Panel
@@ -74,6 +75,13 @@ public class V_Card3{
 		buttonsPanel.add(this.btnVieRsrv);
 		buttonsPanel.add(Box.createVerticalStrut(2)); // Reduced vertical strut
 		buttonsPanel.add(this.btnMaiMenBck);
+		buttonsPanel.add(Box.createVerticalStrut(10));
+
+		JPanel feedbackPanel = new JPanel(new BorderLayout());
+		this.txtFdbck = new JLabel();
+		this.txtFdbck.setHorizontalAlignment(JLabel.CENTER);
+		feedbackPanel.add(this.txtFdbck, BorderLayout.CENTER);
+		buttonsPanel.add(feedbackPanel, BorderLayout.CENTER);
 	
 		mainPanel.add(buttonsPanel);
 	
@@ -115,6 +123,10 @@ public class V_Card3{
 	public JButton getBtnVieRsrv(){
 		return this.btnVieRsrv;
 	}
+
+	public void resetViewHtl(){
+		this.cmbxHtls.setSelectedIndex(0);
+	}
 	
 	public String getCmbxHtlsItem(){
 		return (String) this.cmbxHtls.getSelectedItem();
@@ -126,6 +138,10 @@ public class V_Card3{
 	
 	public void removeCmbxHtlsItem(String hotelName){
 		this.cmbxHtls.removeItem(hotelName);
+	}
+
+	public void setTxtFdbck(String feedback){
+		this.txtFdbck.setText(feedback);
 	}
 		
 	public void setBtnVieHtlListener(ActionListener al){
@@ -152,4 +168,5 @@ public class V_Card3{
 		if(this.btnMaiMenBck.getActionListeners().length == 0)
 			this.btnMaiMenBck.addActionListener(al);
 	}
+
 }

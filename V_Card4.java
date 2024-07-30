@@ -9,7 +9,7 @@ public class V_Card4{
 	
 	private JButton btnRnmHtl, btnAddRoom, btnRmvRoom, btnModPrice, btnUpdPrice, btnRmvRsrv, btnRmvHtl, btnMaiMenBck;
 	private JComboBox<String> cmbxHtls;
-
+	private JLabel txtFdbck;
 	private V_Card4_1 card4_1;
 	private V_Card4_2 card4_2;
 	private V_Card4_3 card4_3;
@@ -50,12 +50,13 @@ public class V_Card4{
     this.btnRmvHtl = new JButton("Remove Hotel");
     this.btnMaiMenBck = new JButton("Back to Main Menu");
 
+	this.txtFdbck = new JLabel();
+
     // Central panel for hotel selector and buttons
     JPanel centerPanel = new JPanel(new GridBagLayout());
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.insets = new Insets(5, 5, 5, 5);
     gbc.weightx = 1.0;
-    gbc.fill = GridBagConstraints.HORIZONTAL;
 
     // Hotel Selector
     gbc.gridx = 0;
@@ -70,7 +71,7 @@ public class V_Card4{
     // Buttons Panel
     JPanel buttonsPanel = new JPanel();
     buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
-    Dimension buttonSize = new Dimension(180, 30);
+    Dimension buttonSize = new Dimension(150, 30);
 
     JButton[] buttons = {
         this.btnRnmHtl, this.btnAddRoom, this.btnRmvRoom, 
@@ -89,12 +90,19 @@ public class V_Card4{
     gbc.gridy = 1;
     gbc.gridwidth = 2;
     gbc.fill = GridBagConstraints.HORIZONTAL;
+
+	buttonsPanel.add(Box.createVerticalStrut(10));
+
+	JPanel feedbackPanel = new JPanel(new BorderLayout());
+	this.txtFdbck.setHorizontalAlignment(JLabel.CENTER);
+	feedbackPanel.add(this.txtFdbck, BorderLayout.CENTER);
+	buttonsPanel.add(feedbackPanel, BorderLayout.CENTER);
     centerPanel.add(buttonsPanel, gbc);
 
 	card4.add(centerPanel, BorderLayout.CENTER);
 		
 		// init cards 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7 here or in new methods and call here
-		this.card4_1 = new V_Card4_1(cards);	
+		this.card4_1 = new V_Card4_1(cards);
 		this.card4_2 = new V_Card4_2(cards);
 		this.card4_3 = new V_Card4_3(cards);
 		this.card4_4 = new V_Card4_4(cards);
@@ -152,35 +160,48 @@ public class V_Card4{
 		this.cmbxHtls.removeItem(hotelName);
 	}
 
+	public void setTxtFdbck(String feedback){
+		this.txtFdbck.setText(feedback);
+	}
+
 	public void setBtnRnmHtlListener(ActionListener al){
-		this.btnRnmHtl.addActionListener(al);
+		if(this.btnRnmHtl.getActionListeners().length == 0)
+			this.btnRnmHtl.addActionListener(al);
 	}
 	
 	public void setBtnAddRoomListener(ActionListener al){
-		this.btnAddRoom.addActionListener(al);
+		if(this.btnAddRoom.getActionListeners().length == 0)
+			this.btnAddRoom.addActionListener(al);
 	}
 	
 	public void setBtnRmvRoomListener(ActionListener al){
-		this.btnRmvRoom.addActionListener(al);
+		if(this.btnRmvRoom.getActionListeners().length == 0)
+			this.btnRmvRoom.addActionListener(al);
 	}
 	
 	public void setBtnModPriceListener(ActionListener al){
-		this.btnModPrice.addActionListener(al);
+		if(this.btnModPrice.getActionListeners().length == 0)
+			this.btnModPrice.addActionListener(al);
 	}
 	
 	public void setBtnUpdPriceListener(ActionListener al){
-		this.btnUpdPrice.addActionListener(al);
+		if(this.btnUpdPrice.getActionListeners().length == 0)
+			this.btnUpdPrice.addActionListener(al);
 	}
 	
 	public void setBtnRmvRsrvListener(ActionListener al){
-		this.btnRmvRsrv.addActionListener(al);
+		if(this.btnRmvRsrv.getActionListeners().length == 0)
+			this.btnRmvRsrv.addActionListener(al);
 	}
 	
 	public void setBtnRmvHtlListener(ActionListener al){
-		this.btnRmvHtl.addActionListener(al);
+		if(this.btnRmvHtl.getActionListeners().length == 0)
+			this.btnRmvHtl.addActionListener(al);
 	}
 	
 	public void setBtnMaiMenBckListener(ActionListener al){
-		this.btnMaiMenBck.addActionListener(al);
+		if(this.btnMaiMenBck.getActionListeners().length == 0)
+			this.btnMaiMenBck.addActionListener(al);
 	}
+
 }

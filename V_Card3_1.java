@@ -106,6 +106,7 @@ public class V_Card3_1 {
     }
 	
 	public void setBtnVieHtlBckListener(ActionListener al){
-		this.btnVieHtlBck.addActionListener(al);
+        if(this.btnVieHtlBck.getActionListeners().length == 0)
+		    this.btnVieHtlBck.addActionListener(al);
 	}
 }
