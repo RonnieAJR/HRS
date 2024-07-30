@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card4 class is the card of the view which contains the manage hotel menu.
+ */
 public class V_Card5 {
     private JPanel cards;
 
@@ -11,6 +14,9 @@ public class V_Card5 {
     private JButton btnApplDisc, btnBook, btnMaiMenBck;
     private JLabel txtFdbck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card5(JPanel cards){
         this.cards = cards;
         JPanel card5 = new JPanel(new BorderLayout());
@@ -138,18 +144,45 @@ public class V_Card5 {
         this.cards.add(card5, "Simulate Booking");
     }
 
+	/**
+	 * Returns the selected hotel.
+	 * @return the selected hotel
+	 */
     public String getCmbxHtls(){return this.cmbxHtls.getSelectedItem().toString();}
 
+	/**
+	 * Returns the guest name.
+	 * @return the guest name
+	 */
     public String getTxtGstNme(){return this.txtGstNme.getText().toString();}
 
+	/**
+	 * Returns the discount code.
+	 * @return the discount code
+	 */
     public String getTxtDscntCde(){return this.txtDscntCde.getText().toString();}
 
+	/**
+	 * Returns the check in.
+	 * @return the check in
+	 */
     public int getCmbxChkInItem(){return (int) this.cmbxChkIn.getSelectedItem();}
 
+	/**
+	 * Returns the check out.
+	 * @return the check out
+	 */
     public int getCmbxChkOutItem(){return (int) this.cmbxChkOut.getSelectedItem();}
 
+	/**
+	 * Returns the room type.
+	 * @return the room type
+	 */
     public String getCmbxRmItem(){return this.cmbxRmTyp.getSelectedItem().toString();}
 
+	/**
+	 * Resets the input made to the default value.
+	 */
     public void resetSim(){
         this.txtGstNme.setText("");
         this.txtDscntCde.setText("");
@@ -166,14 +199,26 @@ public class V_Card5 {
         }
     }
 
+	/**
+	 * Adds a hotel to the selection.
+	 * @param hotelName the hotel to be added
+	 */
     public void addCmbxHtlsItem(String hotelName){
 		this.cmbxHtls.addItem(hotelName);
 	}
 
+	/**
+	 * Removes a hotel to the selection.
+	 * @param hotelName the hotel to be removed
+	 */
     public void removeCmbxHtlsItem(String hotelName){
 		this.cmbxHtls.removeItem(hotelName);
 	}
 
+	/**
+	 * Sets the feedback text.
+	 * @param feedback the feedback string
+	 */
     public void setTxtFdbck(String Fdbck){
         this.txtFdbck.setText(Fdbck);
     }
@@ -183,11 +228,19 @@ public class V_Card5 {
             this.btnApplDisc.addActionListener(al);
     }
 
+	/**
+	 * Sets the action listener for the book reservation button.
+	 * @param al the action listener
+	 */
     public void setBtnBook(ActionListener al){
         if(this.btnBook.getActionListeners().length == 0)
             this.btnBook.addActionListener(al);
     }
 
+	/**
+	 * Sets the action listener for the main menu button.
+	 * @param al the action listener
+	 */
     public void setBtnMaiMenBck(ActionListener al){
         if(this.btnMaiMenBck.getActionListeners().length == 0)
             this.btnMaiMenBck.addActionListener(al);

@@ -2,10 +2,18 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.HashMap;
 
+/**
+ * The HRSController class controls both HRSModel and HRSView, providing means for the two classes to communicate.
+ */
 public class C{
 	private HRS m;
 	private V v;
 	
+	/**
+	 * Constructs the controller, assigning model and view parameters as its own attributes.
+	 * @param v the view
+	 * @param m the model
+	 */
 	public C(V v, HRS m){
 		this.m = m;
 		this.v = v;
@@ -64,6 +72,9 @@ public class C{
 		});
 	}
 	
+	/**
+	 * Initializes the card2 of the view according to the model.
+	 */
 	public void initCard2(){
 		V_Card2 card = this.v.getCard2();
 		
@@ -107,6 +118,9 @@ public class C{
 		});
 	}
 	
+	/**
+	 * Initializes the card3 of the view according to the model.
+	 */
 	public void initCard3(){
 		V_Card3 card3 = this.v.getCard3();
 		
@@ -161,6 +175,9 @@ public class C{
 		card3.setBtnMaiMenBckListener(goCard("Main Menu"));
 	}
 	
+	/**
+	 * Initializes the card3_1 of the view according to the model.
+	 */
 	public void initCard3_1(V_Card3 card3){
 		V_Card3_1 card3_1 = card3.getCard3_1();
 		
@@ -176,6 +193,9 @@ public class C{
 		card3_1.setBtnVieHtlBckListener(goCard("View Hotel"));
 	}
 	
+	/**
+	 * Initializes the card3_2 of the view according to the model.
+	 */
 	public void initCard3_2(V_Card3 card3){
 		V_Card3_2 card3_2 = card3.getCard3_2();
 		
@@ -220,6 +240,9 @@ public class C{
 		card3_2.setBtnVieHtlBckListener(goCard("View Hotel"));
 	}
 	
+	/**
+	 * Initializes the card3_3 of the view according to the model.
+	 */
 	public void initCard3_3(V_Card3 card3){
 		V_Card3_3 card3_3 = card3.getCard3_3();
 		
@@ -271,6 +294,9 @@ public class C{
 		card3_3.setBtnVieHtlBckListener(goCard("View Hotel"));
 	}
 	
+	/**
+	 * Initializes the card3_4 of the view according to the model.
+	 */
 	public void initCard3_4(V_Card3 card3){
 		V_Card3_4 card3_4 = card3.getCard3_4();
 		
@@ -386,6 +412,9 @@ public class C{
 		card3_4.setBtnVieHtlBckListener(goCard("View Hotel"));
 	}
 	
+	/**
+	 * Initializes the card4 of the view according to the model.
+	 */
 	public void initCard4(){
 		V_Card4 card4 = this.v.getCard4();
 		
@@ -492,6 +521,9 @@ public class C{
 		card4.setBtnMaiMenBckListener(goCard("Main Menu"));
 	}
 	
+	/**
+	 * Initializes the card4_1 of the view according to the model.
+	 */
 	public void initCard4_1(V_Card4 card4){
 		V_Card4_1 card4_1 = card4.getCard4_1();
 		
@@ -529,6 +561,9 @@ public class C{
 		card4_1.setBtnMngHtlBckListener(goCard("Manage Hotel"));
 	}
 	
+	/**
+	 * Initializes the card4_2 of the view according to the model.
+	 */
 	public void initCard4_2(V_Card4 card4){
 		V_Card4_2 card4_2 = card4.getCard4_2();
 		
@@ -574,6 +609,9 @@ public class C{
 		card4_2.setBtnMngHtlBckListener(goCard("Manage Hotel"));
 	}
 	
+	/**
+	 * Initializes the card4_3 of the view according to the model.
+	 */
 	public void initCard4_3(V_Card4 card4){
 		V_Card4_3 card4_3 = card4.getCard4_3();
 		
@@ -623,6 +661,9 @@ public class C{
 		card4_3.setBtnMngHtlBckListener(goCard("Manage Hotel"));
 	}
 	
+	/**
+	 * Initializes the card4_4 of the view according to the model.
+	 */
 	public void initCard4_4(V_Card4 card4){
 		V_Card4_4 card4_4 = card4.getCard4_4();
 		
@@ -658,6 +699,9 @@ public class C{
 		card4_4.setBtnMngHtlBckListener(goCard("Manage Hotel"));
 	}
 	
+	/**
+	 * Initializes the card4_5 of the view according to the model.
+	 */
 	public void initCard4_5(V_Card4 card4){
 		V_Card4_5 card4_5 = card4.getCard4_5();
 		
@@ -692,6 +736,9 @@ public class C{
 		card4_5.setBtnMngHtlBckListener(goCard("Manage Hotel"));
 	}
 	
+	/**
+	 * Initializes the card4_6 of the view according to the model.
+	 */
 	public void initCard4_6(V_Card4 card4){
 		V_Card4_6 card4_6 = card4.getCard4_6();
 		
@@ -732,6 +779,9 @@ public class C{
 		card4_6.setBtnMngHtlBckListener(goCard("Manage Hotel"));
 	}
 	
+	/**
+	 * Initializes the card5 of the view according to the model.
+	 */
 	public void initCard5(){
 		V_Card5 card5 = this.v.getCard5();
 		
@@ -768,6 +818,11 @@ public class C{
 		card5.setBtnMaiMenBck(goCard("Main Menu"));
 	}
 	
+	/**
+	 * Returns an action listener that sets the card visible.
+	 * @param cardName the name of the card to be made visible
+	 * @return the action listener that sets the card visible
+	 */
 	public ActionListener goCard(String cardName){
 		ActionListener al = new ActionListener(){
 			@Override
@@ -779,6 +834,9 @@ public class C{
 		return al;
 	}
 	
+	/**
+	 * Initializes the model, view, and the controller.
+	 */
 	public static void main(String[] args){
 		// creates view and model
 		new C(new V(), new HRS());

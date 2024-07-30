@@ -2,13 +2,17 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
+/**
+ * V_Card1 class is the card of the view which contains the main menu.
+ */
 public class V_Card1{
 	private JPanel cards;
-	
-	//  card 1 main menu
 	private JButton btnCreHtl, btnVieHtl, btnManHtl, btnSimBook;
     private JLabel txtFdbck;
 	
+	/**
+	 * Initializes all the components of the card.
+	 */
 	public V_Card1(JPanel cards) {
         this.cards = cards;
 
@@ -65,6 +69,10 @@ public class V_Card1{
         this.cards.add(card1, "Main Menu");
     }
 	
+	/**
+	 * Returns the create hotel button.
+	 * @return the create hotel button
+	 */
 	public JButton getBtnCretl(){
 		return this.btnCreHtl;
 	}
@@ -81,25 +89,45 @@ public class V_Card1{
 		return this.btnSimBook;
 	}
 
+	/**
+	 * Sets the feedback text.
+	 * @param feedback the feedback string
+	 */
     public void setTxtFdbck(String feedback){
         this.txtFdbck.setText(feedback);
     }
 	
+	/**
+	 * Sets the action listener for the create hotel button.
+	 * @param al the action listener
+	 */
 	public void setBtnCreHtlListener(ActionListener al){
         if(this.btnCreHtl.getActionListeners().length == 0)
 		    this.btnCreHtl.addActionListener(al);
 	}
 	
+	/**
+	 * Sets the action listener for the view hotel button.
+	 * @param al the action listener
+	 */
 	public void setBtnVieHtlListener(ActionListener al){
         if(this.btnVieHtl.getActionListeners().length == 0)
 		    this.btnVieHtl.addActionListener(al);
 	}
 	
+	/**
+	 * Sets the action listener for the manage hotel button.
+	 * @param al the action listener
+	 */
 	public void setBtnManHtlListener(ActionListener al){
 		if(this.btnManHtl.getActionListeners().length == 0)
             this.btnManHtl.addActionListener(al);
 	}
 	
+	/**
+	 * Sets the action listener for the simulate booking button.
+	 * @param al the action listener
+	 */
 	public void setBtnSimBookListener(ActionListener al){
         if(this.btnSimBook.getActionListeners().length == 0)
 		    this.btnSimBook.addActionListener(al);

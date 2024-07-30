@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
+/**
+ * V_Card2 class is the card of the view which contains the create hotel menu.
+ */
 public class V_Card2{
 	private JPanel cards;
 	
@@ -10,6 +13,9 @@ public class V_Card2{
 	private JButton btnCreHtlTry, btnMaiMenBck;
 	private JLabel fdbckCreHtl;
 	
+	/**
+	 * Initializes all the components of the card.
+	 */
 	public V_Card2(JPanel cards) {
         this.cards = cards;
 
@@ -87,15 +93,26 @@ public class V_Card2{
         this.cards.add(card2, "Create Hotel");
     }
 	
-	// card 2 listeners and getters and setters
+	/**
+	 * Returns the hotel name entered.
+	 * @return the hotel name entered
+	 */
 	public String getTxtHtlName(){
 		return this.txtHtlName.getText().toString();
 	}
 	
+	/**
+	 * Returns the capacity selected.
+	 * @return the capacity selected
+	 */
 	public int getCmbxCapItem(){
 		return (int) this.cmbxCap.getSelectedItem();
 	}
 	
+	/**
+	 * Returns the price entered.
+	 * @return the price entered
+	 */
 	public double getTxtPrice(){
 		return Double.parseDouble(this.txtPrice.getText());
 	}
@@ -104,13 +121,20 @@ public class V_Card2{
 		return this.btnCreHtlTry;
 	}
 	
+	/**
+	 * Sets the feedback text.
+	 * @param fdbck the feedback string
+	 */
 	public void setFdbckCreHtl(String fdbck){
 		this.fdbckCreHtl.setText(fdbck);
 	}
 	
+	/**
+	 * Resets the input made to default value.
+	 */
 	public void resetCreHtl(){
 		this.txtHtlName.setText("");
-		this.txtPrice.setText("");
+		this.txtPrice.setText("1299.00");
 		this.cmbxCap.setSelectedIndex(0);
 	}
 	
@@ -118,11 +142,19 @@ public class V_Card2{
 		this.fdbckCreHtl.setText("");
 	}
 	
+	/**
+	 * Sets the action listener for the create hotel button.
+	 * @param al the action listener
+	 */
 	public void setBtnCreHtlTryListener(ActionListener al){
         if(this.btnCreHtlTry.getActionListeners().length == 0)
             this.btnCreHtlTry.addActionListener(al);
 	}
 	
+	/**
+	 * Sets the action listener for the main menu button.
+	 * @param al the action listener
+	 */
 	public void setBtnMaiMenBckListener(ActionListener al){
         if(this.btnMaiMenBck.getActionListeners().length == 0)
 		    this.btnMaiMenBck.addActionListener(al);

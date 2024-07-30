@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card4_1 class is the card of the view which contains the add room menu.
+ */
 public class V_Card4_1 {
     private JPanel cards;
 
@@ -9,6 +12,9 @@ public class V_Card4_1 {
     private JButton btnRnm, btnMngHtlBck;
     private JLabel fdbckRnmHtl;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card4_1(JPanel cards){
         this.cards = cards;
         JPanel card4_1 = new JPanel(new BorderLayout());
@@ -64,19 +70,38 @@ public class V_Card4_1 {
         this.cards.add(card4_1, "Rename Hotel");
     }
 
+	/**
+	 * Returns the new hotel name.
+	 * @return the new hotel name
+	 */
     public String getTxtNewHtlNm(){return this.txtnewHtlNm.getText().toString();}
 
+	/**
+	 * Resets the input made to the default value.
+	 */
     public void resetRnmHtl(){
         this.txtnewHtlNm.setText("");
     }
 
+	/**
+	 * Sets the feedback text.
+	 * @param fdbck the feedback string
+	 */
     public void setFdbckRnmHtl(String fdbck){this.fdbckRnmHtl.setText(fdbck);}
 
+	/**
+	 * Sets the action listener for the rename hotel button.
+	 * @param al the action listener
+	 */
     public void setBtnRnmListener(ActionListener al){
         if(this.btnRnm.getActionListeners().length == 0)
             this.btnRnm.addActionListener(al);
     }
 
+	/**
+	 * Sets the action listener for the manage hotel button.
+	 * @param al the action listener
+	 */
     public void setBtnMngHtlBckListener(ActionListener al){
         if(this.btnMngHtlBck.getActionListeners().length == 0)
             this.btnMngHtlBck.addActionListener(al);

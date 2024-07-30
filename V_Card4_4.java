@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card4_4 class is the card of the view which contains the modify day price menu.
+ */
 public class V_Card4_4 {
     private JPanel cards;
 
@@ -10,6 +13,9 @@ public class V_Card4_4 {
     private JButton btnMdfyPrc, btnMngHtlBck;
     private JLabel txtFdbck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card4_4(JPanel cards){
         this.cards = cards;
         JPanel card4_4 = new JPanel(new BorderLayout());
@@ -81,22 +87,45 @@ public class V_Card4_4 {
         this.cards.add(card4_4, "Modify Day Price");
     }
 
+	/**
+	 * Returns the price modification.
+	 * @return the price modification
+	 */
     public double getTxtPrcMod(){return Double.parseDouble(txtPrcMod.getText());}
 
+	/**
+	 * Returns the selected day.
+	 * @return the selected day
+	 */
     public int getCmbxDayItem(){return (int) this.cmbxDay.getSelectedItem();}
 
+	/**
+	 * Resets the input made to the default value.
+	 */
     public void resetMdfyPrc(){
 		this.cmbxDay.setSelectedItem(0);
         this.txtPrcMod.setText("");
     }
 
+	/**
+	 * Sets the feedback text.
+	 * @param feedback the feedback string
+	 */
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
 
+	/**
+	 * Sets the action listener for the modify price button.
+	 * @param al the action listener
+	 */
     public void setBtnMdfyPrcListener(ActionListener al){
         if(this.btnMdfyPrc.getActionListeners().length == 0)
             this.btnMdfyPrc.addActionListener(al);
     }
 
+	/**
+	 * Sets the action listener for the manage hotel button.
+	 * @param al the action listener
+	 */
     public void setBtnMngHtlBckListener(ActionListener al){
         if(this.btnMngHtlBck.getActionListeners().length == 0)
             this.btnMngHtlBck.addActionListener(al);

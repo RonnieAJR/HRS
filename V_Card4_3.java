@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card4_2 class is the card of the view which contains the add room menu.
+ */
 public class V_Card4_3 {
     private JPanel cards;
 
@@ -9,6 +12,9 @@ public class V_Card4_3 {
     private JButton btnRmovRm, btnMngHtlBck;
     private JLabel txtFdbck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card4_3(JPanel cards){
         this.cards = cards;
         JPanel card4_3 = new JPanel(new BorderLayout());
@@ -60,29 +66,56 @@ public class V_Card4_3 {
         this.cards.add(card4_3, "Remove Room");
     }
 
+	/**
+	 * Returns the selected room.
+	 * @return the selected room
+	 */
     public String getCmbxRmtRmov(){return this.cmbxRmtRmov.getSelectedItem().toString();}
 
+	/**
+	 * Resets the input made to the default values.
+	 */
     public void resetRmovRoom(){
         this.cmbxRmtRmov.setSelectedIndex(0);
     }
 
+	/**
+	 * Removes a room name from the selection.
+	 * @param room the roomName
+	 */
     public void removeItem(String room){
         this.cmbxRmtRmov.removeItem(room);
     }
 
+	/**
+	 * Sets the room name selection.
+	 * @param room[] the array of room names
+	 */
     public void setCmbxRmtRmov(String[] rooms){
         this.cmbxRmtRmov.removeAllItems();
         for(String room : rooms)
             this.cmbxRmtRmov.addItem(room);
     }
 
+	/**
+	 * Sets the feedback text.
+	 * @param feedback the feedback string
+	 */
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
 
+	/**
+	 * Sets the action listener for the remove room button.
+	 * @param al the action listener
+	 */
     public void setBtnRmovRmListener(ActionListener al){
         if(this.btnRmovRm.getActionListeners().length == 0)
             this.btnRmovRm.addActionListener(al);
     }
 
+	/**
+	 * Sets the action listener for the manage hotel button.
+	 * @param al the action listener
+	 */
     public void setBtnMngHtlBckListener(ActionListener al){
         if(this.btnMngHtlBck.getActionListeners().length == 0)
             this.btnMngHtlBck.addActionListener(al);

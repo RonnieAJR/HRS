@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card3_4 class is the card of the view which contains the view reservation menu.
+ */
 public class V_Card3_4 {
     private JPanel cards;
 
@@ -9,6 +12,9 @@ public class V_Card3_4 {
     private JComboBox<Integer> cmbxRsrvLst, cmbxDayPrcPerNyt;
 	private JButton btnVieHtlBck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card3_4(JPanel cards){
         this.cards = cards;
 
@@ -166,56 +172,102 @@ public class V_Card3_4 {
         this.cards.add(card3_4, "View Reservation");
     }
 
-    //card3_4 setters
-	
+	/**
+	 * Returns the selected reservation id.
+	 * @return the selected reservation id
+	 */
 	public int getCmbxRsrvItem(){
 		return (int) this.cmbxRsrvLst.getSelectedItem();
 	}
 
+	/**
+	 * Returns the selected day.
+	 * @return the selected day
+	 */
     public int getCmbxDayItem(){
         return (int) this.cmbxDayPrcPerNyt.getSelectedItem();
     }
 
+	/**
+	 * Sets the day selection.
+	 * @param days the array of days
+	 */
     public void setCmbxDayPrcPerNyt(Integer[] days){
         this.cmbxDayPrcPerNyt.removeAllItems();
         for(Integer day : days)
             this.cmbxDayPrcPerNyt.addItem(day);
     }
 	
+	/**
+	 * Sets the reservation ids selection.
+	 * @param reservationIDs the array of reservation ids
+	 */
     public void setCmbxRsrvLst(Integer[] reservationIDs){
 		this.cmbxRsrvLst.removeAllItems();
         for(Integer Reservation : reservationIDs)
             this.cmbxRsrvLst.addItem(Reservation);
     }
 
+	/**
+	 * Sets the price on the selected day.
+	 * @param price the price on the selected day
+	 */
     public void setTxtResId(int reservationID){
         this.txtResId.setText("" + reservationID);
     }
 
+	/**
+	 * Sets the guest name.
+	 * @param gstNam the guest name
+	 */
     public void setTxtGstNam(String gstNam){
         this.txtGstNam.setText(gstNam);
     }
 
+	/**
+	 * Sets the room name.
+	 * @param roomNam the room name
+	 */
     public void setTxtRmNam(String roomNam){
         this.txtRmNam.setText(roomNam);
     }
 
+	/**
+	 * Sets the check in.
+	 * @param chkIn the check in
+	 */
     public void setTxtChkIn(int chkIn){
         this.txtChkIn.setText("" + chkIn);
     }
 
+	/**
+	 * Sets the check out.
+	 * @param chkOut the check out
+	 */
     public void setTxtChkOut(int chkOut){
         this.txtChkOut.setText("" + chkOut);
     }
 
+	/**
+	 * Sets the price on the selected day.
+	 * @param prcPrNght the price on the selected day
+	 */
     public void setTxtPrcPrNght(double prcPrNght){
         this.txtPrcPrNght.setText("" + prcPrNght);
     }
 
+	/**
+	 * Sets the total price.
+	 * @param totalPrice the total price
+	 */
     public void setTxtTtlPrc(double totalPrice){
         this.txtTtlPrc.setText("" + totalPrice);
     }
 	
+	/**
+	 * Sets the day selection item listener.
+	 * @param il the item listener
+	 */
 	public void setCmbxDayPrcPerNytListener(ItemListener il){
         for(ItemListener i : this.cmbxDayPrcPerNyt.getItemListeners())
             this.cmbxDayPrcPerNyt.removeItemListener(i);
@@ -223,6 +275,10 @@ public class V_Card3_4 {
 		this.cmbxDayPrcPerNyt.addItemListener(il);
 	}
 	
+	/**
+	 * Sets the reservation selection item listener.
+	 * @param il the item listener
+	 */
 	public void setCmbxRsrvListener(ItemListener il){
         for(ItemListener i: this.cmbxRsrvLst.getItemListeners())
             this.cmbxRsrvLst.removeItemListener(i);
@@ -230,6 +286,10 @@ public class V_Card3_4 {
         this.cmbxRsrvLst.addItemListener(il);
 	}
 
+	/**
+	 * Sets the view hotel action listener.
+	 * @param il the item listener
+	 */
 	public void setBtnVieHtlBckListener(ActionListener al){
 		if(this.btnVieHtlBck.getActionListeners().length == 0)
 			this.btnVieHtlBck.addActionListener(al);

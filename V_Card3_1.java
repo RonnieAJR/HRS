@@ -2,16 +2,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card3_1 class is the card of the view which contains the view hotel info view.
+ */
 public class V_Card3_1 {
     private JPanel cards;
     private JTextField txtHtlName, txtNumRooms, txtEstimatedEarnings;
 	private JButton btnVieHtlBck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card3_1(JPanel cards){
         this.cards = cards;
 
         JPanel card3_1 = new JPanel(new BorderLayout());
-
 
         JLabel header = new JLabel("View Hotel", JLabel.CENTER);
 		header.setFont(new Font("Default", Font.PLAIN, 20));
@@ -86,25 +91,44 @@ public class V_Card3_1 {
         this.cards.add(card3_1, "View Hotel Info");
     }
 
-    //card3_1 setters
+    
+	/**
+	 * Resets the input made to the default value.
+	 */
 	public void resetVieHtl(){
 		this.txtHtlName.setText("");
 		this.txtNumRooms.setText("");
 		this.txtEstimatedEarnings.setText("");
 	}
 	
+	/**
+	 * Sets the hotel name.
+	 * @param hotelName the hotel name
+	 */
     public void setTxtHtlName(String hotelName){
         this.txtHtlName.setText(hotelName);
     }
 
+	/**
+	 * Sets the amount of rooms.
+	 * @param numRooms the amount of rooms
+	 */
     public void setTxtNumRooms(int numRooms){
         this.txtNumRooms.setText("" + numRooms);
     }
 
+	/**
+	 * Sets the estimated earnings
+	 * @param earnings the estimated earnings
+	 */
     public void setTxtEstimatedEarnings(double earnings){
         this.txtEstimatedEarnings.setText("" + earnings);
     }
 	
+	/**
+	 * Sets the action listener for the view hotel button.
+	 * @param al the action listener
+	 */
 	public void setBtnVieHtlBckListener(ActionListener al){
         if(this.btnVieHtlBck.getActionListeners().length == 0)
 		    this.btnVieHtlBck.addActionListener(al);

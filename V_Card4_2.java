@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card4_2 class is the card of the view which contains the manage hotel menu.
+ */
 public class V_Card4_2 {
     private JPanel cards;
 
@@ -10,6 +13,9 @@ public class V_Card4_2 {
     private JButton btnAddRm, btnMngHtlBck;
     private JLabel txtFdbck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card4_2(JPanel cards){
         this.cards = cards;
         JPanel card4_2 = new JPanel(new BorderLayout());
@@ -81,22 +87,45 @@ public class V_Card4_2 {
         this.cards.add(card4_2, "Add Room");
     }
 
+	/**
+	 * Returns the amount of room to add.
+	 * @return the amoount of room to add
+	 */
     public int getTxtAddRm(){return Integer.parseInt(txtAddRm.getText());}
 
+	/**
+	 * Returns the selected room type.
+	 * @return the selected room type
+	 */
     public String getCmbxRmTypItem(){return this.cmbxRmTyp.getSelectedItem().toString();}
 
+	/**
+	 * Resets the input made to the default values.
+	 */
     public void resetAddRm(){
 		this.cmbxRmTyp.setSelectedItem(0);
         this.txtAddRm.setText("");
     }
 
+	/**
+	 * Sets the feedback text.
+	 * @param feedback the feedback string
+	 */
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
 
+	/**
+	 * Sets the action listener for the add room button.
+	 * @param al the action listener
+	 */
     public void setBtnAddRmListener(ActionListener al){
         if(this.btnAddRm.getActionListeners().length == 0)
             this.btnAddRm.addActionListener(al);
     }
 
+	/**
+	 * Sets the action listener for the manage hotel button.
+	 * @param al the action listener
+	 */
     public void setBtnMngHtlBckListener(ActionListener al){
         if(this.btnMngHtlBck.getActionListeners().length == 0)
             this.btnMngHtlBck.addActionListener(al);

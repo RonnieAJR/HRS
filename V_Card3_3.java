@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card3_3 class is the card of the view which contains the view room menu.
+ */
 public class V_Card3_3 {
     private JPanel cards;
 
@@ -10,6 +13,9 @@ public class V_Card3_3 {
     private JComboBox<Integer> cmbxDayAvail, cmbxDayReserved;
 	private JButton btnVieHtlBck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card3_3(JPanel cards){
         this.cards = cards;
 
@@ -120,12 +126,19 @@ public class V_Card3_3 {
         this.cards.add(card3_3, "View Room");
     }
 
-    //card 3_3 setters
-	
+    
+	/**
+	 * Returns the selected room name.
+	 * @return the selected room name
+	 */
 	public String getCmbxRoomItem(){
 		return this.cmbxSlctRoom.getSelectedItem().toString();
 	}
-		
+	
+	/**
+	 * Sets the room names selection
+	 * @param roomNames the array of roomNames
+	 */
     public void setCmbxSlctRoom(String[] roomNames){
 		this.cmbxSlctRoom.removeAllItems();
 		// int i=0;
@@ -135,42 +148,72 @@ public class V_Card3_3 {
 		}
     }
 	
+	/**
+	 * Resets the input made to the default value.
+	 */
 	public void resetVieRoom(){
 		this.cmbxSlctRoom.setSelectedIndex(0);
 	}
 
+	/**
+	 * Sets the room name.
+	 * @param roomName the room name
+	 */
     public void setRoomName(String roomName){
         this.roomName.setText(roomName);
     }
 
+	/**
+	 * Sets the room floor
+	 * @param floor the room floor
+	 */
     public void setRoomFloor(char floor){
         this.floor.setText("" + floor);
     }
 
+	/**
+	 * Sets the base price.
+	 * @param price the base price
+	 */
     public void setPricePerNight(double price){
         this.pricePerNight.setText("" + price);
     }
 
+	/**
+	 * Sets the available days.
+	 * @param dayAvail[] array of the available days
+	 */
     public void setCmbxDayAvail(Integer[] dayAvail){
 		this.cmbxDayAvail.removeAllItems();
         for(Integer day: dayAvail)
             this.cmbxDayAvail.addItem(day);
     }
-
+	
+	/**
+	 * Sets the reserved days.
+	 * @param daysReserved[] array of the reserved days
+	 */
     public void setCmbxDayReserved(Integer[] dayReserved){
 		this.cmbxDayReserved.removeAllItems();
         for(Integer day: dayReserved)
             this.cmbxDayReserved.addItem(day);
     }
 	
+	/**
+	 * Sets the item listener for the room selection.
+	 * @param il the iteme listener
+	 */
 	public void setCmbxRoomListener(ItemListener il){
-		// buggy
 		if(this.cmbxSlctRoom.getItemListeners().length != 0)
 			for(ItemListener i : this.cmbxSlctRoom.getItemListeners())
 				this.cmbxSlctRoom.removeItemListener(i);
 		this.cmbxSlctRoom.addItemListener(il);
 	}
-
+	
+	/**
+	 * Sets the action listener for the view hotel button.
+	 * @param al the action listener
+	 */
 	public void setBtnVieHtlBckListener(ActionListener al){
 		if(this.btnVieHtlBck.getActionListeners().length == 0)
 			this.btnVieHtlBck.addActionListener(al);

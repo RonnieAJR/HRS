@@ -2,7 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
+/**
+ * V_Card4_5 class is the card of the view which contains the manage hotel menu.
+ */
 public class V_Card4_5 {
     private JPanel cards;
     
@@ -10,6 +12,9 @@ public class V_Card4_5 {
     private JButton btnUpdt, btnMngHtlBck;
     private JLabel txtFdbck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card4_5(JPanel cards){
         this.cards = cards;
         JPanel card4_5 = new JPanel(new BorderLayout());
@@ -65,19 +70,38 @@ public class V_Card4_5 {
         this.cards.add(card4_5, "Update Price");
     }
 
+	/**
+	 * Returns the new price.
+	 * @return the new price
+	 */
     public double getTxtUpdtNew(){return Double.parseDouble(txtUpdtNew.getText());}
 
+	/**
+	 * Resets the input made to the default values.
+	 */
     public void resetUpdtHtlPrc(){
         this.txtUpdtNew.setText("");
     }
 
+	/**
+	 * Sets the feedback text.
+	 * @param feedback the feedback string.
+	 */
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
 
+	/**
+	 * Sets the action listener for the update price button.
+	 * @param al the action listener
+	 */
     public void setBtnUpdtListener(ActionListener al){
         if(this.btnUpdt.getActionListeners().length == 0)
             this.btnUpdt.addActionListener(al);
     }
 
+	/**
+	 * Sets the action listener for the manage hotel button.
+	 * @param al the action listener
+	 */
     public void setBtnMngHtlBckListener(ActionListener al){
         if(this.btnMngHtlBck.getActionListeners().length == 0)
             this.btnMngHtlBck.addActionListener(al);

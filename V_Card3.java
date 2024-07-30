@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
+/**
+ * V_Card3 class is the card of the view which contains the view hotel menu.
+ */
 public class V_Card3{
 	private JPanel cards;
 	private JComboBox<String> cmbxHtls;
@@ -11,9 +14,11 @@ public class V_Card3{
 	private V_Card3_3 card3_3;
 	private V_Card3_4 card3_4;
 	
-	// card 3 view hotel
 	private JButton btnVieHtl, btnVieDay, btnVieRoom, btnVieRsrv, btnMaiMenBck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
 	public V_Card3(JPanel cards) {
 		this.cards = cards;
 	
@@ -95,15 +100,34 @@ public class V_Card3{
 		this.cards.add(card3, "View Hotel");
 	}
 	
+	/**
+	 * Returns card3_1.
+	 * @return card3_1
+	 */
 	public V_Card3_1 getCard3_1(){
 		return this.card3_1;
 	}
+	
+	/**
+	 * Returns card3_2.
+	 * @return card3_2
+	 */
 	public V_Card3_2 getCard3_2(){
 		return this.card3_2;
 	}
+	
+	/**
+	 * Returns card3_3.
+	 * @return card3_3
+	 */
 	public V_Card3_3 getCard3_3(){
 		return this.card3_3;
 	}
+	
+	/**
+	 * Returns card3_4.
+	 * @return card3_4
+	 */
 	public V_Card3_4 getCard3_4(){
 		return this.card3_4;
 	}
@@ -124,46 +148,85 @@ public class V_Card3{
 		return this.btnVieRsrv;
 	}
 
+	/**
+	 * Resets rhe input made to default value.
+	 */
 	public void resetViewHtl(){
 		this.cmbxHtls.setSelectedIndex(0);
 	}
 	
+	/**
+	 * Returns the selected hotel name.
+	 * @return the selected hotel name
+	 */
 	public String getCmbxHtlsItem(){
 		return (String) this.cmbxHtls.getSelectedItem();
 	}
 	
+	/**
+	 * Adds a hotel to the selection
+	 * @param hotelName the name of the hotel
+	 */
 	public void addCmbxHtlsItem(String hotelName){
 		this.cmbxHtls.addItem(hotelName);
 	}
 	
+	/**
+	 * Removes a hotel to the selection.
+	 * @param hotelName the name of the hotel
+	 */
 	public void removeCmbxHtlsItem(String hotelName){
 		this.cmbxHtls.removeItem(hotelName);
 	}
 
+	/**
+	 * Sets the feedback text.
+	 * @param feedback the feedback string
+	 */
 	public void setTxtFdbck(String feedback){
 		this.txtFdbck.setText(feedback);
 	}
-		
+	
+	/**
+	 * Sets the action listener for the view hotel button.
+	 * @param al the action listener
+	 */
 	public void setBtnVieHtlListener(ActionListener al){
 		if(this.btnVieHtl.getActionListeners().length == 0)
 			this.btnVieHtl.addActionListener(al);
 	}
 	
+	/**
+	 * Sets the action listener for view day availability button.
+	 * @param al the action listener
+	 */
 	public void setBtnVieDayListener(ActionListener al){
 		if(this.btnVieDay.getActionListeners().length == 0)
 			this.btnVieDay.addActionListener(al);
 	}
 	
+	/**
+	 * Sets the action listener for the view room button.
+	 * @param al the action listener
+	 */
 	public void setBtnVieRoomListener(ActionListener al){
 		if(this.btnVieRoom.getActionListeners().length == 0)
 			this.btnVieRoom.addActionListener(al);
 	}
 	
+	/**
+	 * Sets the action listener for the view reservation button.
+	 * @param al the action listener
+	 */
 	public void setBtnVieRsrvListener(ActionListener al){
 		if(this.btnVieRsrv.getActionListeners().length == 0)
 			this.btnVieRsrv.addActionListener(al);
 	}
 	
+	/**
+	 * Sets the action listener for the main menu button.
+	 * @param al the action listener
+	 */
 	public void setBtnMaiMenBckListener(ActionListener al){
 		if(this.btnMaiMenBck.getActionListeners().length == 0)
 			this.btnMaiMenBck.addActionListener(al);

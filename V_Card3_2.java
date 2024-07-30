@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card3_2 class is the card of the view which contains the view day available menu.
+ */
 public class V_Card3_2 {
     private JPanel cards;
 
@@ -10,6 +13,9 @@ public class V_Card3_2 {
     private JTextField txtTotalRoomAvail, txtTotalRoomReserved;
 	private JButton btnVieHtlBck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card3_2(JPanel cards){
         this.cards = cards;
 
@@ -25,7 +31,6 @@ public class V_Card3_2 {
             cmbxDay.addItem(i);
 
         this.cmbxAvail = new JComboBox<>();
-        // this.cmbxAvail = new JComboBox<>(this.roomAvailable);
         this.cmbxReserved = new JComboBox<>();
 
         this.txtTotalRoomAvail = new JTextField();
@@ -108,43 +113,68 @@ public class V_Card3_2 {
         this.cards.add(card3_2, "View Day Availability");
     }
 
-    //card 3_2 setters
-	
+	/**
+	 * Returns the selected day.
+	 * @return the selected day
+	 */	
 	public int getCmbxDayItem(){
 		return (int) this.cmbxDay.getSelectedItem();
 	}
 	
+	/**
+	 * Sets the available room names.
+	 */
     public void setRoomAvailable(String[] roomsAvailable){
 		this.cmbxAvail.removeAllItems();
         for(String roomAvail: roomsAvailable)
             this.cmbxAvail.addItem(roomAvail);
     }
 
+	/**
+	 * Sets the reserved room names.
+	 */
     public void setRoomReserved(String[] roomsReserved){
 		this.cmbxReserved.removeAllItems();
         for(String roomRes: roomsReserved)
             this.cmbxReserved.addItem(roomRes);
     }
 	
+	/**
+	 * Sets the total available rooms.
+	 */
 	public void setTxtTotalRoomAvail(int num){
 		this.txtTotalRoomAvail.setText("" + num);
 	}
 	
+	/**
+	 * Sets the total reserved rooms.
+	 */
 	public void setTxtTotalRoomReserved(int num){
 		this.txtTotalRoomReserved.setText("" + num);
 	}
 	
+	/**
+	 * Resets the input made to the default value
+	 */
 	public void resetVieDay(){
 		this.cmbxDay.setSelectedIndex(0);
 	}
 	
+	/**
+	 * Sets the item listener for the day selection.
+	 * @param il the item listener
+	 */
 	public void setCmbxDayListener(ItemListener il){
 		if(this.cmbxDay.getItemListeners().length != 0)
 			for(ItemListener i : this.cmbxDay.getItemListeners())
 				this.cmbxDay.removeItemListener(i);	
 		this.cmbxDay.addItemListener(il);
 	}
-
+	
+	/**
+	 * Sets the action listener for the view hotel button.
+	 * @param al the action listener
+	 */
 	public void setBtnVieHtlBckListener(ActionListener al){
 		if(this.btnVieHtlBck.getActionListeners().length == 0)
 			this.btnVieHtlBck.addActionListener(al);

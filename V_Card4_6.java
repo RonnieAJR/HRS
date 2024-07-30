@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * V_Card4_6 class is the card of the view which contains the manage hotel menu.
+ */
 public class V_Card4_6 {
     private JPanel cards;
 
@@ -9,6 +12,9 @@ public class V_Card4_6 {
     private JButton btnRmovRsrv, btnMngHtlBck;
     private JLabel txtFdbck;
 
+	/**
+	 * Initializes all the components of the card.
+	 */
     public V_Card4_6(JPanel cards){
         this.cards = cards;
         JPanel card4_6 = new JPanel(new BorderLayout());
@@ -58,29 +64,55 @@ public class V_Card4_6 {
 
         this.cards.add(card4_6, "Remove Reservation");
     }
-    public int getCmbxRsrvId(){return (int)this.cmbxRsrvId.getSelectedItem();}
+    
+	/**
+	 * Returns the selection reservation.
+	 */
+	public int getCmbxRsrvId(){return (int)this.cmbxRsrvId.getSelectedItem();}
 
+	/**
+	 * Sets the reservation id selection.
+	 */
     public void setCmbxRsrvId(Integer[] ids){
         this.cmbxRsrvId.removeAllItems();
         for(Integer id : ids)
             this.cmbxRsrvId.addItem(id);
     }
 	
+	/**
+	 * Removes a reservation from the list.
+	 * @param reservationId the reservation to be removed
+	 */
 	public void removeCmbxItem(int reservationId){
 		this.cmbxRsrvId.removeItem(reservationId);
 	}
 
+	/**
+	 * Resets the input made to the default value.
+	 */
     public void resetRmovRsrv(){
         this.cmbxRsrvId.setSelectedIndex(0);
     }
 
+	/**
+	 * Sets the feedback text.
+	 * @param feedback the feedback string
+	 */
     public void setTxtFdbck(String feedback){this.txtFdbck.setText(feedback);}
 
+	/**
+	 * Sets the action listener for the remove reservation button.
+	 * @param al the action listener
+	 */
     public void setBtnRmovRsrvListener(ActionListener al){
         if(this.btnRmovRsrv.getActionListeners().length == 0)
             this.btnRmovRsrv.addActionListener(al);
     }
 
+	/**
+	 * Sets the action listener for the manage hotel button.
+	 * @param al the action listener
+	 */
     public void setBtnMngHtlBckListener(ActionListener al){
         if(this.btnMngHtlBck.getActionListeners().length == 0)
             this.btnMngHtlBck.addActionListener(al);
