@@ -213,10 +213,10 @@ public class Hotel
 	}
 
 	/**
-	 * modifies the price given the day
-	 * @param day - day to modify
-	 * @param mod - price for modification
-	 * @return
+	 * method for modifying the percentage of the price for each day
+	 * @param day - param day
+	 * @param mod - percentage of the modified price
+	 * @return - boolean if successfully done or not
 	 */
 	
 	public boolean modDayPrice(int day, double mod)
@@ -383,7 +383,7 @@ public class Hotel
 	  * @param reservationId id of the reservation
 	  * @return true if successfully removed
 	  */
-	public boolean removeReservation(int reservationId)
+	public void removeReservation(int reservationId)
 	{
 		int checkIn;
 		int checkOut;
@@ -391,14 +391,14 @@ public class Hotel
 		
 		// checks if there are no reservations
 		if(this.reservations.isEmpty())
-			return false;
+			return;
 		
 		// finds the reservation
 		reservation = findReservation(reservationId);
 		
 		// returns false if reservation is not found
 		if(reservation.getId() != reservationId)
-			return false;
+			return;
 		
 		// gets the checkin and checkout days
 		checkIn = reservation.getCheckIn();
@@ -409,8 +409,7 @@ public class Hotel
 		
 		// removes the reservation from the list
 		this.reservations.remove(reservation);
-		
-		return true;
+
 	}
 	
 	/**
