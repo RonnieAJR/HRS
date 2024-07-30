@@ -27,7 +27,7 @@ public class C{
 			public void actionPerformed(ActionEvent e){
 				// if(e.getSource() == card.getBtnVieHtl()){
 					if(m.getHotels().isEmpty())
-						System.out.println("Hotels not found"); // set fdbck on gui
+						card.setTxtFdbck("Hotels not found");
 					else{
 						initCard3();
 						v.setCard("View Hotel");
@@ -41,7 +41,7 @@ public class C{
 			public void actionPerformed(ActionEvent e){
 				// if(e.getSource() == card.getBtnManHtl()){
 					if(m.getHotels().isEmpty())
-						System.out.println("Hotels not found");
+						card.setTxtFdbck("Hotels not found");
 					else{
 						initCard4();
 						v.setCard("Manage Hotel");
@@ -54,15 +54,13 @@ public class C{
 			@Override
 			public void actionPerformed(ActionEvent e){
 				if(m.getHotels().isEmpty())
-					;// set feedback
+					card.setTxtFdbck("Hotels not found");
 				else{
 					initCard5();
 					v.setCard("Simulate Booking");
 				}
 			}
 		});
-		
-		// v.setBtnMaiMenBck4Listener(goMainMenu);
 		
 		this.initCard2();
 	}
@@ -148,10 +146,10 @@ public class C{
 			@Override
 			public void actionPerformed(ActionEvent e){
 				// if(e.getSource() == card3.getBtnVieRsrv()){
+					System.out.println("2==" + e.paramString());
 					Hotel hotel = m.findHotel(card3.getCmbxHtlsItem());
 					if(hotel.getReservations().isEmpty())
-						System.out.println("Reservations not found");
-					// setfdbck
+						card3.setTxtFdbck("Reservations not found");
 					else{
 						initCard3_4(card3);
 						v.setCard("View Reservation");
@@ -179,6 +177,16 @@ public class C{
 		Hotel hotel = m.findHotel(card3.getCmbxHtlsItem());
 		
 		V_Card3_2 card3_2 = card3.getCard3_2();
+		
+		int day = card3_2.getCmbxDayItem();
+		
+		String[] available = hotel.getAvailableNames(day).toArray(new String[hotel.getAvailableNames(day).size()]);
+		String[] reserved = hotel.getReservedNames(day).toArray(new String[hotel.getReservedNames(day).size()]);
+		
+		card3_2.setRoomAvailable(available);
+		card3_2.setTxtTotalRoomAvail(available.length);
+		card3_2.setRoomReserved(reserved);
+		card3_2.setTxtTotalRoomReserved(reserved.length);
 		
 		card3_2.setCmbxDayListener(new ItemListener(){
 			@Override
@@ -208,9 +216,22 @@ public class C{
 		String[] roomNames = hotel.getRoomNames().toArray(new String[hotel.getRooms().size()]);
 		card3_3.setCmbxSlctRoom(roomNames);
 		
+		Room room = hotel.findRoom(card3_3.getCmbxRoomItem());
+		
+		Integer[] availableDays = room.getAvailable().toArray(new Integer[room.getAvailable().size()]);
+		Integer[] reservedDays = room.getReserved().toArray(new Integer[room.getReserved().size()]);
+		
+		card3_3.setRoomName(room.getName()); // add room type?
+		card3_3.setRoomFloor(room.getName().charAt(1));
+		card3_3.setPricePerNight(room.getPrice());
+		card3_3.setCmbxDayAvail(availableDays);
+		card3_3.setCmbxDayReserved(reservedDays);
+
+		
 		card3_3.setCmbxRoomListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent e){
+				System.out.println("1==" + e.paramString());
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					Room room = hotel.findRoom(card3_3.getCmbxRoomItem());
 					
@@ -222,6 +243,7 @@ public class C{
 					card3_3.setPricePerNight(room.getPrice());
 					card3_3.setCmbxDayAvail(availableDays);
 					card3_3.setCmbxDayReserved(reservedDays);
+
 				}
 			}
 		});
@@ -237,45 +259,68 @@ public class C{
 		Integer[] reservationIds = hotel.getReservationIds().toArray(new Integer[hotel.getReservations().size()]);
 		card3_4.setCmbxRsrvLst(reservationIds);
 		
+		Reservation reservation = hotel.findReservation(card3_4.getCmbxRsrvItem());
+		Integer[] days = new Integer[reservationIds.length];
+		int checkIn = reservation.getCheckIn();
+		int checkOut = reservation.getCheckOut();
+		int i, day;
+		
+		card3_4.setTxtResId(reservation.getId());
+		card3_4.setTxtGstNam(reservation.getGuestName());
+		card3_4.setTxtRmNam(reservation.getRoom().getName());
+		card3_4.setTxtChkIn(checkIn);
+		card3_4.setTxtChkOut(checkOut);
+		card3_4.setTxtTtlPrc(reservation.getTotalPrice());
+		
 		card3_4.setCmbxRsrvListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent e){
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					Reservation reservation = hotel.findReservation(card3_4.getCmbxRsrvItem());
-					Integer[] days = new Integer[reservationIds.length];
 					int checkIn = reservation.getCheckIn();
 					int checkOut = reservation.getCheckOut();
-					int i, day;
 					
 					card3_4.setTxtResId(reservation.getId());
 					card3_4.setTxtGstNam(reservation.getGuestName());
 					card3_4.setTxtRmNam(reservation.getRoom().getName());
 					card3_4.setTxtChkIn(checkIn);
 					card3_4.setTxtChkOut(checkOut);
-					card3_4.setTxtTtlPrc(reservation.getTotalPrice());
+					card3_4.setTxtTtlPrc(reservation.getTotalPrice());		
+				}
+			}
+		});
+		
+		day = checkIn;
+		i=0;
+		while(i < days.length){
+			days[i++] = day++;
+		}
+		
+		card3_4.setCmbxDayPrcPerNyt(days);
+
+		Room room = reservation.getRoom();
+		HashMap<Integer, Double> dayPriceMod = room.getDayPriceMod();
+		Integer daySelected = Integer.valueOf(card3_4.getCmbxDayItem());
+		double mod = 100;
+		
+		if(dayPriceMod.containsKey(daySelected))
+			mod = dayPriceMod.get(daySelected);
+		
+		card3_4.setTxtPrcPrNght(room.getPrice() * (mod / 100));
+				
+		card3_4.setCmbxDayPrcPerNytListener(new ItemListener(){
+			@Override
+			public void itemStateChanged(ItemEvent e){
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					Room room = reservation.getRoom();
+					HashMap<Integer, Double> dayPriceMod = room.getDayPriceMod();
+					Integer daySelected = Integer.valueOf(card3_4.getCmbxDayItem());
+					double mod = 100;
 					
-					day = checkIn;
-					i=0;
-					while(i < checkOut){
-						days[i++] = day++;
-					}
+					if(dayPriceMod.containsKey(daySelected))
+						mod = dayPriceMod.get(daySelected);
 					
-					card3_4.setCmbxDayPrcPerNyt(days);
-					
-					card3_4.setCmbxDayPrcPerNytListener(new ItemListener(){
-						@Override
-						public void itemStateChanged(ItemEvent e){
-							Room room = reservation.getRoom();
-							HashMap<Integer, Double> dayPriceMod = room.getDayPriceMod();
-							Integer day = Integer.valueOf(card3_4.getCmbxDayItem());
-							double mod = 100;
-							
-							if(dayPriceMod.containsKey(day))
-								mod = dayPriceMod.get(day);
-							
-							card3_4.setTxtPrcPrNght(room.getPrice() * (mod / 100));
-						}
-					});
+					card3_4.setTxtPrcPrNght(room.getPrice() * (mod / 100));
 				}
 			}
 		});
@@ -286,7 +331,7 @@ public class C{
 	public void initCard4(){
 		V_Card4 card4 = this.v.getCard4();
 		
-		// reset cmbx
+		card4.resetManHtl();
 		
 		card4.setBtnRnmHtlListener(new ActionListener(){
 			@Override
@@ -331,11 +376,10 @@ public class C{
 		card4.setBtnRmvRsrvListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				Hotel hotel = this.m.findHotel(card4.getCmbxHtlsItem());
+				Hotel hotel = m.findHotel(card4.getCmbxHtlsItem());
 				
 				if(hotel.getReservations().isEmpty())
-					// set fdbck
-				// remove when a button is pressed, on all card4 subcrards
+					card4.setTxtFdbck("Reservations not found");
 				else{
 					initCard4_6(card4);
 					v.setCard("Remove Reservation");
@@ -354,7 +398,10 @@ public class C{
 				System.out.println(confirmation + " == " + JOptionPane.YES_OPTION);
 				if(confirmation == JOptionPane.YES_OPTION){
 					m.removeHotel(hotelName);
-					// feedback on main menu
+					v.getCard3().removeCmbxHtlsItem(hotelName);
+					card4.removeCmbxHtlsItem(hotelName);
+					v.getCard5().removeCmbxHtlsItem(hotelName);
+					v.getCard1().setTxtFdbck("Hotel " + hotelName + " removed");
 					v.setCard("Main Menu");
 					// remove hotel from cmbx
 				}
@@ -423,7 +470,7 @@ public class C{
 							hotel.addRoom(roomType);
 							actual++;
 						}
-						card4_2.setTxtFdbck(actual + " rooms added");
+						card4_2.setTxtFdbck("" + actual + " rooms added");
 					}
 					else
 						card4_2.setTxtFdbck("Aborting room additions");
@@ -461,9 +508,7 @@ public class C{
 					
 					if(confirmation == JOptionPane.YES_OPTION){
 						if(hotel.removeRoom(roomName)){
-							v.getCard3().removeCmbxHtlsItem(roomName);
-							card4.removeCmbxHtlsItem(roomName);
-							v.getCard5().removeCmbxHtlsItem(roomName);
+							//////////////////////////////// remove in selection
 							card4_3.setTxtFdbck("Room removed");
 						}
 						else
@@ -553,13 +598,16 @@ public class C{
 				
 				hotel.removeReservation(reservationId);
 				
-				card4_6.setTxtFdbck("Reservation removed");
 				card4_6.removeCmbxItem(reservationId);
 				
-				if(hotel.getReservations().isEmpty())
+				if(hotel.getReservations().isEmpty()){
 					v.setCard("Manage Hotel");
-				else
+					v.getCard4().setTxtFdbck("Reservation removed");
+				}
+				else{
+				card4_6.setTxtFdbck("Reservation removed");
 					card4_6.resetRmovRsrv();
+				}
 			}
 		});
 		
