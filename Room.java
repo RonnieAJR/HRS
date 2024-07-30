@@ -104,7 +104,11 @@ public class Room
 	{
 		this.name = newLetter + Integer.toString(getRoomNumber());
 	}
-	
+
+	/**
+	 * method to return available days in a room
+	 * @return array list of integer available days
+	 */
 	public ArrayList<Integer> getAvailable()
 	{
 		ArrayList<Integer> available = new ArrayList<>();
@@ -128,7 +132,11 @@ public class Room
 	{
 		return this.reserved;
 	}
-	
+
+	/**
+	 * getter for Day Price modification
+	 * @return hashmap of day price modification
+	 */
 	public HashMap<Integer, Double> getDayPriceMod()
 	{
 		return this.dayPriceMod;
