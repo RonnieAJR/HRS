@@ -495,9 +495,8 @@ public class C{
 					}
 					else
 						card4_2.setTxtFdbck("Aborting room additions");
-					
-					card4_2.resetAddRm();
 				}
+				card4_2.resetAddRm();
 			}
 		});
 		
@@ -565,7 +564,7 @@ public class C{
 						card4_4.setTxtFdbck("Cannot modify day with reservation");
 				}
 				else
-					card4_4.setTxtFdbck("Price modification can only be 50% to 150% of the base price");
+					card4_4.setTxtFdbck("Modification can only be 50%-150% of the base price");
 				
 				card4_4.resetMdfyPrc();
 			}

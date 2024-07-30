@@ -89,7 +89,7 @@ public class Room
 	public int getRoomNumber()
 	{
 		int roomNumber;
-		roomNumber = Integer.parseInt(this.name.substring(1));
+		roomNumber = Integer.parseInt(this.name.substring(1, 4));
 		return roomNumber;
 	}
 
