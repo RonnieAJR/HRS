@@ -211,6 +211,13 @@ public class Hotel
 		// return the room asked if found or the default room if not found
 		return room;
 	}
+
+	/**
+	 * modifies the price given the day
+	 * @param day - day to modify
+	 * @param mod - price for modification
+	 * @return
+	 */
 	
 	public boolean modDayPrice(int day, double mod)
 	{
@@ -264,6 +271,11 @@ public class Hotel
 		return false;
 	}
 
+	/**
+	 * method for returning the index of the discount found in the list of strings
+	 * @param discountCode - input discount code
+	 * @return index of the discount code in the array or -1 (to indicate a fail)
+	 */
 	public int findDiscount(String discountCode)
 	{
 		String[] list = {"I_WORK_HERE", "STAY4_GET1", "PAYDAY"};
@@ -424,6 +436,10 @@ public class Hotel
 		return reservation;
 	}
 
+	/**
+	 * method to return room names of the hotel
+	 * @return arraylist of room names
+	 */
 	public ArrayList<String> getRoomNames()
 	{
 		ArrayList<String> rooms = new ArrayList<>();
@@ -434,7 +450,11 @@ public class Hotel
 		}
 		return rooms;
 	}
-	
+
+	/**
+	 * method to return the reservation ids of a hotel
+	 * @return arraylist of reservation ids
+	 */
 	public ArrayList<Integer> getReservationIds()
 	{
 		ArrayList<Integer> reservationIds = new ArrayList<>();
@@ -445,7 +465,12 @@ public class Hotel
 		}
 		return reservationIds;
 	}
-	
+
+	/**
+	 * method for getting the room names of the reserved rooms in a specified day
+	 * @param day - day param to supply rooms reserved in specified day
+	 * @return arraylist of room names reserved in a specified day
+	 */
 	public ArrayList<String> getReservedNames(int day)
 	{
 		ArrayList<String> reserved = new ArrayList<>();
@@ -457,8 +482,12 @@ public class Hotel
 		}
 		return reserved;
 	}
-	
-	
+
+	/**
+	 * method to get the room names of available rooms in a specified day
+	 * @param day - day param to supply the available rooms
+	 * @return - arrray list of available room (names) in a specified day
+	 */
 	public ArrayList<String> getAvailableNames(int day)
 	{
 		ArrayList<String> available = new ArrayList<>();
@@ -471,7 +500,11 @@ public class Hotel
 		}
 		return available;
 	}
-	
+
+	/**
+	 * method to get the total amount of money earned from reservations
+	 * @return - total amount of money earned
+	 */
 	public double getEarnings()
 	{
 		int i;
@@ -527,7 +560,11 @@ public class Hotel
 	{
 		return this.reservations;
 	}
-	
+
+	/**
+	 * getter to return dayPriceMod HashMap attribute
+	 * @return HashMap of day price modification
+	 */
 	public HashMap<Integer, Double> getDayPriceMod()
 	{
 		return this.dayPriceMod;
