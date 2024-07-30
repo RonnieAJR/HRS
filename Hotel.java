@@ -48,7 +48,7 @@ public class Hotel
 
 	/**
 	 * Creates a room and adds it to the list of rooms if the list is not yet full.
-	 *
+	 * also automatically detects room type by using the parameters as an indicator
 	 * @return true if the room is created and added successfully
 	 */
 	public boolean addRoom(String roomType)
@@ -64,7 +64,7 @@ public class Hotel
 		roomName = generateRoomName(roomType);
 		
 		if(roomType.equals("Deluxe"))
-			room = new Room(roomName, this.price, this.dayPriceMod);
+			room = new DeluxeRoom(roomName, this.price, this.dayPriceMod);
 		else if(roomType.equals("Executive"))
 			room = new ExecutiveRoom(roomName, this.price, this.dayPriceMod);
 		else
@@ -425,218 +425,7 @@ public class Hotel
 		// returns the reservation asked if found or the default reservation if not found
 		return reservation;
 	}
-	
-	/**
-	  * Displays the hotel information on the standard output stream in a tabular format.
-	  *
-	  */
-	public void displayInfo()
-	{
-		int i;
-		int length = this.name.length() + 2;
-		double earnings=0;
 
-		// sets the minimum length
-		if(length < 14)
-			length = 14;
-
-		// computes the estimated earnings
-		earnings = this.getEarnings();
-		
-		// top of the table
-		for(i=0; i < length + 23; i++)
-			System.out.print("-");
-		System.out.print("\n");
-		
-		// hotel name
-		System.out.print("| Hotel name         |");
-		for(i=0; i < length - this.name.length() - 1; i++)
-			System.out.print(" ");
-		System.out.printf("%s |\n", this.name);
-		
-		// row and column divider
-		System.out.print("|--------------------|");
-		for(i=0; i < length; i++)
-			System.out.print("-");
-		System.out.print("|\n");
-		
-		// number of rooms
-		System.out.print("| Number of rooms    |");
-		for(i=0; i < length - 3; i++)
-			System.out.print(" ");
-		System.out.printf("%2d |\n", this.capacity);
-		
-		// row and column divider
-		System.out.print("|--------------------|");
-		for(i=0; i < length; i++)
-			System.out.print("-");
-		System.out.print("|\n");
-		
-		// estimated earnings
-		System.out.print("| Estimated earnings |");
-		for(i=0; i < length - 13; i++)
-			System.out.print(" ");
-		System.out.printf("%,12.2f |\n", earnings);
-		
-		// bottom of the table
-		for(i=0; i < length + 23; i++)
-			System.out.print("-");
-		System.out.print("\n");
-	}
-	
-	/**
-	  * Displays the room available and reserved in the provided day on the standard output stream in a tabular format.
-	  *
-	  * @param day day to check
-	  */
-	public void displayDayInfo(int day)
-	{	
-		int i, size, length;
-		HashSet<Integer> daysReserved = new HashSet<Integer>();
-		ArrayList<Room> reserved = new ArrayList<Room>();
-		ArrayList<Room> available = new ArrayList<Room>();
-		
-		reserved.addAll(this.rooms);
-		
-		// separates the rooms available and reserved
-		for(i=0; i < reserved.size(); i++)
-		{
-			// adds the days reserved and target day to the hashset	
-			daysReserved.addAll(reserved.get(i).getReserved());
-			size = daysReserved.size();
-			daysReserved.add(day);
-			
-			// if the target day is added to the hashset...
-			// ...the target day is available
-			if(size != daysReserved.size())
-			{
-				available.add(reserved.remove(i));
-				i--;
-			}
-					
-			// clear the hashset
-			daysReserved.clear();
-		}
-		
-		// determines the maximum length
-		if(available.size() > reserved.size())
-			length = available.size();
-		else
-			length = reserved.size();
-		
-		// top of the table
-		for(i=0; i < 36; i++)
-			System.out.print("-");
-		System.out.print("\n");
-		
-		// table header
-		System.out.printf("|        Day %2d Availability       |\n", day);
-		
-		// row and column divider
-		System.out.print("|");
-		for(i=0; i < 34; i++)
-			System.out.print("-");
-		System.out.print("|\n");
-		
-		// room label
-		System.out.print("| Rooms available | Rooms reserved |\n");
-		
-		for(i=0; i < length; i++)// wrong condition
-		{
-			// row and column divider
-			System.out.print("|-----------------|----------------|\n");
-			
-			// room available
-			if(i < available.size())
-				System.out.printf("| %15s |", available.get(i).getName());
-			else
-				System.out.printf("| %15s |", " ");
-			
-			// room reserved
-			if(i < reserved.size())
-				System.out.printf(" %14s |\n", reserved.get(i).getName());
-			else
-				System.out.printf(" %14s |\n", " ");
-		}
-		
-		// row and column divider
-		System.out.print("|");
-		for(i=0; i < 34; i++)
-			System.out.print("-");
-		System.out.print("|\n");
-		
-		// total label
-		System.out.print("|               Total              |\n");
-		
-		// row and column divider
-		System.out.print("|");
-		for(i=0; i < 34; i++)
-			System.out.print("-");
-		System.out.print("|\n");
-		
-		// total rooms
-		System.out.printf("| %15d | %14d |\n", available.size(), reserved.size()); 
-		
-		// bottom of the table
-		for(i=0; i < 36; i++)
-			System.out.print("-");
-		System.out.print("\n\n");
-	}
-	
-	/**
-	  * Displays the list of room names on the standard output stream in a tabular format
-	  *
-	  */
-	public void displayRooms()
-	{
-		int i;
-		
-		// top of the table
-		System.out.print("-------------\n");
-		System.out.print("| Room Name |\n");
-		
-		for(i=0; i < this.rooms.size(); i++)
-		{
-			// row and column divider
-			System.out.print("|-----------|\n");
-			
-			// room name
-			System.out.printf("| %9s |\n", this.rooms.get(i).getName());
-		}
-		
-		// bottom of the table
-		System.out.print("-------------\n\n");
-	}
-	
-	/**
-	  * Displays the list of reservation ids on the standard output stream in a tabular format.
-	  *
-	  */
-	public void displayReservations()
-	{
-		int i;
-		
-		// checks if reservations is empty
-		if(this.reservations.isEmpty())
-			System.out.println("Reservations not found\n");
-		else
-		{
-			// top of the table
-			System.out.print("------------------\n");
-			System.out.print("| Reservation ID |\n");
-			
-			for(i=0; i < this.reservations.size(); i++)
-			{
-				// row and column divider
-				System.out.print("|----------------|\n");
-				
-				// reservation id
-				System.out.printf("| %14d |\n", this.reservations.get(i).getId());
-			}
-			System.out.print("------------------\n\n");
-		}
-	}
-	
 	public ArrayList<String> getRoomNames()
 	{
 		ArrayList<String> rooms = new ArrayList<>();
