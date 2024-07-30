@@ -252,10 +252,10 @@ public class C{
 		card3_4.setCmbxRsrvLst(reservationIds);
 		
 		Reservation reservation = hotel.findReservation(card3_4.getCmbxRsrvItem());
-		Integer[] days = new Integer[reservationIds.length];
 		int checkIn = reservation.getCheckIn();
 		int checkOut = reservation.getCheckOut();
 		int i, day;
+		Integer[] days = new Integer[checkOut - checkIn];
 		
 		card3_4.setTxtResId(reservation.getId());
 		card3_4.setTxtGstNam(reservation.getGuestName());
@@ -263,24 +263,6 @@ public class C{
 		card3_4.setTxtChkIn(checkIn);
 		card3_4.setTxtChkOut(checkOut);
 		card3_4.setTxtTtlPrc(reservation.getTotalPrice());
-		
-		card3_4.setCmbxRsrvListener(new ItemListener(){
-			@Override
-			public void itemStateChanged(ItemEvent e){
-				if(e.getStateChange() == ItemEvent.SELECTED){
-					Reservation reservation = hotel.findReservation(card3_4.getCmbxRsrvItem());
-					int checkIn = reservation.getCheckIn();
-					int checkOut = reservation.getCheckOut();
-					
-					card3_4.setTxtResId(reservation.getId());
-					card3_4.setTxtGstNam(reservation.getGuestName());
-					card3_4.setTxtRmNam(reservation.getRoom().getName());
-					card3_4.setTxtChkIn(checkIn);
-					card3_4.setTxtChkOut(checkOut);
-					card3_4.setTxtTtlPrc(reservation.getTotalPrice());		
-				}
-			}
-		});
 		
 		day = checkIn;
 		i=0;
@@ -299,6 +281,46 @@ public class C{
 			mod = dayPriceMod.get(daySelected);
 		
 		card3_4.setTxtPrcPrNght(room.getPrice() * (mod / 100));
+		
+		card3_4.setCmbxRsrvListener(new ItemListener(){
+			@Override
+			public void itemStateChanged(ItemEvent e){
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					Reservation reservation = hotel.findReservation(card3_4.getCmbxRsrvItem());
+					int checkIn = reservation.getCheckIn();
+					int checkOut = reservation.getCheckOut();
+					
+					card3_4.setTxtResId(reservation.getId());
+					card3_4.setTxtGstNam(reservation.getGuestName());
+					card3_4.setTxtRmNam(reservation.getRoom().getName());
+					card3_4.setTxtChkIn(checkIn);
+					card3_4.setTxtChkOut(checkOut);
+					card3_4.setTxtTtlPrc(reservation.getTotalPrice());
+					
+					
+					Integer[] days = new Integer[checkOut - checkIn];
+					int i, day;
+					
+					day = checkIn;
+					i=0;
+					while(i < days.length){
+						days[i++] = day++;
+					}
+					
+					card3_4.setCmbxDayPrcPerNyt(days);
+
+					Room room = reservation.getRoom();
+					HashMap<Integer, Double> dayPriceMod = room.getDayPriceMod();
+					Integer daySelected = Integer.valueOf(card3_4.getCmbxDayItem());
+					double mod = 100;
+					
+					if(dayPriceMod.containsKey(daySelected))
+						mod = dayPriceMod.get(daySelected);
+					
+					card3_4.setTxtPrcPrNght(room.getPrice() * (mod / 100));
+				}
+			}
+		});
 				
 		card3_4.setCmbxDayPrcPerNytListener(new ItemListener(){
 			@Override
@@ -323,11 +345,13 @@ public class C{
 	public void initCard4(){
 		V_Card4 card4 = this.v.getCard4();
 		
+		card4.setTxtFdbck("");
 		card4.resetManHtl();
 		
 		card4.setBtnRnmHtlListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				card4.setTxtFdbck("");
 				initCard4_1(card4);
 				v.setCard("Rename Hotel");
 			}
@@ -336,6 +360,7 @@ public class C{
 		card4.setBtnAddRoomListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				card4.setTxtFdbck("");
 				initCard4_2(card4);
 				v.setCard("Add Room");
 			}
@@ -344,6 +369,7 @@ public class C{
 		card4.setBtnRmvRoomListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				card4.setTxtFdbck("");
 				initCard4_3(card4);
 				v.setCard("Remove Room");
 			}
@@ -352,6 +378,7 @@ public class C{
 		card4.setBtnModPriceListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				card4.setTxtFdbck("");
 				initCard4_4(card4);
 				v.setCard("Modify Day Price");
 			}
@@ -360,6 +387,7 @@ public class C{
 		card4.setBtnUpdPriceListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				card4.setTxtFdbck("");
 				initCard4_5(card4);
 				v.setCard("Update Price");
 			}
@@ -397,6 +425,7 @@ public class C{
 					v.setCard("Main Menu");
 					// remove hotel from cmbx
 				}
+				card4.setTxtFdbck("");
 			}
 		});
 		
