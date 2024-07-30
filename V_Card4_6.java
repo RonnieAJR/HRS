@@ -67,7 +67,7 @@ public class V_Card4_6 {
     }
 	
 	public void removeCmbxItem(int reservationId){
-		this.cmbxRsrvId.remove(reservationId);
+		this.cmbxRsrvId.removeItem(reservationId);
 	}
 
     public void resetRmovRsrv(){

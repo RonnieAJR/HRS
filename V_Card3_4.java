@@ -187,10 +187,6 @@ public class V_Card3_4 {
         for(Integer Reservation : reservationIDs)
             this.cmbxRsrvLst.addItem(Reservation);
     }
-	
-	public void resetVieRsrv(){
-		this.cmbxRsrvLst.setSelectedIndex(0);
-	}
 
     public void setTxtResId(int reservationID){
         this.txtResId.setText("" + reservationID);
@@ -221,15 +217,17 @@ public class V_Card3_4 {
     }
 	
 	public void setCmbxDayPrcPerNytListener(ItemListener il){
-		if(this.cmbxDayPrcPerNyt.getItemListeners().length != 0)
-			for(ItemListener i : this.cmbxDayPrcPerNyt.getItemListeners())
-				this.cmbxDayPrcPerNyt.removeItemListener(i);
+        for(ItemListener i : this.cmbxDayPrcPerNyt.getItemListeners())
+            this.cmbxDayPrcPerNyt.removeItemListener(i);
+
 		this.cmbxDayPrcPerNyt.addItemListener(il);
 	}
 	
 	public void setCmbxRsrvListener(ItemListener il){
-		if(this.cmbxRsrvLst.getItemListeners().length == 0)
-			this.cmbxRsrvLst.addItemListener(il);
+        for(ItemListener i: this.cmbxRsrvLst.getItemListeners())
+            this.cmbxRsrvLst.removeItemListener(i);
+
+        this.cmbxRsrvLst.addItemListener(il);
 	}
 
 	public void setBtnVieHtlBckListener(ActionListener al){

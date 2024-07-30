@@ -66,6 +66,10 @@ public class V_Card4_3 {
         this.cmbxRmtRmov.setSelectedIndex(0);
     }
 
+    public void removeItem(String room){
+        this.cmbxRmtRmov.removeItem(room);
+    }
+
     public void setCmbxRmtRmov(String[] rooms){
         this.cmbxRmtRmov.removeAllItems();
         for(String room : rooms)

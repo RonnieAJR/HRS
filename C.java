@@ -1,10 +1,5 @@
-
-import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.HashMap;
 
 public class C{
@@ -16,9 +11,6 @@ public class C{
 		this.m = m;
 		this.v = v;
 		V_Card1 card = v.getCard1();
-		
-		ActionListener goMainMenu = goCard("Main Menu");
-		ActionListener goManageHotel = goCard("Manage Hotel");
 		
 		card.setBtnCreHtlListener(goCard("Create Hotel"));
 		
@@ -655,7 +647,7 @@ public class C{
 		return al;
 	}
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 		new C(new V(), new HRS());
 	}
 }

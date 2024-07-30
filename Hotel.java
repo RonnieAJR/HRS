@@ -49,9 +49,9 @@ public class Hotel
 	/**
 	 * Creates a room and adds it to the list of rooms if the list is not yet full.
 	 * also automatically detects room type by using the parameters as an indicator
-	 * @return true if the room is created and added successfully
+	 *
 	 */
-	public boolean addRoom(String roomType)
+	public void addRoom(String roomType)
 	{
 		int size = this.capacity; 
 		String roomName;
@@ -59,7 +59,7 @@ public class Hotel
 		
 		// cannot add room if max capacity is reached
 		if(50 <= size)
-			return false;
+			return;
 		
 		roomName = generateRoomName(roomType);
 		
@@ -86,8 +86,6 @@ public class Hotel
 		
 		// sorts room according to room number
 		insertionSortRoom();
-		return true;
-		
 	}
 	
 	/**
@@ -214,9 +212,9 @@ public class Hotel
 		return room;
 	}
 	
-	public Boolean modDayPrice(int day, double mod)
+	public boolean modDayPrice(int day, double mod)
 	{
-		Boolean reserved = false;
+		boolean reserved = false;
 		
 		// checks if the modification is still normal price
 		if(mod == 100)
@@ -269,14 +267,14 @@ public class Hotel
 	public int findDiscount(String discountCode)
 	{
 		String[] list = {"I_WORK_HERE", "STAY4_GET1", "PAYDAY"};
-		int i = 0, index = -1;
+		int i, index = -1;
 
 		for(i = 0; i < list.length; i++)
 			if(discountCode.equals(list[i]))
 				index = i;
 
 		//return -1 if discount is not found
-		return -1;
+		return index;
 	}
 	
 	/**
