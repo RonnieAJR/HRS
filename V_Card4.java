@@ -17,7 +17,6 @@ public class V_Card4{
 	private V_Card4_4 card4_4;
 	private V_Card4_5 card4_5;
 	private V_Card4_6 card4_6;
-	private V_Card4_7 card4_7;	
 	
 	/**
 	 * Initializes all the components of the card.
@@ -101,8 +100,6 @@ public class V_Card4{
 		this.card4_4 = new V_Card4_4(cards);
 		this.card4_5 = new V_Card4_5(cards);
 		this.card4_6 = new V_Card4_6(cards);
-		this.card4_7 = new V_Card4_7(cards);
-
 		
 		this.cards.add(card4, "Manage Hotel");
 	}
@@ -153,10 +150,6 @@ public class V_Card4{
 	 */
 	public V_Card4_6 getCard4_6(){
 		return this.card4_6;
-	}
-
-	public V_Card4_7 getCard4_7(){
-		return this.card4_7;
 	}
 	
 	/**
