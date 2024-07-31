@@ -69,17 +69,6 @@ public class Hotel
 			room = new ExecutiveRoom(roomName, this.price, this.dayPriceMod);
 		else
 			room = new Room(roomName, this.price, this.dayPriceMod);
-		
-		// creates the room and adds it to the list
-		// room = new Room(roomName, this.price);
-
-		/*
-		//temporary for deluxe
-		room = new DeluxeRoom (roomName, this.price);
-
-		//temporary for executive
-		room = new ExecutiveRoom(roomName, this.price);
-		*/
 
 		this.rooms.add(room);
 		this.capacity++;
@@ -382,7 +371,6 @@ public class Hotel
 	  * The room with the reservation removes the days reserved for the reservation.
 	  *
 	  * @param reservationId id of the reservation
-	  * @return true if successfully removed
 	  */
 	public void removeReservation(int reservationId)
 	{
