@@ -127,7 +127,7 @@ public class V_Card3_4 {
         gbc.gridx = 0;
         gbc.gridy = 6;
         gbc.fill = GridBagConstraints.NONE;
-        centerPanel.add(new JLabel("Choose Day to check price per night"), gbc);
+        centerPanel.add(new JLabel("Choose day to check price"), gbc);
 
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -209,8 +209,8 @@ public class V_Card3_4 {
     }
 
 	/**
-	 * Sets the price on the selected day.
-	 * @param price the price on the selected day
+	 * Sets the reservationID on the selected text
+	 * @param reservationID the reservation ID on the selected day
 	 */
     public void setTxtResId(int reservationID){
         this.txtResId.setText("" + reservationID);
@@ -288,7 +288,7 @@ public class V_Card3_4 {
 
 	/**
 	 * Sets the view hotel action listener.
-	 * @param il the item listener
+	 * @param al the action listener
 	 */
 	public void setBtnVieHtlBckListener(ActionListener al){
 		if(this.btnVieHtlBck.getActionListeners().length == 0)

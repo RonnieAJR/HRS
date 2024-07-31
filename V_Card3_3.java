@@ -84,7 +84,7 @@ public class V_Card3_3 {
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.fill = GridBagConstraints.NONE;
-        centerPanel.add(new JLabel("Room Price Per Night:"), gbc);
+        centerPanel.add(new JLabel("Room Base Price:"), gbc);
 
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -181,7 +181,7 @@ public class V_Card3_3 {
 
 	/**
 	 * Sets the available days.
-	 * @param dayAvail[] array of the available days
+	 * @param dayAvail array of the available days
 	 */
     public void setCmbxDayAvail(Integer[] dayAvail){
 		this.cmbxDayAvail.removeAllItems();
@@ -191,7 +191,7 @@ public class V_Card3_3 {
 	
 	/**
 	 * Sets the reserved days.
-	 * @param daysReserved[] array of the reserved days
+	 * @param dayReserved array of the reserved days
 	 */
     public void setCmbxDayReserved(Integer[] dayReserved){
 		this.cmbxDayReserved.removeAllItems();
