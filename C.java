@@ -88,10 +88,14 @@ public class C{
 				double price = card.getTxtPrice();
 				
 				// checks if the hotel is to be created
-				if(price < 100){
+				if(name.isEmpty())
+					card.setFdbckCreHtl("Invalid name input");
+
+				else if(price < 100){
 					System.out.println("Invalid price input\n");
 					card.setFdbckCreHtl("Invalid price input");
 				}
+
 				else if(m.createHotel(name, capacity, price)){
 					card.setFdbckCreHtl("Hotel created");
 					// adds the hotel to the options in view, manage, and simulate booking

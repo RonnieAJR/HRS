@@ -114,7 +114,10 @@ public class V_Card2{
 	 * @return the price entered
 	 */
 	public double getTxtPrice(){
-		return Double.parseDouble(this.txtPrice.getText());
+		if(!this.txtPrice.getText().equals(""))
+			return Double.parseDouble(this.txtPrice.getText());
+		else
+			return 0;
 	}
 	
 	public JButton getBtnCreHtlTry(){
@@ -134,7 +137,7 @@ public class V_Card2{
 	 */
 	public void resetCreHtl(){
 		this.txtHtlName.setText("");
-		this.txtPrice.setText("1299.00");
+		this.txtPrice.setText("");
 		this.cmbxCap.setSelectedIndex(0);
 	}
 	
