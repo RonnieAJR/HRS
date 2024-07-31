@@ -1,12 +1,10 @@
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * The HRSView class provides the view for the HRS
  */
-public class V{
+public class HRSView{
 	private JFrame frame;
 	private JPanel cards;
 	private V_Card1 card1;
@@ -18,7 +16,7 @@ public class V{
 	/**
 	 * Constructs the view, initializing all cards inside the view
 	 */
-	public V(){
+	public HRSView(){
 		frame = new JFrame("Hotel Reservation System");
 		frame.setLayout(new BorderLayout());
 		frame.setSize(320, 420);

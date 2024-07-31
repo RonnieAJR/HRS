@@ -3,18 +3,18 @@ import javax.swing.*;
 import java.util.HashMap;
 
 /**
- * The HRSController class controls both HRSModel and HRSView, providing means for the two classes to communicate.
+ * The HRSModelController class controls both HRSModelModel and HRSModelView, providing means for the two classes to communicate.
  */
-public class C{
-	private HRS m;
-	private V v;
+public class HRSController{
+	private HRSModel m;
+	private HRSView v;
 	
 	/**
 	 * Constructs the controller, assigning model and view parameters as its own attributes.
 	 * @param v the view
 	 * @param m the model
 	 */
-	public C(V v, HRS m){
+	public HRSController(HRSView v, HRSModel m){
 		this.m = m;
 		this.v = v;
 		V_Card1 card = v.getCard1();
@@ -845,6 +845,6 @@ public class C{
 	 */
 	public static void main(String[] args){
 		// creates view and model
-		new C(new V(), new HRS());
+		new HRSController(new HRSView(), new HRSModel());
 	}
 }

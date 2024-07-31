@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
-public class HRS
+public class HRSModel
 {
 	private ArrayList<Hotel> hotels;
 	
 	/**
 	 * Constructor for the hotel reservation system
 	 */
-	public HRS()
+	public HRSModel()
 	{
 		this.hotels = new ArrayList<Hotel>();
 	}
