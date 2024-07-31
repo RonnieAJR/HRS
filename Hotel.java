@@ -87,11 +87,12 @@ public class Hotel
 		// sorts room according to room number
 		insertionSortRoom();
 	}
-	
+
 	/**
-	  * 	INSERT JAVADOC HERE
-	  *
-	  */
+	 * method that generates a room's name depending on their room type
+	 * @param roomType - Indicates what room type to generate new room name
+	 * @return String room name
+	 */
 	public String generateRoomName(String roomType)
 	{
 		int roomNumber = findGapRoom();
