@@ -114,10 +114,12 @@ public class V_Card2{
 	 * @return the price entered
 	 */
 	public double getTxtPrice(){
-		if(!this.txtPrice.getText().equals(""))
-			return Double.parseDouble(this.txtPrice.getText());
-		else
+		String text = this.txtPrice.getText();
+		try {
+			return Double.parseDouble(text);
+		} catch (NumberFormatException e) {
 			return 0;
+		}
 	}
 	
 	public JButton getBtnCreHtlTry(){

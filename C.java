@@ -806,7 +806,9 @@ public class C{
 				// validates days
 				if(checkIn < checkOut){
 					// creates reservation
-					if(hotel.createReservation(guestName, checkIn, checkOut, roomType, discountCode))
+					if(guestName.isEmpty())
+						card5.setTxtFdbck("Invalid Guest Name Input");
+					else if(hotel.createReservation(guestName, checkIn, checkOut, roomType, discountCode))
 						card5.setTxtFdbck("Reservation created");
 					else
 						card5.setTxtFdbck("No rooms available");
