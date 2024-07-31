@@ -533,7 +533,12 @@ public class Hotel
 	{
 		return this.rooms;
 	}
-	
+
+
+	/**
+	 * method to get the price of the hotel
+	 * @return double price
+	 */
 	public double getPrice()
 	{
 		return this.price;
